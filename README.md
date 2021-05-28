@@ -1,6 +1,6 @@
 # ciccc-react-midterm-team-project
 
 # Author
-Kit So
-Taichi Ishiguro
-Miyabi Tanimichi
+Kit So <br/>
+Taichi Ishiguro <br/>
+Miyabi Tanimichi <br/>
