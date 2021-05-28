@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useProductsContext } from '../context/products-context';
 
 function App() {
-  const { products, setProducts } = useProductsContext();
+  const { products } = useProductsContext();
 
   return (
     <div className="App">

@@ -15,7 +15,6 @@ const AppRouter = () => (
       <Route path="/cart" component={Cart} />
     </Switch>
     <Footer />
-    {/* <Detail /> */}
   </BrowserRouter>
 );
 
