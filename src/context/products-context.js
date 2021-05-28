@@ -1,12 +1,31 @@
-import React, { useState, createContext, useContext } from 'react';
-import fetchProducts from '../fetchAPI/products';
-
-const productsObj = fetchProducts();
+import React, { useState, createContext, useContext, useEffect } from 'react';
 
 const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState(productsObj);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      } else {
+        console.error('response.ok:', response.ok);
+        console.error('response.status:', response.status);
+        console.error('response.statusText', response.statusText);
+        throw new Error(response.statusText);
+      }
+    })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      setProducts(json);
+    })
+    .catch((error) => {
+      console.error('Error occured', error);
+    })  
+  }, []);
 
   return (
     <ProductsContext.Provider value={{ products, setProducts }}>

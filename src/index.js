@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
-import ProductsProvider from './context/products-context'
-import AppRouter from './routers/AppRouter';
+import React from "react";
+import ReactDOM from "react-dom";
+import reportWebVitals from "./reportWebVitals";
+import ProductsProvider from "./context/products-context";
+import AppRouter from "./routers/AppRouter";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,7 +10,7 @@ ReactDOM.render(
       <AppRouter />
     </ProductsProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

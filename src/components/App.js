@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import './scss/App.scss';
 import fetchProducts from '../fetchAPI/products'
@@ -35,6 +36,18 @@ const [item,setItem]=useState([])
   return (
     <div className="App">
 <Carousel item={item}/>
+=======
+import React, { useEffect } from 'react';
+import { useProductsContext } from '../context/products-context';
+
+function App() {
+  const { products, setProducts } = useProductsContext();
+
+  return (
+    <div className="App">
+      <div>This is App component</div>
+      <div>products: {products.length !== 0 && products[0].category}</div>
+>>>>>>> f096fa1d4de9cea1f6e52ab2ba0668ce0c14b44d
     </div>
   );
 }
