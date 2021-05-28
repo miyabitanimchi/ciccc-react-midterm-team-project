@@ -13,7 +13,7 @@ const fetchProducts = () => {
   .then((response) => response.json())
   .then((json) => {
     console.log(json);
-    return json
+    return json;
   })
   .catch((error) => {
     console.error('Error occured', error);

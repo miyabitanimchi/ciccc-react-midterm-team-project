@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import ProductsProvider from './context/products-context'
+import AppRouter from './routers/AppRouter';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ProductsProvider>
+      <AppRouter />
+    </ProductsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
