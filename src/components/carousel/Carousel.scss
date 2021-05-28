@@ -1,0 +1,16 @@
+.carousel {
+    border:1px solid black;
+    height:200px;
+    width:800px;
+    margin:50px auto;
+    ul {
+        list-style: none;
+        li {
+            float: left;
+            img {
+                height:200px;
+                width:200px;
+            }
+        }
+    }
+}
