@@ -1,6 +1,8 @@
 import React from 'react';
 import './Header.scss';
-
+import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
+import { GrCatalog } from "react-icons/gr";
+import { ImSearch } from "react-icons/im";
 
 
 const Header = () => {
@@ -13,10 +15,10 @@ const Header = () => {
               {/* <div className="searchBar"><input type="text"></input></div> */}
         <div className="iconWrap">
           <ul>
-            <li><input type="text" placeholder="search item...."></input></li>
-            <li><button>Catagory</button></li>
-            <li><button>Cart</button></li>
-            <li><button>Login</button></li>
+            <li><input type="text" placeholder="search item...."></input><ImSearch/></li>
+            <li><a href=""><GrCatalog className="userIcon"/></a><p>Catagory</p></li>
+            <li><a href=""><FaShoppingCart className="userIcon"/></a><p>Cart</p></li>
+            <li><a href=""><FaUserCircle className="userIcon"/></a><p>Account</p></li>
           </ul>
         </div>
       </nav>
