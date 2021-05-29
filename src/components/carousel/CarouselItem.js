@@ -4,8 +4,7 @@ const CarouselItem = (props) => {
 
     return (
         <li>
-            {/* <img src={props.item.image} /> */}
-            {/* <img src={props.item.length !== 0 && props.item.image} /> */}
+            <img src={props.item.image} />
         </li>
     )
 

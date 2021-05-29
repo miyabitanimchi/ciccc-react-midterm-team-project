@@ -1,50 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { useProductsContext } from '../../context/products-context';
 import CarouselItem from './CarouselItem'
 import './Carousel.scss';
 
-const Carousel = () => {
-
-    const [item, setItem] = useState([])
-
-
-    const { products } = useProductsContext();
+const Carousel = ({ item }) => {
+    const [randomItem, setRandomItem] = useState([])
 
     useEffect(() => {
         let randomItem = []
 
-        if (products !== 0) {
-
-
-
+        if (item.length !== 0) {
             while (randomItem.length < 3) {
                 const randomIndex = Math.floor(Math.random() * 19)
                 if (randomItem.indexOf(randomIndex) == -1) {
-                    randomItem.push(products[randomIndex])
+                    randomItem.push(item[randomIndex])
                 }
             }
-
             // console.log(randomItem)
         }
-        setItem(randomItem)
+        setRandomItem(randomItem)
         console.log(randomItem)
-
-
-    }, [products])
-
-    useEffect(() => {
-
-        console.log(item)
     }, [item])
 
+    useEffect(() => {
+        console.log(randomItem)
+    }, [randomItem])
 
     return (
         <>
             <div className="carousel">
                 <ul>
-                    {item.length !== 0 && <CarouselItem item={item[0]}/> }
+                    { randomItem.length !== 0 && (
+                        <CarouselItem item={randomItem[0]}/>
+                    )}
                     
-                    {item.length !== 0 && <img src={item[0].image}/>}
+                    {/* <img src={randomItem[0].image}/> */}
                     {/* <CarouselItem item={randomItem.length !== 0 && randomItem[0]}/> */}
 
                     {/* <CarouselItem item={randomItem[1]}/>

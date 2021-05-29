@@ -8,10 +8,17 @@ function App() {
 
   return (
     <div className="App">
-      <div>This is App component</div>
-      <div>products: {products.length !== 0 && products[0].title}</div>
-      <Carousel item={products.length !== 0 && products[0].title}/>
-{/* >>>>>>> f096fa1d4de9cea1f6e52ab2ba0668ce0c14b44d */}
+        <div>
+          <div>This is App component</div>
+          { products.length !== 0 && (
+            <div>
+              <div>products: {products[0].title}</div>
+              <Carousel item={products}/>
+            </div>
+          )
+          }
+        </div>
+
     </div>
   );
 }
