@@ -19,8 +19,8 @@ const ProductsProvider = ({ children }) => {
     })
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
       setProducts(json);
+      console.log(json);
     })
     .catch((error) => {
       console.error('Error occured', error);
