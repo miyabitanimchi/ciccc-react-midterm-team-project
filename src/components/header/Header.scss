@@ -1,22 +1,30 @@
 nav {
     position: relative;
-    background-color: rgb(146, 146, 146);
-    height: 120px;
+    background-color: rgb(58, 58, 58);
+    height: 80px;
 
     .logo {
         position: absolute;
     }
 
     .searchBar {
-        display: block;
-        margin-left: 50px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        input {
+            width: 30vw;
+        }
+        .searchBtn {
+            cursor: pointer;
+        }
     }
 
     .iconWrap {
         position: absolute;
-        transform: translate(0,-50%);
-        top:50%;
-        right: 0;
+        transform: translate(0, -50%);
+        top: 50%;
+        right: 30px;
 
         ul {
             list-style: none;
@@ -24,11 +32,26 @@ nav {
         }
 
         li {
+            // background-color: aqua;
             margin: 10px;
+
+            p {
+                text-align: center;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                color: white;
+            }
+            .navIcon {
+                height: 30px;
+                width: 30px;
+                color: white;
+                position: relative;
+                left: 50%;
+                transform: translate(-50%);
+            }
         }
 
-        li:nth-child(1) {
-            margin-right: 100px;
-        }
+        // li:nth-child(1) {
+        //     margin-right: 200px;
+        // }
     }
 }
