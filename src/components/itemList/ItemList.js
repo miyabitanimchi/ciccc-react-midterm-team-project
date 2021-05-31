@@ -4,7 +4,7 @@ import './ItemList.scss'
 
 const ItemList = ({ item }) => {
 
-
+// const random = document.ge
 
     return (
         <>

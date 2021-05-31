@@ -5,7 +5,7 @@ import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons
 
 
 
-const ItemSlide = (props) => {
+const CarouselItemSlide = (props) => {
 
     const [slide, setSlide] =
         useState([[props.item[0], props.item[1], props.item[2]],
@@ -45,10 +45,10 @@ const [none] = useState(undefined)
                     <div className="carouselSlide">
                         
                     <IoIosArrowDropleftCircle
-                        opacity={current === 0 ? 0 : 1} pointerEvents ={current === 0 && none}
+                        opacity={current === 0 ? 0 : 1} pointerEvents ={current === 0 && "none"}
                         className="leftArrow" size={30} onClick={prevSlide} />
                     <IoIosArrowDroprightCircle
-                        opacity={current === 2 ? 0 : 1} pointerEvents ={current === 2 && none}
+                        opacity={current === 2 ? 0 : 1} pointerEvents ={current === 2 &&  "none"}
                         className="rightArrow" size={30} onClick={nextSlide} />
                         {slide.map((slide, index) => {
                             return (
@@ -66,4 +66,4 @@ const [none] = useState(undefined)
     )
 }
 
-export default ItemSlide;
+export default CarouselItemSlide;

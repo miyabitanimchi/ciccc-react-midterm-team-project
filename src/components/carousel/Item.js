@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Item = (props) => {
-
+console.log(props)
     return (
         <div className = "item">
-            <a href={"/detail/:id" + props.item.id} > <img src={props.item.image} /></a>
+            <a href={"/detail/" + props.item.id}> <img src={props.item.image} /></a>
         </div>
     )
 
