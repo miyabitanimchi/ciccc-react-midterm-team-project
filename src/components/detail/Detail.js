@@ -6,7 +6,6 @@ import "./Detail.scss";
 const Detail = (props) => {
   props = 1;
   const { products } = useProductsContext();
-  // information which will be sent to Cart↓
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
     size: "",
@@ -32,11 +31,25 @@ const Detail = (props) => {
     setchosenProductInfo({ ...chosenProductInfo, quantity: selectedQuantity });
   };
 
-  console.log(chosenProductInfo);
+  // console.log(chosenProductInfo);
 
   useEffect(() => {
     filterChosenProduct();
   }, [products]);
+
+  const addToCart = () => {
+    // for loaclStorage
+    console.log("add cart is clicked");
+    // 今とりあえずこう書いとく
+    const productsAddedToCart = [];
+    // productsAddedToCart.pop(chosenProductInfo);
+    productsAddedToCart.push(chosenProductInfo);
+    localStorage.setItem(
+      "addedProductsArr",
+      JSON.stringify(productsAddedToCart)
+    );
+    console.log(productsAddedToCart);
+  };
 
   return (
     <main>
@@ -176,6 +189,7 @@ const Detail = (props) => {
               disabled={
                 chosenProductInfo.size && chosenProductInfo.color ? false : true
               }
+              onClick={() => addToCart()}
             >
               Add to Cart
             </button>
