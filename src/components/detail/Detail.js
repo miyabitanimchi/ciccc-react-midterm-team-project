@@ -4,23 +4,37 @@ import { useProductsContext } from "../../context/products-context";
 import "./Detail.scss";
 
 const Detail = (props) => {
-  props = 3;
+  props = 14;
   const { products } = useProductsContext();
   const [detail, setDetail] = useState([]);
+  const [chosenSize, setChosenSize] = useState("");
+  const [chosenColor, setChosenColor] = useState("");
+  // information which will be saved in Cart
+  const chosenProductInfo = {
+    product: detail[0],
+    size: chosenSize,
+    color: chosenColor,
+  };
+  console.log(chosenProductInfo);
   console.log(detail);
+  console.log(chosenSize);
+  console.log(chosenColor);
 
-  const filterClickedProduct = () => {
-    if (products !== 0) {
-      const clickedProduct = products.filter((product) => product.id === props);
-      setDetail(clickedProduct);
-      console.log(clickedProduct);
-    } else {
-      console.log("whyyy");
-    }
+  const filterChosenProduct = () => {
+    const chosenProduct = products.filter((product) => product.id === props);
+    setDetail(chosenProduct);
+  };
+
+  const showChosenSize = (val) => {
+    setChosenSize(val);
+  };
+
+  const showChosenColor = (val) => {
+    setChosenColor(val);
   };
 
   useEffect(() => {
-    filterClickedProduct();
+    filterChosenProduct();
   }, [products]);
 
   return (
@@ -43,27 +57,92 @@ const Detail = (props) => {
             <p>Price:</p>
             <p className="price">${detail[0].price}</p>
             <p className="description">{detail[0].description}</p>
-            <p className="size">Size:</p>
+            <p className="size">
+              Size: <span>{chosenSize}</span>
+            </p>
             <div className="size-wrap">
-              <input className="size-btn" type="submit" value="XXS" />
-              <input className="size-btn" type="submit" value="XS" />
-              <input className="size-btn" type="submit" value="S" />
-              <input className="size-btn" type="submit" value="M" />
-              <input className="size-btn" type="submit" value="L" />
-              <input className="size-btn" type="submit" value="XL" />
-              <input className="size-btn" type="submit" value="XXL" />
+              <input
+                className="size-btn"
+                type="submit"
+                value="XXS"
+                onClick={(e) => showChosenSize(e.target.value)}
+              />
+              <input
+                className="size-btn"
+                type="submit"
+                value="XS"
+                onClick={(e) => showChosenSize(e.target.value)}
+              />
+              <input
+                className="size-btn"
+                type="submit"
+                value="S"
+                onClick={(e) => showChosenSize(e.target.value)}
+              />
+              <input
+                className="size-btn"
+                type="submit"
+                value="M"
+                onClick={(e) => showChosenSize(e.target.value)}
+              />
+              <input
+                className="size-btn"
+                type="submit"
+                value="L"
+                onClick={(e) => showChosenSize(e.target.value)}
+              />
+              <input
+                className="size-btn"
+                type="submit"
+                value="XL"
+                onClick={(e) => showChosenSize(e.target.value)}
+              />
+              <input
+                className="size-btn"
+                type="submit"
+                value="XXL"
+                onClick={(e) => showChosenSize(e.target.value)}
+              />
             </div>
-            <p>Colour: </p>
+            <p>
+              Colour: <span>{chosenColor}</span>
+            </p>
             <div className="color-wrap">
-              <input className="color-btn beige" type="submit" value="beige" />
-              <input className="color-btn navy" type="submit" value="navy" />
-              <input className="color-btn gray" type="submit" value="gray" />
-              <input className="color-btn black" type="submit" value="black" />
-              <input className="color-btn brown" type="submit" value="brown" />
+              <input
+                className="color-btn beige"
+                type="submit"
+                value="beige"
+                onClick={(e) => showChosenColor(e.target.value)}
+              />
+              <input
+                className="color-btn navy"
+                type="submit"
+                value="navy"
+                onClick={(e) => showChosenColor(e.target.value)}
+              />
+              <input
+                className="color-btn gray"
+                type="submit"
+                value="gray"
+                onClick={(e) => showChosenColor(e.target.value)}
+              />
+              <input
+                className="color-btn black"
+                type="submit"
+                value="black"
+                onClick={(e) => showChosenColor(e.target.value)}
+              />
+              <input
+                className="color-btn brown"
+                type="submit"
+                value="brown"
+                onClick={(e) => showChosenColor(e.target.value)}
+              />
               <input
                 className="color-btn off-white"
                 type="submit"
                 value="white"
+                onClick={(e) => showChosenColor(e.target.value)}
               />
             </div>
             <button className="add-to-cart-btn">Add to Cart</button>
