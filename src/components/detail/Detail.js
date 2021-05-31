@@ -4,34 +4,35 @@ import { useProductsContext } from "../../context/products-context";
 import "./Detail.scss";
 
 const Detail = (props) => {
-  props = 14;
+  props = 1;
   const { products } = useProductsContext();
-  const [detail, setDetail] = useState([]);
-  const [chosenSize, setChosenSize] = useState("");
-  const [chosenColor, setChosenColor] = useState("");
-  // information which will be saved in Cart
-  const chosenProductInfo = {
-    product: detail[0],
-    size: chosenSize,
-    color: chosenColor,
-  };
-  console.log(chosenProductInfo);
-  console.log(detail);
-  console.log(chosenSize);
-  console.log(chosenColor);
+  // information which will be sent to Cart↓
+  const [chosenProductInfo, setchosenProductInfo] = useState({
+    product: [],
+    size: "",
+    color: "",
+    quantity: 1,
+  });
 
   const filterChosenProduct = () => {
     const chosenProduct = products.filter((product) => product.id === props);
-    setDetail(chosenProduct);
+    setchosenProductInfo({ ...chosenProductInfo, product: chosenProduct });
   };
 
-  const showChosenSize = (val) => {
-    setChosenSize(val);
+  const showChosenSize = (targetedEl) => {
+    // targetedEl.classList.add("selected-size");
+    setchosenProductInfo({ ...chosenProductInfo, size: targetedEl.value });
   };
 
-  const showChosenColor = (val) => {
-    setChosenColor(val);
+  const showChosenColor = (targetedEl) => {
+    setchosenProductInfo({ ...chosenProductInfo, color: targetedEl.value });
   };
+
+  const changeQuantity = (selectedQuantity) => {
+    setchosenProductInfo({ ...chosenProductInfo, quantity: selectedQuantity });
+  };
+
+  console.log(chosenProductInfo);
 
   useEffect(() => {
     filterChosenProduct();
@@ -39,14 +40,19 @@ const Detail = (props) => {
 
   return (
     <main>
-      {detail.length !== 0 && (
+      {chosenProductInfo.product.length !== 0 && (
         <div className="detail-container">
           <div className="img-wrap">
-            <img src={detail[0].image} alt={detail[0].title} />
+            <img
+              src={chosenProductInfo.product[0].image}
+              alt={chosenProductInfo.product[0].title}
+            />
           </div>
           <div className="description-wrap">
-            <p className="category">{detail[0].category}</p>
-            <h2 className="product-name">{detail[0].title}</h2>
+            <p className="category">{chosenProductInfo.product[0].category}</p>
+            <h2 className="product-name">
+              {chosenProductInfo.product[0].title}
+            </h2>
             <span className="rating-star">
               <FaStar />
               <FaStar />
@@ -54,98 +60,125 @@ const Detail = (props) => {
               <FaStar />
               <FaStarHalfAlt />
             </span>
-            <p>Price:</p>
-            <p className="price">${detail[0].price}</p>
-            <p className="description">{detail[0].description}</p>
-            <p className="size">
-              Size: <span>{chosenSize}</span>
+            <p className="price-title">Price:</p>
+            <p className="price">${chosenProductInfo.product[0].price}</p>
+            <p className="description">
+              {chosenProductInfo.product[0].description}
+            </p>
+            <p className="size-title">
+              Size: <span>{chosenProductInfo.size}</span>
             </p>
             <div className="size-wrap">
               <input
                 className="size-btn"
                 type="submit"
                 value="XXS"
-                onClick={(e) => showChosenSize(e.target.value)}
+                onClick={(e) => showChosenSize(e.target)}
               />
               <input
                 className="size-btn"
                 type="submit"
                 value="XS"
-                onClick={(e) => showChosenSize(e.target.value)}
+                onClick={(e) => showChosenSize(e.target)}
               />
               <input
                 className="size-btn"
                 type="submit"
                 value="S"
-                onClick={(e) => showChosenSize(e.target.value)}
+                onClick={(e) => showChosenSize(e.target)}
               />
               <input
                 className="size-btn"
                 type="submit"
                 value="M"
-                onClick={(e) => showChosenSize(e.target.value)}
+                onClick={(e) => showChosenSize(e.target)}
               />
               <input
                 className="size-btn"
                 type="submit"
                 value="L"
-                onClick={(e) => showChosenSize(e.target.value)}
+                onClick={(e) => showChosenSize(e.target)}
               />
               <input
                 className="size-btn"
                 type="submit"
                 value="XL"
-                onClick={(e) => showChosenSize(e.target.value)}
+                onClick={(e) => showChosenSize(e.target)}
               />
               <input
                 className="size-btn"
                 type="submit"
                 value="XXL"
-                onClick={(e) => showChosenSize(e.target.value)}
+                onClick={(e) => showChosenSize(e.target)}
               />
             </div>
-            <p>
-              Colour: <span>{chosenColor}</span>
+            <p className="color-title">
+              Colour: <span>{chosenProductInfo.color}</span>
             </p>
             <div className="color-wrap">
               <input
                 className="color-btn beige"
                 type="submit"
-                value="beige"
-                onClick={(e) => showChosenColor(e.target.value)}
+                value="Beige"
+                onClick={(e) => showChosenColor(e.target)}
               />
               <input
                 className="color-btn navy"
                 type="submit"
-                value="navy"
-                onClick={(e) => showChosenColor(e.target.value)}
+                value="Navy"
+                onClick={(e) => showChosenColor(e.target)}
               />
               <input
                 className="color-btn gray"
                 type="submit"
-                value="gray"
-                onClick={(e) => showChosenColor(e.target.value)}
+                value="Gray"
+                onClick={(e) => showChosenColor(e.target)}
               />
               <input
                 className="color-btn black"
                 type="submit"
-                value="black"
-                onClick={(e) => showChosenColor(e.target.value)}
+                value="Black"
+                onClick={(e) => showChosenColor(e.target)}
               />
               <input
                 className="color-btn brown"
                 type="submit"
-                value="brown"
-                onClick={(e) => showChosenColor(e.target.value)}
+                value="Brown"
+                onClick={(e) => showChosenColor(e.target)}
               />
               <input
                 className="color-btn off-white"
                 type="submit"
-                value="white"
-                onClick={(e) => showChosenColor(e.target.value)}
+                value="Off-white"
+                onClick={(e) => showChosenColor(e.target)}
               />
             </div>
-            <button className="add-to-cart-btn">Add to Cart</button>
+            <div className="quantity-wrap">
+              <p className="quantity-title">Quantity: </p>
+              <select
+                name="quantity"
+                onChange={(e) => changeQuantity(Number(e.target.value))}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <button
+              className="add-to-cart-btn"
+              disabled={
+                chosenProductInfo.size && chosenProductInfo.color ? false : true
+              }
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       )}
