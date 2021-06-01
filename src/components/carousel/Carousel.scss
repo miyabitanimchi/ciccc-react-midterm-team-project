@@ -1,16 +1,79 @@
 .carousel {
-    border:1px solid black;
-    height:200px;
-    width:800px;
-    margin:50px auto;
-    ul {
-        list-style: none;
-        li {
-            float: left;
-            img {
-                height:200px;
-                width:200px;
+    position: relative;
+    margin: 30px auto;
+
+    h2 {
+        margin: 0 0 20px 20px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        user-select: none;
+    }
+
+    .leftArrow {
+        position: absolute;
+        left: -250px;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 50px;
+        user-select: none;
+        cursor: pointer;
+        z-index: 5;
+    }
+
+    .rightArrow {
+        position: absolute;
+        right: -250px;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 50px;
+        user-select: none;
+        cursor: pointer;
+        z-index: 5;
+    }
+
+    .leftArrow:hover {
+        color: rgb(134, 134, 134);
+    }
+
+    .rightArrow:hover {
+        color: rgb(134, 134, 134);
+    }
+
+    .carouselSlide {
+        // background-color: gray;
+        width: 900px;
+        margin: auto;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+
+        .slide {
+            user-select: none;
+            opacity: 0;
+            display: flex;
+            transition-duration: 2s ease;
+
+            a {
+                margin: 0 15px;
+
+                img {
+                    height: 280px;
+                    width: 400px;
+                    object-fit: cover;
+                }
             }
+
+            a:hover {
+                img {
+                    transform: scale(1.1);
+                    transition-duration: 100ms;
+                }
+            }
+        }
+
+        .slide.current {
+            opacity: 1;
+            transition-duration: 1s;
         }
     }
 }
