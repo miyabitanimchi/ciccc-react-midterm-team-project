@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
+
 import "./Detail.scss";
 
+const hello = JSON.parse(localStorage.getItem("addedProductsArr"));
+
 const Detail = (props) => {
-  props = 1;
   const { products } = useProductsContext();
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
@@ -12,9 +14,12 @@ const Detail = (props) => {
     color: "",
     quantity: 1,
   });
+  const [addedProductsArr, setAddedProductsArr] = useState(hello || []);
 
   const filterChosenProduct = () => {
-    const chosenProduct = products.filter((product) => product.id === props);
+    const chosenProduct = products.filter(
+      (product) => product.id === Number(props.match.params.id)
+    );
     setchosenProductInfo({ ...chosenProductInfo, product: chosenProduct });
   };
 
@@ -40,16 +45,16 @@ const Detail = (props) => {
   const addToCart = () => {
     // for loaclStorage
     console.log("add cart is clicked");
-    // 今とりあえずこう書いとく
-    const productsAddedToCart = [];
-    // productsAddedToCart.pop(chosenProductInfo);
-    productsAddedToCart.push(chosenProductInfo);
-    localStorage.setItem(
-      "addedProductsArr",
-      JSON.stringify(productsAddedToCart)
-    );
-    console.log(productsAddedToCart);
+    setAddedProductsArr((addedProductsArr) => {
+      return [...addedProductsArr, chosenProductInfo];
+    });
+    console.log(chosenProductInfo);
   };
+
+  useEffect(() => {
+    localStorage.setItem("addedProductsArr", JSON.stringify(addedProductsArr));
+  }, [addedProductsArr]);
+  console.log(addedProductsArr);
 
   return (
     <main>
