@@ -36,7 +36,7 @@ const startLogout = () => {
         <div className="searchBar">
           <input className="searchInput" type="text" placeholder="search item...." 
              onChange={(e)=>setSearchInput(e.target.value)}></input>
-          <a href={"./search?"+searchInput}><ImSearch className="searchBtn" color={"white"}/></a>
+          <a href={"/search/"+searchInput}><ImSearch className="searchBtn" color={"white"}/></a>
           </div> 
         <div className="iconWrap">
           <ul>

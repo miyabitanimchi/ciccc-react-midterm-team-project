@@ -1,0 +1,45 @@
+.itemResultList {
+    position: relative;
+    margin-top: 30px;
+    // justify-content: center;
+    // align-items: center;
+
+    h2 {
+        margin: 0 0 20px 20px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        user-select: none;
+    }
+
+    .itemResultWrap {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 80px;
+
+        .item {
+            display: flex;
+            position: relative;
+            user-select: none;
+            margin: 12px;
+
+            a {
+                margin: 15px;
+            }
+
+            img {
+                height: 300px;
+                width: 300px;
+                object-fit: cover;
+            }
+
+            a:hover {
+                img {
+                    transform: scale(1.1);
+                    transition-duration: 100ms;
+                }
+            }
+        }
+    }
+}

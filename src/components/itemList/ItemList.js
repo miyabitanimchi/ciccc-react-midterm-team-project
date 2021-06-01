@@ -2,17 +2,17 @@ import React from 'react';
 import Item from '../carousel/Item'
 import './ItemList.scss'
 
-const ItemList = ({ item }) => {
+const ItemList = ( props) => {
 
 // const random = document.ge
 
     return (
         <>
-            <div className="itemList">
-                <h2>Feature Items</h2>
+            <div className={props.listClass}>
+                <h2>{props.title}</h2>
 
-                <div className="itemWrap">
-                    {item.map((item, index) => {
+                <div className={props.wrapClass}>
+                    {props.item.map((item, index) => {
                         return (<Item item={item} key={index} />)
                     })}
                 </div>

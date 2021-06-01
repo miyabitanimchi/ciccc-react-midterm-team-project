@@ -8,7 +8,7 @@ const Carousel = (props) => {
     return (
         <>
             <div className="carousel">
-                <h2>Best Seller</h2>
+                <h2>{props.title}</h2>
                 {props.item.length !== 0 && (
                         <CarouselItemSlide item={props.item}/>
                 )}

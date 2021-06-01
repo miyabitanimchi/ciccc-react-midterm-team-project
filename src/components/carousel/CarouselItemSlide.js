@@ -1,54 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CarouselItem from './CarouselItem';
-// import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io';
+
 
 
 
 const CarouselItemSlide = (props) => {
 
-    const [slide, setSlide] =
+    // ============  Hook for current slide
+    const [current, setCurrent] = useState(0)
+
+    // ============ Set Array of 3 Slides each with 3 Images
+    const [slide] =
         useState([[props.item[0], props.item[1], props.item[2]],
         [props.item[3], props.item[4], props.item[5]],
         [props.item[6], props.item[7], props.item[8]]
         ])
 
-// const [none, setNone] = useState(undefined)
+    // ============ Check arrow if is end of slide then disable it
+    useEffect(() => {
+        const leftArrow = document.getElementsByClassName("leftArrow")[0]
+        const rightArrow = document.getElementsByClassName("rightArrow")[0]
+        current === 0 ? leftArrow.style.pointerEvents = "none" : leftArrow.style.pointerEvents = "auto"
+        current === 2 ? rightArrow.style.pointerEvents = "none" : rightArrow.style.pointerEvents = "auto"
+    }, [current])
 
-    const [current, setCurrent] = useState(0)
-    const length = slide.length
-
+    // ============ left arrow move to previous slide 
     const prevSlide = () => {
-
-        current !== 0 && setCurrent(current === length - 1 ? 0 : current + 1)
-        // console.log(slide[0])
-        // console.log(slide.length)
-        // console.log("slide1", slide[1][0])
-        // console.log(current)
-        // console.log(slideList)
+        current !== 0 && setCurrent(current - 1)
     }
 
+    // ============ Right arrow move to next slide 
     const nextSlide = () => {
-        current !== 2 && setCurrent(current === length - 1 ? 0 : current + 1)
-
+        current !== 2 && setCurrent(current + 1)
     }
-
-    // const none = {false}
 
     return (
         <>
             {props.length !== 0 && (
                 <>
-
-
                     <div className="carouselSlide">
-                        
-                    <IoIosArrowDropleftCircle
-                        opacity={current === 0 ? 0 : 1}
-                        className="leftArrow" size={30} onClick={prevSlide} />
-                    <IoIosArrowDroprightCircle
-                        opacity={current === 2 ? 0 : 1}
-                        className="rightArrow" size={30} onClick={nextSlide} />
+
+                        <IoIosArrowDropleftCircle
+                            opacity={current === 0 ? 0 : 1}
+                            className="leftArrow" size={30} onClick={prevSlide} />
+                        <IoIosArrowDroprightCircle
+                            opacity={current === 2 ? 0 : 1}
+                            className="rightArrow" size={30} onClick={nextSlide} />
+
                         {slide.map((slide, index) => {
                             return (
                                 <div className={current === index ? "slide current" : "slide"} key={index}>
