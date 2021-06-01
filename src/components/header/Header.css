@@ -1,0 +1,61 @@
+nav {
+  position: relative;
+  background-color: #3a3a3a;
+  height: 80px;
+}
+
+nav .logo {
+  position: absolute;
+}
+
+nav .searchBar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+nav .searchBar input {
+  width: 30vw;
+}
+
+nav .searchBar .searchBtn {
+  cursor: pointer;
+}
+
+nav .iconWrap {
+  position: absolute;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  top: 50%;
+  right: 30px;
+}
+
+nav .iconWrap ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+nav .iconWrap li {
+  margin: 10px;
+}
+
+nav .iconWrap li p {
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+nav .iconWrap li .navIcon {
+  height: 30px;
+  width: 30px;
+  color: white;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+}
+/*# sourceMappingURL=Header.css.map */

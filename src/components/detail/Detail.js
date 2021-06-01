@@ -4,7 +4,7 @@ import { useProductsContext } from "../../context/products-context";
 
 import "./Detail.scss";
 
-const hello = JSON.parse(localStorage.getItem("addedProductsArr"));
+const storedProducts = JSON.parse(localStorage.getItem("addedProductsArr"));
 
 const Detail = (props) => {
   const { products } = useProductsContext();
@@ -14,7 +14,9 @@ const Detail = (props) => {
     color: "",
     quantity: 1,
   });
-  const [addedProductsArr, setAddedProductsArr] = useState(hello || []);
+  const [addedProductsArr, setAddedProductsArr] = useState(
+    storedProducts || []
+  );
 
   const filterChosenProduct = () => {
     const chosenProduct = products.filter(
@@ -35,8 +37,6 @@ const Detail = (props) => {
   const changeQuantity = (selectedQuantity) => {
     setchosenProductInfo({ ...chosenProductInfo, quantity: selectedQuantity });
   };
-
-  // console.log(chosenProductInfo);
 
   useEffect(() => {
     filterChosenProduct();
