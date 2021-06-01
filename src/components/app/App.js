@@ -37,7 +37,6 @@ console.log(products)
 
     //    ================ update item by useState
     setRandomItem(randomItemArr)
-<<<<<<< Updated upstream
     // console.log(randomItem)
 }, [products])
 
@@ -47,11 +46,8 @@ console.log(products)
 
 // console.log(randomItem)
 // console.log(products)
-
-=======
-    setItemList(itemListArr)
-  }, [products])
->>>>>>> Stashed changes
+  //   setItemList(itemListArr)
+  // }, [products])
 
   return (
     <div className="app">

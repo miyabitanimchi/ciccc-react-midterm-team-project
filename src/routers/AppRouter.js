@@ -12,6 +12,7 @@ const AppRouter = () => {
   const { user } = useAuthContext();
   useEffect(() => {
     user && console.log(`Hello, ${user.displayName}!`);
+    // user && console.log(user);
   }, [user]);
 
   return (

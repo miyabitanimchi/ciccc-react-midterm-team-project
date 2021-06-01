@@ -1,19 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const Item = (props) => {
 // console.log(props)
-<<<<<<< Updated upstream
-=======
 
 const test = (e) =>{
     console.log(`hover ${e.target.title}`)
 }
 
->>>>>>> Stashed changes
     return (
         
         <div className = "item" >
-            <a href={"/detail/" + props.item.id}> <img src={props.item.image} onMouseOver={(e)=>test(e)}/></a>
+            <Link to={"/detail/" + props.item.id}> <img src={props.item.image} onMouseOver={(e)=>test(e)}/></Link>
         </div>
     )
 
