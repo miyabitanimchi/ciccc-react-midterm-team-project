@@ -2,12 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import ProductsProvider from "./context/products-context";
+import AuthProvider from "./context/auth-context";
 import AppRouter from "./routers/AppRouter";
+
+require('dotenv').config();
 
 ReactDOM.render(
   <React.StrictMode>
     <ProductsProvider>
-      <AppRouter />
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
     </ProductsProvider>
   </React.StrictMode>,
   document.getElementById("root")
