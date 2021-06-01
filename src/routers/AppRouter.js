@@ -9,7 +9,7 @@ import Footer from "../components/footer/Footer";
 const AppRouter = () => (
   <BrowserRouter>
     <Header />
-    <Switch>
+   <Switch>
       <Route path="/" component={App} exact={true} />
       <Route path="/detail/:id" component={Detail} />
       <Route path="/cart" component={Cart} />
