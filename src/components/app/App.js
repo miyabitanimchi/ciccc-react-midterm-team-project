@@ -37,17 +37,8 @@ console.log(products)
 
     //    ================ update item by useState
     setRandomItem(randomItemArr)
-    // console.log(randomItem)
-}, [products])
-
-// useEffect(() => {
-//     console.log(randomItem)
-// }, [randomItem])
-
-// console.log(randomItem)
-// console.log(products)
-  //   setItemList(itemListArr)
-  // }, [products])
+    setItemList(itemListArr)
+  }, [products])
 
   return (
     <div className="app">

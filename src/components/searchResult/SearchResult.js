@@ -25,7 +25,6 @@ const SearchResult = (props) => {
 
 
     useEffect(() => {
-        
         search()
     }, [products])
 
