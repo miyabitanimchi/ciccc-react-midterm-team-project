@@ -1,0 +1,32 @@
+.cart-container {
+  margin-top: 2rem;
+
+  .checkout-wrap {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    padding-bottom: 3rem;
+    .total-price {
+      color: #ff0000;
+      font-weight: bold;
+      font-size: 1.9rem;
+      text-align: right;
+      margin-bottom: 0.5rem;
+    }
+    .checkout-btn,
+    .continue-shop-btn {
+      width: 20rem;
+      align-self: flex-end;
+      padding: 0.4rem;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-bottom: 0.2rem;
+    }
+    .checkout-btn {
+      color: #ffffff;
+      background: #ff3c00;
+    }
+  }
+}

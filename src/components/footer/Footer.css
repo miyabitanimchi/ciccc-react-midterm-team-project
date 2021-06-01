@@ -1,0 +1,36 @@
+html {
+  scroll-behavior: smooth;
+}
+
+footer {
+  height: 30px;
+  background-color: #3a3a3a;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+footer p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 8pt;
+}
+
+.bkTop {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  cursor: pointer;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+}
+/*# sourceMappingURL=Footer.css.map */

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Footer.scss';
 import { IoIosArrowDropupCircle } from 'react-icons/io';
 

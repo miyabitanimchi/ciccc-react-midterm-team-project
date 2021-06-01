@@ -38,8 +38,8 @@ useEffect(() => {
 //     console.log(randomItem)
 // }, [randomItem])
 
-console.log(randomItem)
-console.log(products)
+// console.log(randomItem)
+// console.log(products)
 
 
   return (
