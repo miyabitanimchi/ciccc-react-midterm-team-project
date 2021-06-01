@@ -2,8 +2,6 @@ import React from "react";
 import { IoMdClose } from "react-icons/io";
 import "./CartItem.scss";
 
-const storedProducts = JSON.parse(localStorage.getItem("addedProductsArr"));
-
 const CartItem = (props) => {
   const { product, size, color, quantity } = props;
 

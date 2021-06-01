@@ -7,12 +7,19 @@ const Cart = () => {
   console.log(productsAddedToCart);
 
   // if user removes some of item in cart
-  // **this doesn't affect localStorage yet**
   const getNewAddedProductsArr = (id) => {
     const newAddedProductsArr = productsAddedToCart.filter(
       (product) => product.product[0].id !== id
     );
     setProductsAddedToCart(newAddedProductsArr);
+    // remove current array in localStorage
+    localStorage.removeItem("addedProductsArr");
+    // set new array in localStorage
+    localStorage.setItem(
+      "addedProductsArr",
+      JSON.stringify(newAddedProductsArr)
+    );
+
     console.log("this is parent");
   };
 
@@ -35,7 +42,7 @@ const Cart = () => {
         <CartItem
           key={product.product[0].id}
           {...product}
-          // ** Need to rename this **
+          // **** Need to rename this ****
           handleFunc={getNewAddedProductsArr}
         />
       ))}
