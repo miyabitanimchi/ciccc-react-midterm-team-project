@@ -13,14 +13,14 @@ const CarouselItemSlide = (props) => {
         [props.item[6], props.item[7], props.item[8]]
         ])
 
-const [none] = useState(undefined)
+// const [none, setNone] = useState(undefined)
 
     const [current, setCurrent] = useState(0)
     const length = slide.length
 
     const prevSlide = () => {
 
-        setCurrent(current === length - 1 ? 0 : current + 1)
+        current !== 0 && setCurrent(current === length - 1 ? 0 : current + 1)
         // console.log(slide[0])
         // console.log(slide.length)
         // console.log("slide1", slide[1][0])
@@ -29,8 +29,7 @@ const [none] = useState(undefined)
     }
 
     const nextSlide = () => {
-
-        setCurrent(current === length - 1 ? 0 : current + 1)
+        current !== 2 && setCurrent(current === length - 1 ? 0 : current + 1)
 
     }
 
@@ -45,10 +44,10 @@ const [none] = useState(undefined)
                     <div className="carouselSlide">
                         
                     <IoIosArrowDropleftCircle
-                        opacity={current === 0 ? 0 : 1} pointerEvents ={current === 0 && "none"}
+                        opacity={current === 0 ? 0 : 1}
                         className="leftArrow" size={30} onClick={prevSlide} />
                     <IoIosArrowDroprightCircle
-                        opacity={current === 2 ? 0 : 1} pointerEvents ={current === 2 &&  "none"}
+                        opacity={current === 2 ? 0 : 1}
                         className="rightArrow" size={30} onClick={nextSlide} />
                         {slide.map((slide, index) => {
                             return (
