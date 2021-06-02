@@ -5,8 +5,8 @@ import Detail from "../components/detail/Detail";
 import Cart from "../components/cart/Cart";
 import { useAuthContext } from "../context/auth-context";
 import SearchResult from "../components/searchResult/SearchResult";
-import Wrapper from '../components/wrapper/Wrapper';
 import Account from "../components/account/Account";
+import Wrapper from '../components/wrapper/Wrapper';
 
 const AppRouter = () => {
   const { user } = useAuthContext();
