@@ -6,7 +6,9 @@ const Wrapper = ({ children }) => (
   <>
     <Header />
       <section className="main">
-        { children }
+        <div className="main__wrapper">
+          { children }
+        </div>
       </section>
     <Footer />
   </>
