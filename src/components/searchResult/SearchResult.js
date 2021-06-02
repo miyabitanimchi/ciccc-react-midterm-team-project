@@ -13,30 +13,35 @@ const SearchResult = (props) => {
 
     const searchKeyWords = props.match.params.keywords
 
+    console.log(searchKeyWords)
+
     const search = () => {
 
         setSearchKey(searchKeyWords.toLowerCase())
-        const searchResult = products.filter((product) => 
-            product.title.toLowerCase().indexOf(searchKey) > -1 )
+        console.log(searchKey)
+        
+        const searchResult = products.filter((product) =>
+            product.title.toLowerCase().indexOf(searchKey) > -1)
 
-        console.log(searchResult)
+
         setResult(searchResult)
+        console.log(searchResult)
     }
 
 
 
     useEffect(() => {
         search()
-    }, [products])
+    }, [searchKey])
 
 
 
     return (
         <>
             <ItemList item={result} listClass={"itemResultList"} wrapClass={"itemResultWrap"}
-            title={result.length === 0 ? `No result for "${searchKeyWords}"`
-            : result.length === 1 ? `${result.length} Result for "${searchKeyWords}"` 
-            : `${result.length} Results for "${searchKeyWords}"`}/>
+                title={result.length === 0 ? `No result for "${searchKeyWords}"`
+                    : result.length === 1 ? `${result.length} Result for "${searchKeyWords}"`
+                        : `${result.length} Results for "${searchKeyWords}"`} />
         </>
     )
 }

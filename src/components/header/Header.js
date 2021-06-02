@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   const { user } = useAuthContext();
   const [searchInput,setSearchInput] = useState("")
+  console.log(searchInput)
 
   return (
     <>
@@ -16,7 +17,7 @@ const Header = () => {
         <div className="searchBar">
           <input className="searchInput" type="text" placeholder="search item...." 
              onChange={(e)=>setSearchInput(e.target.value)}></input>
-          <a href={"/search"+searchInput}><ImSearch className="searchBtn" color={"white"}/></a>
+          <Link to={"/search/" + searchInput }><ImSearch className="searchBtn" color={"white"}/></Link>
           </div> 
         <div className="iconWrap">
           <ul>
