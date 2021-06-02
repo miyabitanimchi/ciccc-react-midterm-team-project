@@ -6,6 +6,7 @@ import Cart from "../components/cart/Cart";
 import { useAuthContext } from "../context/auth-context";
 import SearchResult from "../components/searchResult/SearchResult";
 import Wrapper from '../components/wrapper/Wrapper';
+import Account from "../components/account/Account";
 
 const AppRouter = () => {
   const { user } = useAuthContext();
@@ -22,6 +23,7 @@ const AppRouter = () => {
           <Route path="/detail/:id" component={Detail} />
           <Route path="/cart" component={Cart} />
           <Route path="/search/:keywords" component={SearchResult}/>
+          <Route path="/account" component={Account}/>
         </Switch>
       </Wrapper>
     </BrowserRouter>
