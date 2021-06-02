@@ -32,7 +32,7 @@ const SearchResult = (props) => {
 
     useEffect(() => {
         search()
-    }, [searchKey])
+    }, [searchKey,result])
 
 
 
