@@ -3,10 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import App from "../components/app/App";
 import Detail from "../components/detail/Detail";
 import Cart from "../components/cart/Cart";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
 import { useAuthContext } from "../context/auth-context";
 import SearchResult from "../components/searchResult/SearchResult";
+import Wrapper from '../components/wrapper/Wrapper';
 
 const AppRouter = () => {
   const { user } = useAuthContext();
@@ -17,14 +16,14 @@ const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      <Header />
-    <Switch>
-        <Route path="/" component={App} exact={true} />
-        <Route path="/detail/:id" component={Detail} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/search/:keywords" component={SearchResult}/>
-      </Switch>
-      <Footer />
+      <Wrapper>
+        <Switch>
+          <Route path="/" component={App} exact={true} />
+          <Route path="/detail/:id" component={Detail} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/search/:keywords" component={SearchResult}/>
+        </Switch>
+      </Wrapper>
     </BrowserRouter>
   )
 };
