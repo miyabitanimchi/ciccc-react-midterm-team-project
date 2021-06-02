@@ -13,27 +13,20 @@ const SearchResult = (props) => {
 
     const searchKeyWords = props.match.params.keywords
 
-    console.log(searchKeyWords)
-
     const search = () => {
 
         setSearchKey(searchKeyWords.toLowerCase())
-        console.log(searchKey)
         
         const searchResult = products.filter((product) =>
             product.title.toLowerCase().indexOf(searchKey) > -1)
 
-
         setResult(searchResult)
-        console.log(searchResult)
+    
     }
-
-
 
     useEffect(() => {
         search()
     }, [searchKey,result])
-
 
 
     return (
