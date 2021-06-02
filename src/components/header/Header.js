@@ -1,33 +1,14 @@
 import React,{useState} from 'react';
 import './Header.scss';
 import { FaUserCircle, FaShoppingCart, FaBookOpen } from "react-icons/fa";
-// import { GrCatalog } from "react-icons/gr";
 import { ImSearch } from "react-icons/im";
-import { firebase, googleAuthProvider } from '../../firebase/firebase';
 import { useAuthContext } from '../../context/auth-context';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { user } = useAuthContext();
   const [searchInput,setSearchInput] = useState("")
-
-  const searchBtnClick = () =>{
-    
-  }
-
-const startLogin = () => {
-  firebase.auth().signInWithPopup(googleAuthProvider).then(() => {
-    console.log('Sign in successful!');
-  }).catch((error) => {
-    console.error(`An error happened : ${error}`);
-  })
-}
-const startLogout = () => {
-  firebase.auth().signOut().then(() => {
-    console.log('Sign out successful!');
-  }).catch((error) => {
-    console.error(`An error happened : ${error}`);
-  })
-}
+  console.log(searchInput)
 
   return (
     <>
@@ -36,19 +17,14 @@ const startLogout = () => {
         <div className="searchBar">
           <input className="searchInput" type="text" placeholder="search item...." 
              onChange={(e)=>setSearchInput(e.target.value)}></input>
-          <a href={"/search/"+searchInput}><ImSearch className="searchBtn" color={"white"}/></a>
+          <Link to={"/search/" + searchInput }><ImSearch className="searchBtn" color={"white"}/></Link>
           </div> 
         <div className="iconWrap">
           <ul>
-            {/* <li><div className="searchBar"><input type="text" placeholder="search item...."></input><ImSearch color={"white"} /></div></li> */}
-            { user ? (
-              <li><div onClick={startLogout} className="auth-button">Log out</div></li>
-            ) : (
-              <li><div onClick={startLogin} className="auth-button">Log in</div></li>
-            )}
-            <li><a href=""><FaBookOpen className="navIcon" /></a><p>Catagory</p></li>
-            <li><a href="./cart"><FaShoppingCart className="navIcon" /></a><p>Cart</p></li>
-            <li><a href=""><FaUserCircle className="navIcon" /></a><p>Account</p></li>
+            <li><Link to={""}><FaBookOpen className="navIcon" /></Link><p>Catagory</p></li>
+            <li><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p></li>
+            <li><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
+            <p>{user === null?"Account" : user.providerData[0].displayName}</p></li>
           </ul>
         </div>
       </nav>

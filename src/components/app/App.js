@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useProductsContext } from '../../context/products-context';
-import Carousel from '../carousel/Carousel'
-import ItemList from '../itemList/ItemList'
+import Carousel from '../carousel/Carousel';
+import ItemList from '../itemList/ItemList';
+import Greeting from '../greeting/Greeting';
+import { useAuthContext } from "../../context/auth-context";
 import './App.scss';
 
 function App() {
 
   const { products } = useProductsContext();
-console.log(products)
+  console.log(products)
   const [randomItem, setRandomItem] = useState([])
   const [itemList, setItemList] = useState([])
+
+  const { user } = useAuthContext();
+  useEffect(() => {
+    user && console.log(`Hello, ${user.displayName}!`);
+    // user && console.log(user);
+  }, [user]);
 
   //    ================ Shuffle function 
   function shuffle(arr) {
@@ -32,7 +40,7 @@ console.log(products)
         randomItemArr.push(products[i])
       }
       // Splice the array, first 9 to random list, the rest to item list
-      itemListArr = randomItemArr.splice(9,19)
+      itemListArr = randomItemArr.splice(9, 19)
     }
 
     //    ================ update item by useState
@@ -45,8 +53,12 @@ console.log(products)
       <div>
         {products.length !== 0 && (
           <div>
+            {user &&
+            <Greeting user={user} />
+            }
+            
             <Carousel item={randomItem} title={"Best Seller"} />
-            <ItemList item={itemList} title={"Feature Items"} listClass={"itemList"} wrapClass={"itemWrap"}/>
+            <ItemList item={itemList} title={"Feature Items"} listClass={"itemList"} wrapClass={"itemWrap"} />
           </div>
         )}
       </div>

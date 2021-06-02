@@ -1,8 +1,7 @@
 .itemList {
     position: relative;
-
-    // justify-content: center;
-    // align-items: center;
+    // background-color: rgb(247, 247, 247);
+    padding:20px 0;
 
     h2 {
         margin: 0 0 20px 20px;
@@ -32,6 +31,7 @@
                 height: 200px;
                 width: 200px;
                 object-fit: cover;
+                border-radius: 20px;
             }
 
             a:hover {
