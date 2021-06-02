@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import "./Cart.scss";
+import { useAuthContext } from "../../context/auth-context";
 
 const Cart = () => {
+  const { user } = useAuthContext();
+  console.log(user);
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
   console.log(productsAddedToCart);
 
@@ -13,26 +16,21 @@ const Cart = () => {
     );
     setProductsAddedToCart(newAddedProductsArr);
     // remove current array in localStorage
-    localStorage.removeItem("addedProductsArr");
+    localStorage.removeItem(user.uid);
     // set new array in localStorage
-    localStorage.setItem(
-      "addedProductsArr",
-      JSON.stringify(newAddedProductsArr)
-    );
+    localStorage.setItem(user.uid, JSON.stringify(newAddedProductsArr));
 
     console.log("this is parent");
   };
 
   const getProductsArrInLocalStorage = () => {
-    if (localStorage.getItem("addedProductsArr") !== null) {
-      setProductsAddedToCart(
-        JSON.parse(localStorage.getItem("addedProductsArr"))
-      );
+    if (localStorage.getItem(user.uid) !== null) {
+      setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
     }
   };
 
   useEffect(() => {
-    getProductsArrInLocalStorage();
+    user && getProductsArrInLocalStorage();
   }, []);
 
   console.log(productsAddedToCart);

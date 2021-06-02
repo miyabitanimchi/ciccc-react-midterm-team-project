@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
+import { useAuthContext } from "../../context/auth-context";
+import { v4 as uuidv4 } from "uuid";
 
 import "./Detail.scss";
 
-const storedProducts = JSON.parse(localStorage.getItem("addedProductsArr"));
-
 const Detail = (props) => {
   const { products } = useProductsContext();
+  const { user } = useAuthContext();
+  console.log(user);
+  console.log(uuidv4());
+
+  // if (localStorage.getItem(user.uid) !== null) {
+  //   const storedProducts = JSON.parse(localStorage.getItem(user.uid));
+  // }
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
     size: "",
@@ -15,7 +22,9 @@ const Detail = (props) => {
     quantity: 1,
   });
   const [addedProductsArr, setAddedProductsArr] = useState(
-    storedProducts || []
+    // storedProducts || []
+    // もしもうlocalStrageに情報があったらstoredProductをいれる
+    (user && JSON.parse(localStorage.getItem(user.uid))) || []
   );
 
   const filterChosenProduct = () => {
@@ -52,7 +61,7 @@ const Detail = (props) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("addedProductsArr", JSON.stringify(addedProductsArr));
+    user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
   }, [addedProductsArr]);
   console.log(addedProductsArr);
 
