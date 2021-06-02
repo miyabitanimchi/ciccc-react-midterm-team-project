@@ -9,22 +9,21 @@ import "./Detail.scss";
 const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
-  console.log(user);
-  console.log(uuidv4());
+  // console.log(user);
+  // console.log(uuidv4());
 
-  // if (localStorage.getItem(user.uid) !== null) {
-  //   const storedProducts = JSON.parse(localStorage.getItem(user.uid));
-  // }
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
     size: "",
     color: "",
     quantity: 1,
+    productUid: uuidv4(),
   });
   const [addedProductsArr, setAddedProductsArr] = useState(
-    // storedProducts || []
-    // もしもうlocalStrageに情報があったらstoredProductをいれる
-    (user && JSON.parse(localStorage.getItem(user.uid))) || []
+    // Get user's own array (cart list) or create new
+    user && localStorage.hasOwnProperty(user.uid)
+      ? JSON.parse(localStorage.getItem(user.uid))
+      : []
   );
 
   const filterChosenProduct = () => {
@@ -51,9 +50,11 @@ const Detail = (props) => {
     filterChosenProduct();
   }, [products]);
 
-  const addToCart = () => {
+  // When click Add to Cart button
+  const addToCart = (e) => {
+    e.preventDefault();
+    setchosenProductInfo({ ...chosenProductInfo, productUid: uuidv4() });
     // for loaclStorage
-    console.log("add cart is clicked");
     setAddedProductsArr((addedProductsArr) => {
       return [...addedProductsArr, chosenProductInfo];
     });
@@ -203,7 +204,8 @@ const Detail = (props) => {
               disabled={
                 chosenProductInfo.size && chosenProductInfo.color ? false : true
               }
-              onClick={() => addToCart()}
+              // onClick={() => addToCart()}
+              onClick={addToCart}
             >
               Add to Cart
             </button>
