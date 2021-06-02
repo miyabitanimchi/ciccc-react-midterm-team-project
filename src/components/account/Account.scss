@@ -1,0 +1,75 @@
+.accountWrap {
+    background-color: rgb(240, 240, 240);
+    height: 350px;
+    width: 320px;
+    border-radius: 30px;
+    margin: 50px auto;
+    position: relative;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    .loginWrap {
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: fit-content;
+
+        h3 {
+            margin-bottom:20px;
+        }
+
+        .googleIcon {
+            display: block;
+        }
+    }
+
+    .accountImg {
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        transform: translate(-50%);
+        clip-path: circle(50% at 50% 50%);
+        width: 160px;
+        height: 160px;
+        background: white;
+
+        img {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 150px;
+            height: 150px;
+            clip-path: circle(50% at 50% 50%);
+        }
+    }
+
+    .detailWrap {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%);
+        width: fit-content;
+
+        ul {
+            list-style: none;
+
+            li {
+                h3 {
+                    font-weight: bold;
+                }
+
+                span {
+                    font-weight: 600;
+                }
+
+                span:nth-child(2) {
+                    font-weight: 400;
+                }
+            }
+            button {
+                margin-top: 5px;
+            }
+        }
+    }
+}

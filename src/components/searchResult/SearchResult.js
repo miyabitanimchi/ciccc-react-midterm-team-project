@@ -14,7 +14,8 @@ const SearchResult = (props) => {
     const searchKeyWords = props.match.params.keywords
 
     const search = () => {
-        setSearchKey(searchKeyWords)
+
+        setSearchKey(searchKeyWords.toLowerCase())
         const searchResult = products.filter((product) => 
             product.title.toLowerCase().indexOf(searchKey) > -1 )
 
@@ -33,9 +34,9 @@ const SearchResult = (props) => {
     return (
         <>
             <ItemList item={result} listClass={"itemResultList"} wrapClass={"itemResultWrap"}
-            title={result.length === 0 ? `No result for "${searchKey}"`
-            : result.length === 1 ? `${result.length} Result for "${searchKey}"` 
-            : `${result.length} Results for "${searchKey}"`}/>
+            title={result.length === 0 ? `No result for "${searchKeyWords}"`
+            : result.length === 1 ? `${result.length} Result for "${searchKeyWords}"` 
+            : `${result.length} Results for "${searchKeyWords}"`}/>
         </>
     )
 }
