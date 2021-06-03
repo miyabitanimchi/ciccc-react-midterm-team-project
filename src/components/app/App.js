@@ -9,14 +9,13 @@ import './App.scss';
 function App() {
 
   const { products } = useProductsContext();
-  console.log(products)
+  // console.log(products)
   const [randomItem, setRandomItem] = useState([])
   const [itemList, setItemList] = useState([])
 
   const { user } = useAuthContext();
   useEffect(() => {
     user && console.log(`Hello, ${user.displayName}!`);
-    // user && console.log(user);
   }, [user]);
 
   //    ================ Shuffle function 

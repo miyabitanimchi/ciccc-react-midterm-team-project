@@ -1,4 +1,6 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
+import categoryArr, { additionalProducts } from '../products/additionalProducts';
+import axios from 'axios';
 
 const ProductsContext = createContext();
 
@@ -6,25 +8,28 @@ const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-    .then((response) => {
-      if (response.ok) {
-        return response;
-      } else {
-        console.error('response.ok:', response.ok);
-        console.error('response.status:', response.status);
-        console.error('response.statusText', response.statusText);
-        throw new Error(response.statusText);
-      }
-    })
-    .then((response) => response.json())
-    .then((json) => {
-      setProducts(json);
-      // console.log(json);
-    })
-    .catch((error) => {
-      console.error('Error occured', error);
-    })  
+    const fetchAPI = async () => {
+      try {
+        const res = await axios.get('https://fakestoreapi.com/products');
+        const originalProducts = res.data;
+
+        // change products categories
+        originalProducts.forEach((product) => {
+          if (product.id === 1) product.category = categoryArr[1]; // Change a category of bag to accessories
+          if (product.category === "men's clothing" || product.category === "women's clothing") {
+            product.category = categoryArr[0];
+          } else if (product.category === "jewelery") {
+            product.category = categoryArr[1];
+          }
+        })
+        const allProducts = originalProducts.concat(additionalProducts);
+        console.log(allProducts);
+        setProducts(allProducts);
+      } catch(err) {
+        console.error(`Error happened: ${err}`);
+      } 
+    };
+    fetchAPI();
   }, []);
 
   return (
