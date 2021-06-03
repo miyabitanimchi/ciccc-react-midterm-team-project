@@ -26,7 +26,7 @@ const SearchResult = (props) => {
 
     useEffect(() => {
         search()
-    }, [searchKey,result])
+    }, [searchKey,searchKeyWords])
 
 
     return (

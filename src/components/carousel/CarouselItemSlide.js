@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CarouselItem from './CarouselItem';
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io';
+import './ItemModal.scss';
 
 
 

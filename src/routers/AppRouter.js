@@ -7,6 +7,7 @@ import { useAuthContext } from "../context/auth-context";
 import SearchResult from "../components/searchResult/SearchResult";
 import Account from "../components/account/Account";
 import Wrapper from '../components/wrapper/Wrapper';
+import Category from '../components/category/Category';
 
 const AppRouter = () => {
   const { user } = useAuthContext();
@@ -24,6 +25,7 @@ const AppRouter = () => {
           <Route path="/cart" component={Cart} />
           <Route path="/search/:keywords" component={SearchResult}/>
           <Route path="/account" component={Account}/>
+          <Route path="/category/:type" component={Category}/>
         </Switch>
       </Wrapper>
     </BrowserRouter>
