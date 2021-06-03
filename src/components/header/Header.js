@@ -18,7 +18,8 @@ const Header = () => {
         <div className="searchBar">
           <input className="searchInput" type="text" placeholder="search item...."
             onChange={(e) => setSearchInput(e.target.value)}></input>
-          <Link to={"/search/" + searchInput} onClick={()=>setSearchInput("")}><ImSearch className="searchBtn" size={20} color={"white"} /></Link>
+            
+          <Link to={searchInput !== ""&& "/search/" + searchInput} ><ImSearch className="searchBtn" size={20} color={"white"} /></Link>
         </div>
         <div className="iconWrap">
           <ul>
