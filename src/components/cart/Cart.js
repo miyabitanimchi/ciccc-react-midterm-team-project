@@ -13,7 +13,7 @@ const Cart = () => {
   // if user removes some of item in cart
   const getNewAddedProductsArr = (id) => {
     const newAddedProductsArr = productsAddedToCart.filter(
-      (product) => product.product[0].id !== id
+      (product) => product.productUid !== id
     );
     setProductsAddedToCart(newAddedProductsArr);
     // remove current array in localStorage
@@ -25,23 +25,28 @@ const Cart = () => {
   };
 
   const getProductsArrInLocalStorage = () => {
-    setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
-    console.log("hello");
+    if (user) {
+      user &&
+        setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
+    } else {
+      setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
+    }
   };
 
   useEffect(() => {
-    user && getProductsArrInLocalStorage();
+    // user &&
+    getProductsArrInLocalStorage();
     console.log("this is render");
-  }, [user]);
+  }, []); // before ... user
 
   console.log(productsAddedToCart);
   return (
     <>
-      {user && productsAddedToCart ? (
+      {productsAddedToCart ? (
         <main className="cart-container">
           {productsAddedToCart.map((product) => (
             <CartItem
-              key={product.product[0].id}
+              key={product.productUid}
               {...product}
               // **** Need to rename this ****
               handleFunc={getNewAddedProductsArr}
@@ -51,7 +56,7 @@ const Cart = () => {
             <p className="total-price">
               Total Price: $
               {productsAddedToCart.reduce((acc, productObj) => {
-                return acc + productObj.product[0].price;
+                return acc + productObj.subTotal;
               }, 0)}
             </p>
             <button className="checkout-btn">Checkout</button>

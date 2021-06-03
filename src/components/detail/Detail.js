@@ -10,14 +10,14 @@ const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
   // console.log(user);
-  // console.log(uuidv4());
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
+    productUid: uuidv4(),
     size: "",
     color: "",
     quantity: 1,
-    productUid: uuidv4(),
+    subTotal: "",
   });
   const [addedProductsArr, setAddedProductsArr] = useState(
     // Get user's own array (cart list) or create new
@@ -43,7 +43,11 @@ const Detail = (props) => {
   };
 
   const changeQuantity = (selectedQuantity) => {
-    setchosenProductInfo({ ...chosenProductInfo, quantity: selectedQuantity });
+    setchosenProductInfo({
+      ...chosenProductInfo,
+      quantity: selectedQuantity,
+      subTotal: chosenProductInfo.product[0].price * selectedQuantity,
+    });
   };
 
   useEffect(() => {
@@ -53,16 +57,27 @@ const Detail = (props) => {
   // When click Add to Cart button
   const addToCart = (e) => {
     e.preventDefault();
-    setchosenProductInfo({ ...chosenProductInfo, productUid: uuidv4() });
+    setchosenProductInfo({
+      ...chosenProductInfo,
+      productUid: uuidv4(),
+    });
     // for loaclStorage
     setAddedProductsArr((addedProductsArr) => {
       return [...addedProductsArr, chosenProductInfo];
     });
     console.log(chosenProductInfo);
+    console.log(chosenProductInfo.product[0].price);
+    console.log(chosenProductInfo.quantity);
   };
 
   useEffect(() => {
-    user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
+    console.log("rendered");
+    // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
+    if (user) {
+      localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
+    } else {
+      localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
+    }
   }, [addedProductsArr]);
   console.log(addedProductsArr);
 
