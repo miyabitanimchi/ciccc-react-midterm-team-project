@@ -2,6 +2,7 @@ import React from 'react';
 import CarouselItemSlide from './CarouselItemSlide';
 import './Carousel.scss';
 
+
 const Carousel = (props) => {
 
 

@@ -2,7 +2,8 @@ nav {
     position: relative;
     background-color: rgb(58, 58, 58);
     height: 80px;
-
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    z-index: 20;
     .logo {
         position: absolute;
     }
@@ -16,6 +17,8 @@ nav {
             width: 30vw;
         }
         .searchBtn {
+            margin-left: 5px;
+            vertical-align: middle;
             cursor: pointer;
         }
     }
@@ -34,7 +37,8 @@ nav {
         li {
             // background-color: aqua;
             margin: 10px;
-
+            background-color: rgb(58, 58, 58);
+            z-index: 20;
             p {
                 text-align: center;
                 font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -55,8 +59,26 @@ nav {
             }
         }
 
-        // li:nth-child(1) {
-        //     margin-right: 200px;
-        // }
+        .categoryDropdown {
+            position: absolute;
+            right: -30px;
+            z-index: 18;
+            width: 300px;
+            ul {
+                display: block;
+                list-style: none;
+                li {
+                    margin: 0;
+                    color: white;
+                    font-size: 12pt;
+                    background-color: rgb(58, 58, 58);
+                    padding: 6px 10px;
+                }
+                li:hover {
+                    background-color: cadetblue;
+                }
+            }
+
+        }
     }
 }
