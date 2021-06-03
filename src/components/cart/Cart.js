@@ -20,14 +20,11 @@ const Cart = () => {
     localStorage.removeItem(user.uid);
     // set new array in localStorage
     localStorage.setItem(user.uid, JSON.stringify(newAddedProductsArr));
-
-    console.log("this is parent");
   };
 
   const getProductsArrInLocalStorage = () => {
     if (user) {
-      user &&
-        setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
+      setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
     } else {
       setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
     }
@@ -37,7 +34,7 @@ const Cart = () => {
     // user &&
     getProductsArrInLocalStorage();
     console.log("this is render");
-  }, []); // before ... user
+  }, []);
 
   console.log(productsAddedToCart);
   return (
