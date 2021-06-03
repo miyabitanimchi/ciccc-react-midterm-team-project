@@ -5,7 +5,7 @@ import ProductsProvider from "./context/products-context";
 import AuthProvider from "./context/auth-context";
 import AppRouter from "./routers/AppRouter";
 
-require('dotenv').config();
+// require('dotenv').config();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -2,12 +2,14 @@ import React from "react";
 import { IoMdClose } from "react-icons/io";
 import "./CartItem.scss";
 
-const CartItem = (props) => {
-  const { product, size, color, quantity } = props;
+// child
 
-  const removeProduct = (id) => {
-    console.log(id);
-    props.handleFunc(id);
+const CartItem = (props) => {
+  const { product, productUid, size, color, quantity, subTotal } = props;
+
+  const removeProduct = (productUid) => {
+    console.log(productUid);
+    props.handleFunc(productUid);
   };
   return (
     <div className="product-container">
@@ -19,11 +21,12 @@ const CartItem = (props) => {
         <p className="size">Size: {size}</p>
         <p className="color">Colour: {color}</p>
         <p className="quantity">Quantity: {quantity}</p>
-        <p className="subtotal">Subtotal: ${product[0].price}</p>
+        <p className="unitPrice">CAD $ {product[0].price}</p>
+        <p className="subtotal">Subtotal: CAD ${subTotal}</p>
       </div>
       <IoMdClose
         className="close-icon"
-        onClick={() => removeProduct(product[0].id)}
+        onClick={() => removeProduct(productUid)}
       />
     </div>
   );
