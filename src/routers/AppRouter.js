@@ -6,7 +6,9 @@ import Cart from "../components/cart/Cart";
 import { useAuthContext } from "../context/auth-context";
 import SearchResult from "../components/searchResult/SearchResult";
 import Account from "../components/account/Account";
-import Wrapper from '../components/wrapper/Wrapper';
+import Wrapper from "../components/wrapper/Wrapper";
+// test
+import Checkout from "../components/checkout/Checkout";
 
 const AppRouter = () => {
   const { user } = useAuthContext();
@@ -22,12 +24,14 @@ const AppRouter = () => {
           <Route path="/" component={App} exact={true} />
           <Route path="/detail/:id" component={Detail} />
           <Route path="/cart" component={Cart} />
-          <Route path="/search/:keywords" component={SearchResult}/>
-          <Route path="/account" component={Account}/>
+          <Route path="/search/:keywords" component={SearchResult} />
+          <Route path="/account" component={Account} />
+          {/* test */}
+          <Route path="/checkout" component={Checkout} />
         </Switch>
       </Wrapper>
     </BrowserRouter>
-  )
+  );
 };
 
 export default AppRouter;
