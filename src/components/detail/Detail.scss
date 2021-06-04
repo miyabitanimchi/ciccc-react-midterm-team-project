@@ -5,11 +5,13 @@
 }
 
 main {
-  width: 90vw;
-  height: 100vh;
   margin: 0 auto;
+  .back-to-main-btn {
+    margin-left: 2rem;
+  }
 
   .detail-container {
+    margin-top: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,14 +128,3 @@ main {
     cursor: pointer;
   }
 }
-
-// .selected-size {
-//   background: rgb(236, 118, 71);
-//   border: 2px solid rgb(236, 118, 71);
-// }
-
-// @media screen and (max-width: 992px) {
-//   .detail-container {
-//     flex-direction: column;
-//   }
-// }
