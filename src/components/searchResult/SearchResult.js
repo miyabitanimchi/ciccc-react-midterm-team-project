@@ -16,18 +16,28 @@ const SearchResult = (props) => {
     const search = () => {
 
         setSearchKey(searchKeyWords.toLowerCase())
-        
+
         const searchResult = products.filter((product) =>
             product.title.toLowerCase().indexOf(searchKey) > -1)
+        console.log(searchResult)
 
-        setResult(searchResult)
-    
+        const searchResultCategory = products.filter((product) =>
+            product.category.toLowerCase().indexOf(searchKey) > -1)
+        console.log(searchResultCategory)
+
+        if (searchResult.length !== 0) {
+            setResult(searchResult)
+        } else if (searchResultCategory.length !== 0){
+            setResult(searchResultCategory)
+        }
+
+
     }
 
     useEffect(() => {
         search()
-    }, [searchKey,searchKeyWords])
-
+    }, [searchKey, searchKeyWords, products])
+    console.log(result)
 
     return (
         <>

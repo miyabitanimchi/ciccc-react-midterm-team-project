@@ -14,12 +14,12 @@ const Header = () => {
   return (
     <>
       <nav>
-        <div className="logo"><a href="/"><img src="https://via.placeholder.com/300x80" alt="logo" /></a></div>
+        <div className="logo"><Link to={"/"}><img src="/banner2.png" alt="logo" /><span>Title</span></Link></div>
         <div className="searchBar">
           <input className="searchInput" type="text" placeholder="search item...."
             onChange={(e) => setSearchInput(e.target.value)}></input>
-            
-          <Link to={searchInput !== ""&& "/search/" + searchInput} ><ImSearch className="searchBtn" size={20} color={"white"} /></Link>
+
+          <Link to={searchInput === "" ? "/" : "/search/" + searchInput} ><ImSearch className="searchBtn" size={20} color={"white"} /></Link>
         </div>
         <div className="iconWrap">
           <ul>
@@ -33,10 +33,9 @@ const Header = () => {
           {categoryMenu === true &&
             <div className="categoryDropdown" onMouseLeave={() => setCategory(false)}>
               <ul>
-                <Link to={"/category/men%27s%20clothing"} style={{ textDecoration: 'none',backgroundColor:'orange' }} name={"Men's clothing"}><li>Men's clothing</li></Link>
-                <Link to={"/category/women%27s%20clothing"} style={{ textDecoration: 'none' }} name={"Women's clothing"}><li>Women's clothing</li></Link>
+                <Link to={"/category/clothes"} style={{ textDecoration: 'none', backgroundColor: 'orange' }} name={"Clothes"}><li>Clothes</li></Link>
+                <Link to={"/category/accessories"} style={{ textDecoration: 'none' }} name={"Accessories"}><li>Accessories</li></Link>
                 <Link to={"/category/electronics"} style={{ textDecoration: 'none' }} name={"Electronics"}><li>Electronics</li></Link>
-                <Link to={"/category/jewelery"} style={{ textDecoration: 'none' }} name={"Jewelery"}><li>Jewelery</li></Link>
               </ul>
             </div>
           }
