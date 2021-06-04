@@ -17,7 +17,7 @@ const Detail = (props) => {
     size: "",
     color: "",
     quantity: 1,
-    subTotal: "",
+    subTotal: 0,
   });
   const [addedProductsArr, setAddedProductsArr] = useState(
     // Get user's own array (cart list) or create new
@@ -30,7 +30,11 @@ const Detail = (props) => {
     const chosenProduct = products.filter(
       (product) => product.id === Number(props.match.params.id)
     );
-    setchosenProductInfo({ ...chosenProductInfo, product: chosenProduct });
+    setchosenProductInfo((prevInfo) => ({
+      ...prevInfo,
+      product: chosenProduct,
+      subTotal: chosenProduct[0].price * prevInfo.quantity
+    }));
   };
 
   const showChosenSize = (targetedEl) => {
@@ -59,7 +63,7 @@ const Detail = (props) => {
     e.preventDefault();
     setchosenProductInfo({
       ...chosenProductInfo,
-      productUid: uuidv4(),
+      // productUid: uuidv4(),
     });
     // for loaclStorage
     setAddedProductsArr((addedProductsArr) => {
@@ -201,6 +205,7 @@ const Detail = (props) => {
               <select
                 name="quantity"
                 onChange={(e) => changeQuantity(Number(e.target.value))}
+                value={chosenProductInfo.quantity}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
