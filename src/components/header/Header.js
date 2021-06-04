@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Header.scss';
 import { FaUserCircle, FaShoppingCart, FaBookOpen } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
@@ -10,6 +10,11 @@ const Header = () => {
   const [searchInput, setSearchInput] = useState("")
   const [categoryMenu, setCategory] = useState(false)
 
+  const clearInput = () => {
+    let searchInputValue = document.getElementsByClassName("searchInput")[0]
+    searchInputValue.value = ""
+    console.log(searchInputValue)
+  }
 
   return (
     <>
@@ -18,8 +23,7 @@ const Header = () => {
         <div className="searchBar">
           <input className="searchInput" type="text" placeholder="search item...."
             onChange={(e) => setSearchInput(e.target.value)}></input>
-
-          <Link to={searchInput === "" ? "/" : "/search/" + searchInput} ><ImSearch className="searchBtn" size={20} color={"white"} /></Link>
+          <Link to={searchInput === "" ? "/" : "/search/" + searchInput} onClick={clearInput} ><ImSearch className="searchBtn" size={20} color={"white"} /></Link>
         </div>
         <div className="iconWrap">
           <ul>

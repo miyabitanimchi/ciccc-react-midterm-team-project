@@ -17,7 +17,7 @@ const Item = (props) => {
                     <div className="modalInfo">
                         <ul>
                         <Link style={{ pointerEvents:'auto' }} to={"/category/" + props.item.category} style={{ pointerEvents: 'none', textDecoration: 'none', margin:0 }}>
-                            <li >More for "{props.item.category}"</li>
+                            <li >From "{props.item.category}"</li>
                             </Link>
                             <li>{props.item.title}</li>
                             <li>Price: ${props.item.price}</li>

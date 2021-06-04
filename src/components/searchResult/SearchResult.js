@@ -25,12 +25,11 @@ const SearchResult = (props) => {
             product.category.toLowerCase().indexOf(searchKey) > -1)
         console.log(searchResultCategory)
 
-        if (searchResult.length !== 0) {
-            setResult(searchResult)
-        } else if (searchResultCategory.length !== 0){
-            setResult(searchResultCategory)
+        for (let item in searchResultCategory){
+            searchResult.push(searchResultCategory[item])
         }
-
+            
+        setResult(searchResult)
 
     }
 
