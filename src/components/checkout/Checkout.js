@@ -19,11 +19,10 @@ const Checkout = () => {
 
   const calculateSubtotalOfProducts = () => {
     if (user && productsAddedToCart) {
-      const subtotalOfProducts = productsAddedToCart.reduce(
-        (acc, productObj) => {
+      const subtotalOfProducts = Math.round(
+        productsAddedToCart.reduce((acc, productObj) => {
           return acc + productObj.subTotal;
-        },
-        0
+        }, 0)
       );
       setSubtotalOfProducts(Number(subtotalOfProducts));
     }
