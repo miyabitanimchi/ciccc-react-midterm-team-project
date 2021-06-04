@@ -61,10 +61,6 @@ const Detail = (props) => {
   // When click Add to Cart button
   const addToCart = (e) => {
     e.preventDefault();
-    setchosenProductInfo({
-      ...chosenProductInfo,
-      // productUid: uuidv4(),
-    });
     // for loaclStorage
     setAddedProductsArr((addedProductsArr) => {
       return [...addedProductsArr, chosenProductInfo];
