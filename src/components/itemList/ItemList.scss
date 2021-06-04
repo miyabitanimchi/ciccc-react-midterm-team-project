@@ -1,10 +1,10 @@
 .itemList {
     position: relative;
     // background-color: rgb(247, 247, 247);
-    padding:20px 0;
+    // padding:20px 0 0;
 
     h2 {
-        margin: 0 0 20px 20px;
+        margin-left:20px;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         user-select: none;
     }
@@ -15,7 +15,7 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        margin-bottom: 80px;
+        // margin-bottom: 80px;
 
         .item {
             display: flex;
@@ -31,7 +31,7 @@
                 height: 200px;
                 width: 200px;
                 object-fit: cover;
-                border-radius: 20px;
+                // border-radius: 20px;
             }
 
             a:hover {

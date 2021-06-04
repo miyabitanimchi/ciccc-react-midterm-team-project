@@ -18,7 +18,7 @@ const Detail = (props) => {
     size: "",
     color: "",
     quantity: 1,
-    subTotal: "",
+    subTotal: 0,
   });
   const [addedProductsArr, setAddedProductsArr] = useState(
     // Get user's own array (cart list) or create new
@@ -31,7 +31,11 @@ const Detail = (props) => {
     const chosenProduct = products.filter(
       (product) => product.id === Number(props.match.params.id)
     );
-    setchosenProductInfo({ ...chosenProductInfo, product: chosenProduct });
+    setchosenProductInfo((prevInfo) => ({
+      ...prevInfo,
+      product: chosenProduct,
+      subTotal: chosenProduct[0].price * prevInfo.quantity
+    }));
   };
 
   const showChosenSize = (targetedEl) => {
@@ -55,17 +59,13 @@ const Detail = (props) => {
   };
 
   useEffect(() => {
-    filterChosenProduct();
+    products.length !== 0 && filterChosenProduct();
   }, [products]);
 
   // When click Add to Cart button
   const addToCart = (e) => {
     e.preventDefault();
-    setchosenProductInfo({
-      ...chosenProductInfo,
-      productUid: uuidv4(),
-    });
-    // for localStorage
+    // for loaclStorage
     setAddedProductsArr((addedProductsArr) => {
       return [...addedProductsArr, chosenProductInfo];
     });
@@ -242,6 +242,7 @@ const Detail = (props) => {
                 }
                 // onClick={() => addToCart()}
                 onClick={addToCart}
+
               >
                 Add to Cart
               </button>
