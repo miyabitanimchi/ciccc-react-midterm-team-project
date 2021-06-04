@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PrivateRoute from './PrivateRoute';
 import App from "../components/app/App";
 import Detail from "../components/detail/Detail";
 import Cart from "../components/cart/Cart";
@@ -18,7 +19,7 @@ const AppRouter = () => (
         <Route path="/cart" component={Cart} />
         <Route path="/search/:keywords" component={SearchResult}/>
         <Route path="/account" component={Account}/>
-        <Route path="/checkout" component={Checkout} />
+        <PrivateRoute path="/checkout" component={Checkout} />
         <Route path="/category/:type" component={Category}/>
       </Switch>
     </Wrapper>

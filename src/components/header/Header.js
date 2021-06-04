@@ -10,11 +10,10 @@ const Header = () => {
   const [searchInput, setSearchInput] = useState("")
   const [categoryMenu, setCategory] = useState(false)
 
-
   return (
     <>
       <nav>
-        <div className="logo"><a href="/"><img src="https://via.placeholder.com/300x80" alt="logo" /></a></div>
+        <div className="logo"><Link to="/"><img src="https://via.placeholder.com/300x80" alt="logo" /></Link></div>
         <div className="searchBar">
           <input className="searchInput" type="text" placeholder="search item...."
             onChange={(e) => setSearchInput(e.target.value)}></input>
