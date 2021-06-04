@@ -18,7 +18,7 @@ const AppRouter = () => (
         <Route path="/cart" component={Cart} />
         <Route path="/search/:keywords" component={SearchResult}/>
         <Route path="/account" component={Account}/>
-        {/* <Route path="/checkout" component={Checkout} /> */}
+        <Route path="/checkout" component={Checkout} />
         <Route path="/category/:type" component={Category}/>
       </Switch>
     </Wrapper>
