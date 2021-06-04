@@ -16,12 +16,11 @@ const Item = (props) => {
                 <div style={{ pointerEvents: 'none' }} className="modal">
                     <div className="modalInfo">
                         <ul>
-                        <Link to={"/detail/" + props.item.id} style={{ pointerEvents: 'none', textDecoration: 'none', margin:0 }}>
-                            <li>More for "{props.item.category}"</li>
+                        <Link style={{ pointerEvents:'auto' }} to={"/category/" + props.item.category} style={{ pointerEvents: 'none', textDecoration: 'none', margin:0 }}>
+                            <li >More for "{props.item.category}"</li>
                             </Link>
                             <li>{props.item.title}</li>
                             <li>Price: ${props.item.price}</li>
-                            {/* <li>Product Detail</li> */}
                         </ul>
                     </div>
                 </div>

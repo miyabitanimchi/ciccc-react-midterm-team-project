@@ -1,8 +1,12 @@
-.carousel {
-    position: relative;
-    // margin: 30px auto;
+.carouselWrap{
     background-color: rgb(247, 247, 247);
+
+
+    
+    .carousel {
+    position: relative;
     padding:20px 0;
+    margin-bottom:30px;
 
     h2 {
         margin: 0 0 20px 20px;
@@ -80,3 +84,6 @@
         }
     }
 }
+
+}
+

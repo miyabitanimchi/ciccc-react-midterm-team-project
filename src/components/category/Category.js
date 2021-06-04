@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useProductsContext } from '../../context/products-context';
 import ItemList from '../itemList/ItemList';
-// import '../'
+
 
 const Category = (props) => {
 
@@ -19,30 +19,27 @@ const Category = (props) => {
 
         setcategoryKey(categoryKeyWords)
 
-        const category = products.filter((name) => {
-
-          return   name.category === categoryKey
-
-            //    return  product.category.toLowerCase().indexOf(categoryKey) > -1
-        })
+        const category = products.filter((name) => name.category === categoryKey)
 
         // setcategoryTitle(product.category)
         setcategoryResult(category)
-        
+
     }
 
     useEffect(() => {
         catagoryFilter()
-    }, [categoryKey, categoryKeyWords])
+    }, [categoryKey, categoryKeyWords,products])
 
     console.log(categoryResult)
 
 
     return (
-        <div className={categoryKey}>
-            <ItemList item={categoryResult} title={`All result for "${categoryKeyWords}"`} listClass={"itemList"} wrapClass={"itemWrap"} />
-        </div>
-
+        <>
+            {categoryResult === null ? catagoryFilter() :
+                <div className={categoryKey}>
+                    <ItemList item={categoryResult} title={`All result for "${categoryKeyWords}"`} listClass={"itemList"} wrapClass={"itemWrap"} />
+                </div>}
+        </>
     )
 }
 
