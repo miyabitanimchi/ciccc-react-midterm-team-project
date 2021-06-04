@@ -55,7 +55,7 @@ const Detail = (props) => {
   };
 
   useEffect(() => {
-    filterChosenProduct();
+    products.length !== 0 && filterChosenProduct();
   }, [products]);
 
   // When click Add to Cart button
