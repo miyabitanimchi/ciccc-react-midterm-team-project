@@ -3,6 +3,7 @@ import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
 import { v4 as uuidv4 } from "uuid";
+import PopUp from './PopUp';
 
 import "./Detail.scss";
 
@@ -10,6 +11,9 @@ const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
   // console.log(user);
+
+  // set Popup state
+  const [popUp, setPopUp] = useState(false)
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
@@ -68,6 +72,7 @@ const Detail = (props) => {
     console.log(chosenProductInfo);
     console.log(chosenProductInfo.product[0].price);
     console.log(chosenProductInfo.quantity);
+    setPopUp(true)
   };
 
   useEffect(() => {
@@ -225,6 +230,12 @@ const Detail = (props) => {
             >
               Add to Cart
             </button>
+
+            {popUp === true &&
+              <PopUp open={() => setPopUp(true)} close={() => setPopUp(false)}
+                qty={addedProductsArr.length} price={addedProductsArr}
+              />}
+
           </div>
         </div>
       )}
