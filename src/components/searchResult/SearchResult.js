@@ -21,14 +21,8 @@ const SearchResult = (props) => {
             product.title.toLowerCase().indexOf(searchKey) > -1)
         console.log(searchResult)
 
-        const searchResultCategory = products.filter((product) =>
-            product.category.toLowerCase().indexOf(searchKey) > -1)
-        console.log(searchResultCategory)
 
-        for (let item in searchResultCategory){
-            searchResult.push(searchResultCategory[item])
-        }
-            
+
         setResult(searchResult)
 
     }
@@ -49,3 +43,12 @@ const SearchResult = (props) => {
 }
 
 export default SearchResult
+
+
+// const searchResultCategory = products.filter((product) =>
+        //     product.category.toLowerCase().indexOf(searchKey) > -1)
+        // console.log(searchResultCategory)
+
+        // for (let item in searchResultCategory){
+        //     searchResult.push(searchResultCategory[item])
+        // }
