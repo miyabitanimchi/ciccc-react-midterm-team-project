@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
@@ -12,8 +12,30 @@ const Detail = (props) => {
   const { user } = useAuthContext();
   // console.log(user);
 
-  // set Popup state
+
+  // Popup Function
   const [popUp, setPopUp] = useState(false)
+
+  const popUpRef = useRef()
+
+  useEffect(() => {
+    
+    const handle = (e) => {
+
+      // If popup exist and clicked outside of the popup
+      if (popUpRef.current && !popUpRef.current.contains(e.target)) {
+
+        // Set popup state to false (close it)
+        setPopUp(false)
+      }
+    }
+    
+    document.addEventListener("mousedown", handle)
+
+    // Unmount the eventlistner
+    return () => document.removeEventListener("mousedown", handle)
+  })
+
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
@@ -222,6 +244,7 @@ const Detail = (props) => {
             </div>
             <button
               className="add-to-cart-btn"
+
               disabled={
                 chosenProductInfo.size && chosenProductInfo.color ? false : true
               }
@@ -231,10 +254,18 @@ const Detail = (props) => {
               Add to Cart
             </button>
 
+
             {popUp === true &&
-              <PopUp open={() => setPopUp(true)} close={() => setPopUp(false)}
-                qty={addedProductsArr.length} price={addedProductsArr}
-              />}
+              <div className="popUp">
+                <div ref={popUpRef} className="popUpWrap">
+                  <PopUp open={() => setPopUp(true)} close={() => setPopUp(false)}
+                    qty={addedProductsArr.length} price={addedProductsArr}
+                  />
+                </div>
+              </div >
+            }
+
+
 
           </div>
         </div>
