@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
+import categoryArr, {
+  additionalProducts,
+} from "../../products/additionalProducts";
+import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -10,7 +14,6 @@ import "./Detail.scss";
 const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
-  // console.log(user);
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
@@ -34,17 +37,25 @@ const Detail = (props) => {
     setchosenProductInfo((prevInfo) => ({
       ...prevInfo,
       product: chosenProduct,
-      subTotal: chosenProduct[0].price * prevInfo.quantity
+      subTotal: chosenProduct[0].price * prevInfo.quantity,
     }));
   };
 
-  const showChosenSize = (targetedEl) => {
+  const setChosenSize = (targetedEl) => {
     // targetedEl.classList.add("selected-size");
     setchosenProductInfo({ ...chosenProductInfo, size: targetedEl.value });
   };
 
-  const showChosenColor = (targetedEl) => {
+  const setChosenColor = (targetedEl) => {
     setchosenProductInfo({ ...chosenProductInfo, color: targetedEl.value });
+  };
+
+  const apple = () => {
+    if (chosenProductInfo.product[0].category == "electronics") {
+      setchosenProductInfo({ ...chosenProductInfo, size: "-" });
+    }
+    console.log(chosenProductInfo.product[0].category);
+    console.log(chosenProductInfo.size);
   };
 
   const changeQuantity = (selectedQuantity) => {
@@ -55,12 +66,7 @@ const Detail = (props) => {
         (Math.round(chosenProductInfo.product[0].price * 10) / 10).toFixed(2) *
         selectedQuantity,
     });
-    console.log(typeof chosenProductInfo.product[0].price);
   };
-
-  useEffect(() => {
-    products.length !== 0 && filterChosenProduct();
-  }, [products]);
 
   // When click Add to Cart button
   const addToCart = (e) => {
@@ -76,6 +82,17 @@ const Detail = (props) => {
     // To go to cart page
     // props.history.push("/cart");
   };
+
+  useEffect(() => {
+    products.length !== 0 && apple();
+  }, []);
+
+  useEffect(() => {
+    // products.length !== 0 && filterChosenProduct();
+    if (products.length !== 0) {
+      filterChosenProduct();
+    }
+  }, [products]);
 
   useEffect(() => {
     console.log("rendered");
@@ -126,94 +143,11 @@ const Detail = (props) => {
               <p className="description">
                 {chosenProductInfo.product[0].description}
               </p>
-              <p className="size-title">
-                Size: <span>{chosenProductInfo.size}</span>
-              </p>
-              <div className="size-wrap">
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XXS"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XS"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="S"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="M"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="L"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XL"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XXL"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-              </div>
-              <p className="color-title">
-                Colour: <span>{chosenProductInfo.color}</span>
-              </p>
-              <div className="color-wrap">
-                <input
-                  className="color-btn beige"
-                  type="submit"
-                  value="Beige"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn navy"
-                  type="submit"
-                  value="Navy"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn gray"
-                  type="submit"
-                  value="Gray"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn black"
-                  type="submit"
-                  value="Black"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn brown"
-                  type="submit"
-                  value="Brown"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn off-white"
-                  type="submit"
-                  value="Off-white"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-              </div>
+              <Specification
+                {...chosenProductInfo}
+                setChosenColor={setChosenColor}
+                setChosenSize={setChosenSize}
+              />
               <div className="quantity-wrap">
                 <p className="quantity-title">Quantity: </p>
                 <select
@@ -242,7 +176,6 @@ const Detail = (props) => {
                 }
                 // onClick={() => addToCart()}
                 onClick={addToCart}
-
               >
                 Add to Cart
               </button>
