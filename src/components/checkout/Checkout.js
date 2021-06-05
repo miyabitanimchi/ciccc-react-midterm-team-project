@@ -19,16 +19,13 @@ const Checkout = () => {
 
   const calculateSubtotalOfProducts = () => {
     if (user && productsAddedToCart) {
-      const subtotalOfProducts = productsAddedToCart.reduce(
-        (acc, productObj) => {
+      const subtotalOfProducts = Math.round(
+        productsAddedToCart.reduce((acc, productObj) => {
           return acc + productObj.subTotal;
-        },
-        0
+        }, 0)
       );
       setSubtotalOfProducts(Number(subtotalOfProducts));
     }
-    console.log(typeof subtotalOfProducts);
-    console.log(typeof shippingCost);
   };
 
   useEffect(() => {
@@ -38,9 +35,6 @@ const Checkout = () => {
   useEffect(() => {
     user && getProductsArrInLocalStorage();
   }, [user]);
-
-  console.log(productsAddedToCart);
-  console.log(subtotalOfProducts);
 
   return (
     <>
@@ -178,8 +172,12 @@ const Checkout = () => {
                     <h3 className="summary-price">
                       CAD $
                       {(
-                        Math.round((subtotalOfProducts + shippingCost) * 10) /
-                        10
+                        Math.round(
+                          (subtotalOfProducts +
+                            shippingCost +
+                            (subtotalOfProducts + shippingCost) * 0.1) *
+                            10
+                        ) / 10
                       ).toFixed(2)}
                     </h3>
                   </div>
