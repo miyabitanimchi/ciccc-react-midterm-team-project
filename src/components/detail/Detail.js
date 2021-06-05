@@ -34,12 +34,15 @@ const Detail = (props) => {
     setchosenProductInfo((prevInfo) => ({
       ...prevInfo,
       product: chosenProduct,
-      subTotal: chosenProduct[0].price * prevInfo.quantity
+      // subTotal: chosenProduct[0].price * prevInfo.quantity,
+      subTotal: (
+        (Math.round(chosenProduct[0].price * 10) / 10) *
+        prevInfo.quantity
+      ).toFixed(2),
     }));
   };
 
   const showChosenSize = (targetedEl) => {
-    // targetedEl.classList.add("selected-size");
     setchosenProductInfo({ ...chosenProductInfo, size: targetedEl.value });
   };
 
@@ -51,11 +54,11 @@ const Detail = (props) => {
     setchosenProductInfo({
       ...chosenProductInfo,
       quantity: selectedQuantity,
-      subTotal:
-        (Math.round(chosenProductInfo.product[0].price * 10) / 10).toFixed(2) *
-        selectedQuantity,
+      subTotal: (
+        (Math.round(chosenProductInfo.product[0].price * 10) / 10) *
+        selectedQuantity
+      ).toFixed(2),
     });
-    console.log(typeof chosenProductInfo.product[0].price);
   };
 
   useEffect(() => {
@@ -70,11 +73,6 @@ const Detail = (props) => {
       return [...addedProductsArr, chosenProductInfo];
     });
     console.log(chosenProductInfo);
-    console.log(chosenProductInfo.product[0].price);
-    console.log(chosenProductInfo.quantity);
-
-    // To go to cart page
-    // props.history.push("/cart");
   };
 
   useEffect(() => {
@@ -242,7 +240,6 @@ const Detail = (props) => {
                 }
                 // onClick={() => addToCart()}
                 onClick={addToCart}
-
               >
                 Add to Cart
               </button>
