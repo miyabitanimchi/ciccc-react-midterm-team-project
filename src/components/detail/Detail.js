@@ -24,7 +24,8 @@ const Detail = (props) => {
     // Get user's own array (cart list) or create new
     user && localStorage.hasOwnProperty(user.uid)
       ? JSON.parse(localStorage.getItem(user.uid))
-      : []
+      : JSON.parse(localStorage.getItem("unknown"))
+      // : []
   );
 
   const filterChosenProduct = () => {
