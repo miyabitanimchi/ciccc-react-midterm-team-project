@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
+// import categoryArr, {
+//   additionalProducts,
+// } from "../../products/additionalProducts";
+import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -10,7 +14,6 @@ import "./Detail.scss";
 const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
-  // console.log(user);
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
@@ -35,41 +38,49 @@ const Detail = (props) => {
   }, [user]);
 
   useEffect(() => {
+    if (products.length !== 0) {
+      const chosenProduct = products.filter(
+        (product) => product.id === Number(props.match.params.id)
+      );
+      let size = "";
+      if (chosenProduct[0].category === "electronics") size = "-";
+      setchosenProductInfo((prevInfo) => ({
+        ...prevInfo,
+        product: chosenProduct,
+        subTotal: (
+          (Math.round(chosenProduct[0].price * 10) / 10) *
+          prevInfo.quantity
+        ).toFixed(2),
+        size
+      }));
+    }
+  }, [products]);
+
+  useEffect(() => {
     console.log("rendered");
-    console.log(addedProductsArr);
     // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
     if (user) {
       localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    } else if (addedProductsArr.length !== 0) {
+    } else {
       localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
     }
   }, [addedProductsArr]);
 
-  useEffect(() => {
-    products.length !== 0 && filterChosenProduct();
-  }, [products]);
-
-  const filterChosenProduct = () => {
-    const chosenProduct = products.filter(
-      (product) => product.id === Number(props.match.params.id)
-    );
-    setchosenProductInfo((prevInfo) => ({
-      ...prevInfo,
-      product: chosenProduct,
-      subTotal: (
-        (Math.round(chosenProduct[0].price * 10) / 10) *
-        prevInfo.quantity
-      ).toFixed(2),
-    }));
-  };
-
-  const showChosenSize = (targetedEl) => {
+  const setChosenSize = (targetedEl) => {
     // targetedEl.classList.add("selected-size");
-    setchosenProductInfo({ ...chosenProductInfo, size: targetedEl.value });
+    setchosenProductInfo({
+      ...chosenProductInfo,
+      size: targetedEl.value,
+      productUid: uuidv4()
+    });
   };
 
-  const showChosenColor = (targetedEl) => {
-    setchosenProductInfo({ ...chosenProductInfo, color: targetedEl.value });
+  const setChosenColor = (targetedEl) => {
+    setchosenProductInfo({
+      ...chosenProductInfo,
+      color: targetedEl.value,
+      productUid: uuidv4()
+    });
   };
 
   const changeQuantity = (selectedQuantity) => {
@@ -81,7 +92,6 @@ const Detail = (props) => {
         selectedQuantity
       ).toFixed(2),
     });
-    // console.log(typeof chosenProductInfo.product[0].price);
   };
 
   // When click Add to Cart button
@@ -94,6 +104,9 @@ const Detail = (props) => {
     // console.log(chosenProductInfo);
     // console.log(chosenProductInfo.product[0].price);
     // console.log(chosenProductInfo.quantity);
+
+    // To go to cart page
+    // props.history.push("/cart");
   };
 
   return (
@@ -134,94 +147,11 @@ const Detail = (props) => {
               <p className="description">
                 {chosenProductInfo.product[0].description}
               </p>
-              <p className="size-title">
-                Size: <span>{chosenProductInfo.size}</span>
-              </p>
-              <div className="size-wrap">
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XXS"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XS"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="S"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="M"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="L"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XL"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-                <input
-                  className="size-btn"
-                  type="submit"
-                  value="XXL"
-                  onClick={(e) => showChosenSize(e.target)}
-                />
-              </div>
-              <p className="color-title">
-                Colour: <span>{chosenProductInfo.color}</span>
-              </p>
-              <div className="color-wrap">
-                <input
-                  className="color-btn beige"
-                  type="submit"
-                  value="Beige"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn navy"
-                  type="submit"
-                  value="Navy"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn gray"
-                  type="submit"
-                  value="Gray"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn black"
-                  type="submit"
-                  value="Black"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn brown"
-                  type="submit"
-                  value="Brown"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-                <input
-                  className="color-btn off-white"
-                  type="submit"
-                  value="Off-white"
-                  onClick={(e) => showChosenColor(e.target)}
-                />
-              </div>
+              <Specification
+                {...chosenProductInfo}
+                setChosenColor={setChosenColor}
+                setChosenSize={setChosenSize}
+              />
               <div className="quantity-wrap">
                 <p className="quantity-title">Quantity: </p>
                 <select
@@ -248,7 +178,6 @@ const Detail = (props) => {
                     ? false
                     : true
                 }
-                // onClick={() => addToCart()}
                 onClick={addToCart}
               >
                 Add to Cart
