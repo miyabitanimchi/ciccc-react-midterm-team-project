@@ -3,7 +3,6 @@ import CartItem from "./CartItem";
 import "./Cart.scss";
 import { useAuthContext } from "../../context/auth-context";
 import { Link } from "react-router-dom";
-// temporary component
 
 const Cart = () => {
   const { user } = useAuthContext();
@@ -16,10 +15,13 @@ const Cart = () => {
       (product) => product.productUid !== id
     );
     setProductsAddedToCart(newAddedProductsArr);
-    // remove current array in localStorage
-    localStorage.removeItem(user.uid);
-    // set new array in localStorage
-    localStorage.setItem(user.uid, JSON.stringify(newAddedProductsArr));
+    if (user) {
+      localStorage.removeItem(user.uid);
+      localStorage.setItem(user.uid, JSON.stringify(newAddedProductsArr));
+    } else {
+      localStorage.removeItem("unknown");
+      localStorage.setItem("unknown", JSON.stringify(newAddedProductsArr));
+    }
   };
 
   const getProductsArrInLocalStorage = () => {
@@ -31,7 +33,6 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    // user &&
     getProductsArrInLocalStorage();
     console.log("this is render");
   }, [user]);

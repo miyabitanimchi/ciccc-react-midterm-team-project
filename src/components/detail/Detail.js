@@ -5,7 +5,7 @@ import { useAuthContext } from "../../context/auth-context";
 import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import PopUp from './PopUp';
+import PopUp from "./PopUp";
 
 import "./Detail.scss";
 
@@ -14,12 +14,12 @@ const Detail = (props) => {
   const { user } = useAuthContext();
 
   // Popup Function
-  const [popUp, setPopUp] = useState(false)
+  const [popUp, setPopUp] = useState(false);
 
   // Close if click modal background
   const popUpClose = () => {
-    setPopUp(false)
-  }
+    setPopUp(false);
+  };
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
@@ -57,7 +57,7 @@ const Detail = (props) => {
           (Math.round(chosenProduct[0].price * 10) / 10) *
           prevInfo.quantity
         ).toFixed(2),
-        size
+        size,
       }));
     }
   }, [products]);
@@ -77,7 +77,7 @@ const Detail = (props) => {
     setchosenProductInfo({
       ...chosenProductInfo,
       size: targetedEl.value,
-      productUid: uuidv4()
+      productUid: uuidv4(),
     });
   };
 
@@ -85,7 +85,7 @@ const Detail = (props) => {
     setchosenProductInfo({
       ...chosenProductInfo,
       color: targetedEl.value,
-      productUid: uuidv4()
+      productUid: uuidv4(),
     });
   };
 
@@ -113,7 +113,7 @@ const Detail = (props) => {
 
     // To go to cart page
     // props.history.push("/cart");
-    setPopUp(true)
+    setPopUp(true);
   };
 
   return (
@@ -165,6 +165,7 @@ const Detail = (props) => {
                   name="quantity"
                   onChange={(e) => changeQuantity(Number(e.target.value))}
                   value={chosenProductInfo.quantity}
+                  className="quantity"
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -179,7 +180,7 @@ const Detail = (props) => {
                 </select>
               </div>
               <button
-                className="add-to-cart-btn"
+                className="add-to-cart-btn "
                 disabled={
                   chosenProductInfo.size && chosenProductInfo.color
                     ? false
@@ -190,16 +191,21 @@ const Detail = (props) => {
                 Add to Cart
               </button>
 
-              {popUp === true &&
+              {popUp === true && (
                 <div className="popUp" onClick={() => popUpClose()}>
-                  <div className="popUpWrap" onClick={(e) => (e).stopPropagation()} >
-                    <PopUp open={() => setPopUp(true)} close={() => setPopUp(false)}
-                      qty={addedProductsArr.length} price={addedProductsArr}
+                  <div
+                    className="popUpWrap"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <PopUp
+                      open={() => setPopUp(true)}
+                      close={() => setPopUp(false)}
+                      qty={addedProductsArr.length}
+                      price={addedProductsArr}
                     />
                   </div>
-                </div >
-              }
-
+                </div>
+              )}
             </div>
           </div>
         </>

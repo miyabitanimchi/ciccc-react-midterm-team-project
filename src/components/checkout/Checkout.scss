@@ -9,13 +9,21 @@ h1 {
   margin: 0;
   width: 90vw;
 
-  h2,
+  .register-address-title {
+    margin-bottom: 1.7rem;
+  }
+
   h3 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .address-payment-container {
     width: 50%;
+
+    .input {
+      width: 50%;
+      height: 1.8rem;
+    }
 
     .address-container {
       border: 1px solid rgb(221, 216, 216);
@@ -24,33 +32,47 @@ h1 {
       .address-fillout-wrap {
         display: flex;
         flex-direction: column;
+
+        .input-wrap {
+          margin-bottom: 0.3rem;
+        }
       }
     }
-  }
-
-  .payment-container {
-    border: 1px solid rgb(221, 216, 216);
-    padding: 2rem;
-    margin-bottom: 1rem;
-    .payment-option-wrap {
-      display: flex;
-      margin: 0.5rem;
-
-      .payment-option {
-        margin-right: 2rem;
+    .payment-container {
+      border: 1px solid rgb(221, 216, 216);
+      padding: 2rem;
+      margin-bottom: 1rem;
+      .payment-option-title {
+        margin-bottom: 1rem;
       }
-    }
+      .payment-option-wrap {
+        display: flex;
+        margin: 0.5rem;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
 
-    .credit-fillout-wrap {
-      display: flex;
-      flex-direction: column;
-      // width: 50vw;
+        .payment-option {
+          margin-right: 2rem;
+        }
+      }
+
+      .credit-fillout-wrap {
+        display: flex;
+        flex-direction: column;
+
+        .input-wrap {
+          margin-bottom: 0.3rem;
+        }
+      }
     }
   }
 
   .order-summary-container {
     width: 40%;
     align-self: flex-start;
+    .order-summary-title {
+      margin-bottom: 1.7rem;
+    }
 
     flex: flex;
     flex-direction: column;
@@ -63,18 +85,14 @@ h1 {
         margin-bottom: 1rem;
         .price-wrap {
           width: 100%;
-          h3 {
-            margin: 0;
-          }
+          padding-bottom: 1.7rem;
+
           .summary-label {
             width: 50%;
             float: left;
-            margin: 0;
           }
           .summary-price {
-            // width: 50%;
             float: right;
-            margin: 0;
           }
           .subtotal {
             font-weight: bold;
