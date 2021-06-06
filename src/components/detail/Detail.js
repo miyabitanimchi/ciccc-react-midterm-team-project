@@ -35,9 +35,7 @@ const Detail = (props) => {
   }, [user]);
 
   useEffect(() => {
-    console.log("rendered");
     console.log(addedProductsArr);
-    // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
     if (user) {
       localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
     } else if (addedProductsArr.length !== 0) {
@@ -64,7 +62,6 @@ const Detail = (props) => {
   };
 
   const showChosenSize = (targetedEl) => {
-    // targetedEl.classList.add("selected-size");
     setchosenProductInfo({ ...chosenProductInfo, size: targetedEl.value });
   };
 
@@ -81,7 +78,6 @@ const Detail = (props) => {
         selectedQuantity
       ).toFixed(2),
     });
-    // console.log(typeof chosenProductInfo.product[0].price);
   };
 
   // When click Add to Cart button
@@ -91,9 +87,6 @@ const Detail = (props) => {
     setAddedProductsArr((addedProductsArr) => {
       return [...addedProductsArr, chosenProductInfo];
     });
-    // console.log(chosenProductInfo);
-    // console.log(chosenProductInfo.product[0].price);
-    // console.log(chosenProductInfo.quantity);
   };
 
   return (
@@ -228,6 +221,7 @@ const Detail = (props) => {
                   name="quantity"
                   onChange={(e) => changeQuantity(Number(e.target.value))}
                   value={chosenProductInfo.quantity}
+                  className="quantity"
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -242,13 +236,12 @@ const Detail = (props) => {
                 </select>
               </div>
               <button
-                className="add-to-cart-btn"
+                className="add-to-cart-btn "
                 disabled={
                   chosenProductInfo.size && chosenProductInfo.color
                     ? false
                     : true
                 }
-                // onClick={() => addToCart()}
                 onClick={addToCart}
               >
                 Add to Cart
