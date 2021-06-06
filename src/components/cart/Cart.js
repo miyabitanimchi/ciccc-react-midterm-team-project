@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import "./Cart.scss";
 import { useAuthContext } from "../../context/auth-context";
+import { Link } from "react-router-dom";
 // temporary component
-import PleaseLogin from "./PleaseLogin";
 
 const Cart = () => {
   const { user } = useAuthContext();
@@ -34,34 +34,46 @@ const Cart = () => {
     // user &&
     getProductsArrInLocalStorage();
     console.log("this is render");
-  }, []);
+  }, [user]);
 
   console.log(productsAddedToCart);
+
   return (
     <>
-      {productsAddedToCart ? (
+      {productsAddedToCart.length !== 0 ? (
         <main className="cart-container">
           {productsAddedToCart.map((product) => (
             <CartItem
               key={product.productUid}
               {...product}
-              // **** Need to rename this ****
+              // ******* Need to rename this *******
               handleFunc={getNewAddedProductsArr}
             />
           ))}
           <div className="checkout-wrap">
             <p className="total-price">
               Total Price: $
-              {productsAddedToCart.reduce((acc, productObj) => {
-                return acc + productObj.subTotal;
-              }, 0)}
+              {productsAddedToCart
+                .reduce((acc, productObj) => {
+                  return Number(acc) + Number(productObj.subTotal);
+                }, 0)
+                .toFixed(2)}
             </p>
-            <button className="checkout-btn">Checkout</button>
-            <button className="continue-shop-btn">Continue Shopping</button>
+            <Link to={"/checkout/"} className="checkout-btn">
+              Checkout
+            </Link>
+            <Link to={"/"} className="continue-shop-btn">
+              Continue Shopping
+            </Link>
           </div>
         </main>
       ) : (
-        <PleaseLogin />
+        <main className="no-item-container">
+          <div className="no-item-notice-wrap">
+            <h1 className="no-item-notice">No Items in Cart.</h1>
+            <Link to={"/"}>Go Back to Main Page</Link>
+          </div>
+        </main>
       )}
     </>
   );

@@ -16,10 +16,14 @@
     .checkout-btn,
     .continue-shop-btn {
       width: 20rem;
+      text-align: center;
+      color: #000000;
+      text-decoration: none;
       align-self: flex-end;
       padding: 0.4rem;
       font-size: 1.2rem;
       letter-spacing: 1px;
+      border: 1.5px solid rgb(128, 128, 128);
       border-radius: 3px;
       cursor: pointer;
       margin-bottom: 0.2rem;
@@ -28,5 +32,16 @@
       color: #ffffff;
       background: #ff3c00;
     }
+  }
+}
+
+.no-item-container {
+  position: relative;
+  height: 50vh;
+
+  .no-item-notice-wrap {
+    position: absolute;
+    text-align: center;
+    top: 50%;
   }
 }

@@ -1,8 +1,128 @@
-.address-fillout-wrap {
-  display: flex;
-  flex-direction: column;
+h1 {
+  margin-bottom: 1.5rem;
+  width: 90vw;
 }
 
-.payment-option-wrap {
+.checkout-container {
   display: flex;
+  justify-content: space-between;
+  margin: 0;
+  width: 90vw;
+
+  h2,
+  h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .address-payment-container {
+    width: 50%;
+
+    .address-container {
+      border: 1px solid rgb(221, 216, 216);
+      padding: 2rem;
+      margin-bottom: 1rem;
+      .address-fillout-wrap {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .payment-container {
+    border: 1px solid rgb(221, 216, 216);
+    padding: 2rem;
+    margin-bottom: 1rem;
+    .payment-option-wrap {
+      display: flex;
+      margin: 0.5rem;
+
+      .payment-option {
+        margin-right: 2rem;
+      }
+    }
+
+    .credit-fillout-wrap {
+      display: flex;
+      flex-direction: column;
+      // width: 50vw;
+    }
+  }
+
+  .order-summary-container {
+    width: 40%;
+    align-self: flex-start;
+
+    flex: flex;
+    flex-direction: column;
+    .order-summary-wrap {
+      display: flex;
+      flex-direction: column;
+      .price-summary-wrap {
+        border: 1px solid rgb(221, 216, 216);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        .price-wrap {
+          width: 100%;
+          h3 {
+            margin: 0;
+          }
+          .summary-label {
+            width: 50%;
+            float: left;
+            margin: 0;
+          }
+          .summary-price {
+            // width: 50%;
+            float: right;
+            margin: 0;
+          }
+          .subtotal {
+            font-weight: bold;
+          }
+        }
+        .order-total-wrap {
+          font-weight: bold;
+          color: #ff3c00;
+        }
+      }
+    }
+  }
+  .products-summary-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    border: 1px solid rgb(221, 216, 216);
+    margin-bottom: 2rem;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 1rem 0.5rem 0 0.5rem;
+    }
+    .quantity {
+      text-align: right;
+    }
+  }
+  .place-prder-btn {
+    color: #ffffff;
+    background: #ff3c00;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    border: 1.5px solid rgb(128, 128, 128);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+}
+.input-wrap {
+  width: 100%;
+
+  label {
+    float: left;
+  }
+  input {
+    float: right;
+    // margin-right: 3rem;
+  }
 }

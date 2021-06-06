@@ -5,11 +5,13 @@
 }
 
 main {
-  width: 90vw;
-  // height: 100vh;
   margin: 0 auto;
+  .back-to-main-btn {
+    margin-left: 2rem;
+  }
 
   .detail-container {
+    margin-top: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,6 +93,10 @@ main {
         background: #ffffff;
         color: rgba(255, 255, 255, 0);
       }
+
+      .maroon {
+        background: rgb(128, 0, 0);
+      }
       .beige {
         background: rgb(224, 203, 181);
       }
@@ -110,7 +116,29 @@ main {
       .off-white {
         background: rgb(248, 243, 243);
       }
+      .white {
+        background: rgb(255, 255, 255);
+      }
+      .rose-gold {
+        background: rgb(224, 191, 184);
+      }
 
+      .gold {
+        background: rgb(250, 250, 210);
+      }
+
+      .silver {
+        background: rgb(211, 211, 211);
+      }
+      .e-silver {
+        background: rgb(220, 220, 220);
+      }
+      .charcoal {
+        background: rgb(54, 69, 79);
+      }
+      .teal-blue {
+        background: rgb(0, 128, 128);
+      }
       .quantity-wrap {
         margin-bottom: 2rem;
       }
@@ -126,14 +154,3 @@ main {
     cursor: pointer;
   }
 }
-
-// .selected-size {
-//   background: rgb(236, 118, 71);
-//   border: 2px solid rgb(236, 118, 71);
-// }
-
-// @media screen and (max-width: 992px) {
-//   .detail-container {
-//     flex-direction: column;
-//   }
-// }
