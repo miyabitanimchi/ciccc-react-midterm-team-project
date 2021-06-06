@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { user } = useAuthContext();
-  console.log(user);
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
 
   // if user removes some of item in cart
@@ -34,10 +33,7 @@ const Cart = () => {
 
   useEffect(() => {
     getProductsArrInLocalStorage();
-    console.log("this is render");
   }, [user]);
-
-  console.log(productsAddedToCart);
 
   return (
     <>

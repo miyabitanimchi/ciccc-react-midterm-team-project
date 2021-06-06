@@ -8,7 +8,6 @@ const CartItem = (props) => {
   const { product, productUid, size, color, quantity, subTotal } = props;
 
   const removeProduct = (productUid) => {
-    console.log(productUid);
     props.handleFunc(productUid);
   };
   return (

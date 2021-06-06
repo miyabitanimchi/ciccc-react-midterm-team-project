@@ -63,7 +63,6 @@ const Detail = (props) => {
   }, [products]);
 
   useEffect(() => {
-    console.log("rendered");
     // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
     if (user) {
       localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
@@ -107,9 +106,6 @@ const Detail = (props) => {
     setAddedProductsArr((addedProductsArr) => {
       return [...addedProductsArr, chosenProductInfo];
     });
-    // console.log(chosenProductInfo);
-    // console.log(chosenProductInfo.product[0].price);
-    // console.log(chosenProductInfo.quantity);
 
     // To go to cart page
     // props.history.push("/cart");

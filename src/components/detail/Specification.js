@@ -4,7 +4,6 @@ const Specification = (props) => {
   const { product, color, size } = props;
 
   const showChosenColor = (targetedEl) => {
-    console.log("clicked");
     props.setChosenColor(targetedEl);
   };
 
