@@ -53,11 +53,11 @@ const Cart = () => {
           <div className="checkout-wrap">
             <p className="total-price">
               Total Price: $
-              {Number(
-                productsAddedToCart.reduce((acc, productObj) => {
-                  return acc + productObj.subTotal;
+              {productsAddedToCart
+                .reduce((acc, productObj) => {
+                  return Number(acc) + Number(productObj.subTotal);
                 }, 0)
-              ).toFixed(2)}
+                .toFixed(2)}
             </p>
             <Link to={"/checkout/"} className="checkout-btn">
               Checkout

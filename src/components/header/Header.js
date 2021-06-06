@@ -10,7 +10,6 @@ const Header = () => {
   const [searchInput, setSearchInput] = useState("")
   const [categoryMenu, setCategory] = useState(false)
 
-
   return (
     <>
       <nav>

@@ -23,13 +23,35 @@ const Detail = (props) => {
     quantity: 1,
     subTotal: 0,
   });
-  const [addedProductsArr, setAddedProductsArr] = useState(
-    // Get user's own array (cart list) or create new
-    user && localStorage.hasOwnProperty(user.uid)
-      ? JSON.parse(localStorage.getItem(user.uid))
-      : []
-  );
+  const [addedProductsArr, setAddedProductsArr] = useState([]);
 
+  useEffect(() => {
+    if (user) {
+      // Get user's own array (cart list) or create new
+      localStorage.hasOwnProperty(user.uid) &&
+        setAddedProductsArr(JSON.parse(localStorage.getItem(user.uid)));
+    } else {
+      const unknownData = localStorage.getItem("unknown");
+      // If unknown user has put items to cart, set those items
+      !!unknownData && setAddedProductsArr(JSON.parse(unknownData));
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log("rendered");
+    console.log(addedProductsArr);
+    // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
+    if (user) {
+      localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
+    } else if (addedProductsArr.length !== 0) {
+      localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
+    }
+  }, [addedProductsArr]);
+
+  useEffect(() => {
+    products.length !== 0 && filterChosenProduct();
+  }, [products]);
+  
   const filterChosenProduct = () => {
     const chosenProduct = products.filter(
       (product) => product.id === Number(props.match.params.id)
@@ -37,7 +59,10 @@ const Detail = (props) => {
     setchosenProductInfo((prevInfo) => ({
       ...prevInfo,
       product: chosenProduct,
-      subTotal: chosenProduct[0].price * prevInfo.quantity,
+      subTotal: (
+        (Math.round(chosenProduct[0].price * 10) / 10) *
+        prevInfo.quantity
+      ).toFixed(2),
     }));
   };
 
@@ -50,21 +75,14 @@ const Detail = (props) => {
     setchosenProductInfo({ ...chosenProductInfo, color: targetedEl.value });
   };
 
-  const apple = () => {
-    if (chosenProductInfo.product[0].category == "electronics") {
-      setchosenProductInfo({ ...chosenProductInfo, size: "-" });
-    }
-    console.log(chosenProductInfo.product[0].category);
-    console.log(chosenProductInfo.size);
-  };
-
   const changeQuantity = (selectedQuantity) => {
     setchosenProductInfo({
       ...chosenProductInfo,
       quantity: selectedQuantity,
-      subTotal:
-        (Math.round(chosenProductInfo.product[0].price * 10) / 10).toFixed(2) *
-        selectedQuantity,
+      subTotal: (
+        (Math.round(chosenProductInfo.product[0].price * 10) / 10) *
+        selectedQuantity
+      ).toFixed(2),
     });
   };
 
@@ -75,41 +93,19 @@ const Detail = (props) => {
     setAddedProductsArr((addedProductsArr) => {
       return [...addedProductsArr, chosenProductInfo];
     });
-    console.log(chosenProductInfo);
-    console.log(chosenProductInfo.product[0].price);
-    console.log(chosenProductInfo.quantity);
+    // console.log(chosenProductInfo);
+    // console.log(chosenProductInfo.product[0].price);
+    // console.log(chosenProductInfo.quantity);
 
     // To go to cart page
     // props.history.push("/cart");
   };
 
-  useEffect(() => {
-    products.length !== 0 && apple();
-  }, []);
-
-  useEffect(() => {
-    // products.length !== 0 && filterChosenProduct();
-    if (products.length !== 0) {
-      filterChosenProduct();
-    }
-  }, [products]);
-
-  useEffect(() => {
-    console.log("rendered");
-    // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    if (user) {
-      localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    } else {
-      localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
-    }
-  }, [addedProductsArr]);
-  console.log(addedProductsArr);
-
   return (
     <main>
       {chosenProductInfo.product.length !== 0 && (
         <>
-          <Link to={"/"} className="back-to-main-btn">
+          <Link to="/" className="back-to-main-btn">
             Go Back to Main Page
           </Link>
           <div className="detail-container">
@@ -153,6 +149,7 @@ const Detail = (props) => {
                 <select
                   name="quantity"
                   onChange={(e) => changeQuantity(Number(e.target.value))}
+                  value={chosenProductInfo.quantity}
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -166,7 +163,6 @@ const Detail = (props) => {
                   <option value="10">10</option>
                 </select>
               </div>
-              {/* <Link to={"/cart/"}> */}
               <button
                 className="add-to-cart-btn"
                 disabled={
@@ -174,12 +170,10 @@ const Detail = (props) => {
                     ? false
                     : true
                 }
-                // onClick={() => addToCart()}
                 onClick={addToCart}
               >
                 Add to Cart
               </button>
-              {/* </Link> */}
             </div>
           </div>
         </>

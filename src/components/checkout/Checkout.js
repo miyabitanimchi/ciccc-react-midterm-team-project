@@ -21,14 +21,13 @@ const Checkout = () => {
     if (user && productsAddedToCart) {
       const subtotalOfProducts = productsAddedToCart.reduce(
         (acc, productObj) => {
-          return acc + productObj.subTotal;
+          return Number(acc) + Number(productObj.subTotal);
         },
         0
       );
-      setSubtotalOfProducts(Number(subtotalOfProducts));
+      // console.log(typeof subtotalOfProducts);
+      setSubtotalOfProducts(subtotalOfProducts);
     }
-    console.log(typeof subtotalOfProducts);
-    console.log(typeof shippingCost);
   };
 
   useEffect(() => {
@@ -38,9 +37,6 @@ const Checkout = () => {
   useEffect(() => {
     user && getProductsArrInLocalStorage();
   }, [user]);
-
-  console.log(productsAddedToCart);
-  console.log(subtotalOfProducts);
 
   return (
     <>
@@ -157,8 +153,8 @@ const Checkout = () => {
                     </p>
                   </div>
                   <div className="price-wrap">
-                    <p className="summary-label">Subtotal: </p>
-                    <p className="summary-price">
+                    <p className="summary-label subtotal">Subtotal: </p>
+                    <p className="summary-price subtotal">
                       CAD $ {(subtotalOfProducts + shippingCost).toFixed(2)}
                     </p>
                   </div>
@@ -178,8 +174,12 @@ const Checkout = () => {
                     <h3 className="summary-price">
                       CAD $
                       {(
-                        Math.round((subtotalOfProducts + shippingCost) * 10) /
-                        10
+                        subtotalOfProducts +
+                        shippingCost +
+                        Math.round(
+                          (subtotalOfProducts + shippingCost) * 0.1 * 10
+                        ) /
+                          10
                       ).toFixed(2)}
                     </h3>
                   </div>
