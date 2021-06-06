@@ -46,19 +46,32 @@ const Checkout = () => {
           <>
             <div className="address-payment-container">
               <div className="address-container">
-                <h2>1. Register an address</h2>
+                <h2 className="register-address-title">
+                  1. Register an address
+                </h2>
                 <div className="address-fillout-wrap">
                   <div className="input-wrap">
                     <label htmlFor="first-name">First Name: </label>
-                    <input type="text" name="first-name" id="first-name" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="first-name"
+                      id="first-name"
+                    />
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="last-name">First Name: </label>
-                    <input type="text" name="last-name" id="last-name" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="last-name"
+                      id="last-name"
+                    />
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="street-address">Street Address: </label>
                     <input
+                      className="input"
                       type="text"
                       name="street-address"
                       id="street-address"
@@ -67,6 +80,7 @@ const Checkout = () => {
                   <div className="input-wrap">
                     <label htmlFor="address-details">Address Details: </label>
                     <input
+                      className="input"
                       type="text"
                       name="address-details"
                       id="address-details"
@@ -74,13 +88,19 @@ const Checkout = () => {
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="city">City: </label>
-                    <input type="text" name="city" id="city" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="city"
+                      id="city"
+                    />
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="province-territory">
                       Province / Territory:
                     </label>
                     <input
+                      className="input"
                       type="text"
                       address="province-territory"
                       id="province-territory"
@@ -88,16 +108,26 @@ const Checkout = () => {
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="postal-code">Postal Code: </label>
-                    <input type="text" name="postal-code" id="postal-code" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="postal-code"
+                      id="postal-code"
+                    />
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="phone">Phone: </label>
-                    <input type="text" name="phone" id="phone" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="phone"
+                      id="phone"
+                    />
                   </div>
                 </div>
               </div>
               <div className="payment-container">
-                <h2>2. Payment Option</h2>
+                <h2 className="payment-option-title">2. Payment Option</h2>
                 <div className="payment-option-wrap">
                   <div className="payment-option">
                     <input type="radio" name="credit-card" id="credit-card" />
@@ -112,11 +142,17 @@ const Checkout = () => {
                   <h3>Register a credit card information</h3>
                   <div className="input-wrap">
                     <label htmlFor="card-number">Credit Card Number: </label>
-                    <input type="text" name="card-number" id="card-number" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="card-number"
+                      id="card-number"
+                    />
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="expiration-date">Expiration Date: </label>
                     <input
+                      className="input"
                       type="text"
                       name="expiration-date"
                       id="expiration-date"
@@ -124,11 +160,21 @@ const Checkout = () => {
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="cvv-number">CVV Number: </label>
-                    <input type="text" name="cvv-number" id="cvv-number" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="cvv-number"
+                      id="cvv-number"
+                    />
                   </div>
                   <div className="input-wrap">
                     <label htmlFor="full-name">Full Name: </label>
-                    <input type="text" name="full-name" id="full-name" />
+                    <input
+                      className="input"
+                      type="text"
+                      name="full-name"
+                      id="full-name"
+                    />
                   </div>
                 </div>
               </div>
@@ -136,7 +182,7 @@ const Checkout = () => {
             <div className="order-summary-container">
               <div className="order-summary-wrap">
                 <div className="price-summary-wrap">
-                  <h2>
+                  <h2 className="order-summary-title">
                     Order Summary |
                     <span> {productsAddedToCart.length} Item(s)</span>
                   </h2>

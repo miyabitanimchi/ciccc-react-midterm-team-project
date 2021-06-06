@@ -10,7 +10,6 @@ import "./Detail.scss";
 const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
-  // console.log(user);
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
