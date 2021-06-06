@@ -2,18 +2,24 @@ import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
-// import categoryArr, {
-//   additionalProducts,
-// } from "../../products/additionalProducts";
 import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import PopUp from './PopUp';
 
 import "./Detail.scss";
 
 const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
+
+  // Popup Function
+  const [popUp, setPopUp] = useState(false)
+
+  // Close if click modal background
+  const popUpClose = () => {
+    setPopUp(false)
+  }
 
   const [chosenProductInfo, setchosenProductInfo] = useState({
     product: [],
@@ -107,6 +113,7 @@ const Detail = (props) => {
 
     // To go to cart page
     // props.history.push("/cart");
+    setPopUp(true)
   };
 
   return (
@@ -182,6 +189,17 @@ const Detail = (props) => {
               >
                 Add to Cart
               </button>
+
+              {popUp === true &&
+                <div className="popUp" onClick={() => popUpClose()}>
+                  <div className="popUpWrap" onClick={(e) => (e).stopPropagation()} >
+                    <PopUp open={() => setPopUp(true)} close={() => setPopUp(false)}
+                      qty={addedProductsArr.length} price={addedProductsArr}
+                    />
+                  </div>
+                </div >
+              }
+
             </div>
           </div>
         </>

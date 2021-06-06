@@ -5,7 +5,7 @@
     h2 {
         margin: 0 0 20px 20px;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        user-select: none;
+        // user-select: none;
     }
 
     .itemResultWrap {
@@ -26,8 +26,8 @@
             }
 
             img {
-                height: 300px;
-                width: 300px;
+                height: 200px;
+                width:200px;
                 object-fit: cover;
             }
 
