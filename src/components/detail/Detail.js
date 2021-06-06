@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
-import categoryArr, {
-  additionalProducts,
-} from "../../products/additionalProducts";
+// import categoryArr, {
+//   additionalProducts,
+// } from "../../products/additionalProducts";
 import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -38,41 +38,49 @@ const Detail = (props) => {
   }, [user]);
 
   useEffect(() => {
+    if (products.length !== 0) {
+      const chosenProduct = products.filter(
+        (product) => product.id === Number(props.match.params.id)
+      );
+      let size = "";
+      if (chosenProduct[0].category === "electronics") size = "-";
+      setchosenProductInfo((prevInfo) => ({
+        ...prevInfo,
+        product: chosenProduct,
+        subTotal: (
+          (Math.round(chosenProduct[0].price * 10) / 10) *
+          prevInfo.quantity
+        ).toFixed(2),
+        size
+      }));
+    }
+  }, [products]);
+
+  useEffect(() => {
     console.log("rendered");
-    console.log(addedProductsArr);
     // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
     if (user) {
       localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    } else if (addedProductsArr.length !== 0) {
+    } else {
       localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
     }
   }, [addedProductsArr]);
 
-  useEffect(() => {
-    products.length !== 0 && filterChosenProduct();
-  }, [products]);
-  
-  const filterChosenProduct = () => {
-    const chosenProduct = products.filter(
-      (product) => product.id === Number(props.match.params.id)
-    );
-    setchosenProductInfo((prevInfo) => ({
-      ...prevInfo,
-      product: chosenProduct,
-      subTotal: (
-        (Math.round(chosenProduct[0].price * 10) / 10) *
-        prevInfo.quantity
-      ).toFixed(2),
-    }));
-  };
-
   const setChosenSize = (targetedEl) => {
     // targetedEl.classList.add("selected-size");
-    setchosenProductInfo({ ...chosenProductInfo, size: targetedEl.value });
+    setchosenProductInfo({
+      ...chosenProductInfo,
+      size: targetedEl.value,
+      productUid: uuidv4()
+    });
   };
 
   const setChosenColor = (targetedEl) => {
-    setchosenProductInfo({ ...chosenProductInfo, color: targetedEl.value });
+    setchosenProductInfo({
+      ...chosenProductInfo,
+      color: targetedEl.value,
+      productUid: uuidv4()
+    });
   };
 
   const changeQuantity = (selectedQuantity) => {
