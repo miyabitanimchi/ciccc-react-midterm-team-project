@@ -19,12 +19,14 @@ const Checkout = () => {
 
   const calculateSubtotalOfProducts = () => {
     if (user && productsAddedToCart) {
-      const subtotalOfProducts = Math.round(
-        productsAddedToCart.reduce((acc, productObj) => {
-          return acc + productObj.subTotal;
-        }, 0)
+      const subtotalOfProducts = productsAddedToCart.reduce(
+        (acc, productObj) => {
+          return Number(acc) + Number(productObj.subTotal);
+        },
+        0
       );
-      setSubtotalOfProducts(Number(subtotalOfProducts));
+      // console.log(typeof subtotalOfProducts);
+      setSubtotalOfProducts(subtotalOfProducts);
     }
   };
 
@@ -151,8 +153,8 @@ const Checkout = () => {
                     </p>
                   </div>
                   <div className="price-wrap">
-                    <p className="summary-label">Subtotal: </p>
-                    <p className="summary-price">
+                    <p className="summary-label subtotal">Subtotal: </p>
+                    <p className="summary-price subtotal">
                       CAD $ {(subtotalOfProducts + shippingCost).toFixed(2)}
                     </p>
                   </div>
@@ -172,12 +174,12 @@ const Checkout = () => {
                     <h3 className="summary-price">
                       CAD $
                       {(
+                        subtotalOfProducts +
+                        shippingCost +
                         Math.round(
-                          (subtotalOfProducts +
-                            shippingCost +
-                            (subtotalOfProducts + shippingCost) * 0.1) *
-                            10
-                        ) / 10
+                          (subtotalOfProducts + shippingCost) * 0.1 * 10
+                        ) /
+                          10
                       ).toFixed(2)}
                     </h3>
                   </div>

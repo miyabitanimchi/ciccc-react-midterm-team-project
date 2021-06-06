@@ -24,9 +24,7 @@ const CartItem = (props) => {
         <p className="unitPrice">
           CAD $ {(Math.round(product[0].price * 10) / 10).toFixed(2)}
         </p>
-        <p className="subtotal">
-          Subtotal: CAD ${(Math.round(Number(subTotal) * 10) / 10).toFixed(2)}
-        </p>
+        <p className="subtotal">Subtotal: CAD ${Number(subTotal).toFixed(2)}</p>
       </div>
       <IoMdClose
         className="close-icon"
