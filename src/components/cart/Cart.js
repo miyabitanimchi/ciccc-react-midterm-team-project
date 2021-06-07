@@ -8,6 +8,14 @@ const Cart = () => {
   const { user } = useAuthContext();
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
 
+  const getProductsArrInLocalStorage = () => {
+    if (user) {
+      setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
+    } else {
+      setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
+    }
+  };
+
   // if user removes some of item in cart
   const getNewAddedProductsArr = (id) => {
     const newAddedProductsArr = productsAddedToCart.filter(
@@ -20,14 +28,6 @@ const Cart = () => {
     } else {
       localStorage.removeItem("unknown");
       localStorage.setItem("unknown", JSON.stringify(newAddedProductsArr));
-    }
-  };
-
-  const getProductsArrInLocalStorage = () => {
-    if (user) {
-      setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
-    } else {
-      setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
     }
   };
 
