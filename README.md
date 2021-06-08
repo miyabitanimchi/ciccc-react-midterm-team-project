@@ -45,12 +45,12 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • components/category/Category.js <br/>
 • components/footer/Footer.js <br/>
 • components/greeting/Greeting.js <br/>
-• components/header/Header.js
-• components/itemList/ItemList.js
-• components/searchResult/SearchResult.js
-• components/detail/PopUp.js
-• components/detail/Detail.js
-• Designed logo and Favicon
+• components/header/Header.js <br/>
+• components/itemList/ItemList.js <br/>
+• components/searchResult/SearchResult.js <br/>
+• components/detail/PopUp.js <br/>
+• components/detail/Detail.js <br/>
+• Designed logo and Favicon  
 <br/>
 ### <b>Miyabi Tanimichi</b> coded & was in charge of folowing files:
 • components/detail/Detail.js <br/>
