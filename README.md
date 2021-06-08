@@ -30,7 +30,7 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • [Fake Store API](https://fakestoreapi.com/)
 
 # Roles in this project
-### Taichi Ishiguro coded & was in charge of folowing files:
+### Taichi Ishiguro coded & was in charge of following files:
 • index.js <br/>
 • context/auth-context.js <br/>
 • context/products-context.js <br/>
@@ -40,7 +40,7 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • routers/PrivateRoute.js <br/>
 • components/detail/Detail.js
 <br/>
-### Kit So coded & was in charge of folowing files:
+### Kit So coded & was in charge of following files:
 • components/account/Account.js <br/>
 • components/app/App.js <br/>
 • components/carousel/Carousel.js <br/>
@@ -57,7 +57,7 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • components/detail/Detail.js <br/>
 • Designed logo and Favicon  
 <br/>
-### <b>Miyabi Tanimichi</b> coded & was in charge of folowing files:
+### <b>Miyabi Tanimichi</b> coded & was in charge of following files:
 • components/detail/Detail.js <br/>
 • components/detail/Specification.js <br/>
 • components/cart/Cart.js <br/>
