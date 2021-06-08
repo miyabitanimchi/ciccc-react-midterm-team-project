@@ -25,8 +25,7 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • [Fake Store API](https://fakestoreapi.com/)
 
 # Roles in this project
-### <b>Taichi Ishiguro</b> coded / was in charge of folowing files:
-<br/>
+### Taichi Ishiguro coded & was in charge of folowing files:
 • index.js <br/>
 • context/auth-context.js <br/>
 • context/products-context.js <br/>
@@ -35,7 +34,32 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • routers/AppRouter.js <br/>
 • routers/PrivateRoute.js <br/>
 • components/detail/Detail.js
-
+<br/>
+### Kit So coded & was in charge of folowing files:
+• components/account/Account.js <br/>
+• components/app/App.js <br/>
+• components/carousel/Carousel.js <br/>
+• components/carousel/CarouselItem.js <br/>
+• components/carousel/CarouselItemSlide.js <br/>
+• components/carousel/Item.js <br/>
+• components/category/Category.js <br/>
+• components/footer/Footer.js <br/>
+• components/greeting/Greeting.js <br/>
+• components/header/Header.js
+• components/itemList/ItemList.js
+• components/searchResult/SearchResult.js
+• components/detail/PopUp.js
+• components/detail/Detail.js
+• Designed logo and Favicon
+<br/>
+### <b>Miyabi Tanimichi</b> coded & was in charge of folowing files:
+• components/detail/Detail.js <br/>
+• components/detail/Specification.js <br/>
+• components/cart/Cart.js <br/>
+• components/cart/CartItem.js <br/>
+• components/checkoutCheckout.js <br/>
+• components/wrapper/Wrapper.js <br/>
+• README.md
 
 
 
