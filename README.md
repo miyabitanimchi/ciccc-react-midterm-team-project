@@ -1,6 +1,11 @@
-# E-Commerce Website built with React.js
+# E-Commerce Website Built with React.js
 ### ciccc-react-midterm-team-project 
 <br/>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/69213541/121104963-fa775800-c7b7-11eb-82dd-40edd0f8c66b.gif" alt="react-e-commerce-website" /><br>
+</p>
+
 
 # Author
 [Taichi Ishiguro](https://github.com/BlackStone8960) <br/>
