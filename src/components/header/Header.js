@@ -27,10 +27,10 @@ const Header = () => {
         </div>
         <div className="iconWrap">
           <ul onMouseLeave={() => setCategory(false)}>
-            <li onMouseEnter={() => setCategory(true)}  onMouseLeave={(e) => e.stopPropagation()}>
+            <li onMouseEnter={() => setCategory(true)}>
               <FaBookOpen className="navIcon" /><p>Category</p></li>
-            <li><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p></li>
-            <li><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
+            <li onMouseEnter={() => setCategory(false)}><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p></li>
+            <li onMouseEnter={() => setCategory(false)}><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
               <p>{user === null ? "Account" : user.providerData[0].displayName}</p></li>
             {categoryMenu === true &&
               <div className="categoryDropdown" >
