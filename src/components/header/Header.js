@@ -26,23 +26,23 @@ const Header = () => {
           <Link to={searchInput === "" ? "/" : "/search/" + searchInput} onClick={clearInput} ><ImSearch className="searchBtn" size={20} color={"white"} /></Link>
         </div>
         <div className="iconWrap">
-          <ul>
+          <ul onMouseLeave={() => setCategory(false)}>
             <li onMouseEnter={() => setCategory(true)}>
-              <FaBookOpen className="navIcon" /><p>Category</p>
-            </li>
-            <li><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p></li>
-            <li><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
+              <FaBookOpen className="navIcon" /><p>Category</p></li>
+            <li onMouseEnter={() => setCategory(false)}><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p></li>
+            <li onMouseEnter={() => setCategory(false)}><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
               <p>{user === null ? "Account" : user.providerData[0].displayName}</p></li>
-          </ul>
-          {categoryMenu === true &&
-            <div className="categoryDropdown" onMouseLeave={() => setCategory(false)}>
-              <ul>
-                <Link to={"/category/clothes"} style={{ textDecoration: 'none', backgroundColor: 'orange' }} name={"Clothes"}><li>Clothes</li></Link>
-                <Link to={"/category/accessories"} style={{ textDecoration: 'none' }} name={"Accessories"}><li>Accessories</li></Link>
-                <Link to={"/category/electronics"} style={{ textDecoration: 'none' }} name={"Electronics"}><li>Electronics</li></Link>
-              </ul>
-            </div>
+            {categoryMenu === true &&
+              <div className="categoryDropdown" >
+                <ul>
+                  <Link to={"/category/clothes"} style={{ textDecoration: 'none', backgroundColor: 'orange' }} name={"Clothes"}><li>Clothes</li></Link>
+                  <Link to={"/category/accessories"} style={{ textDecoration: 'none' }} name={"Accessories"}><li>Accessories</li></Link>
+                  <Link to={"/category/electronics"} style={{ textDecoration: 'none' }} name={"Electronics"}><li>Electronics</li></Link>
+                </ul>
+              </div>
           }
+          </ul>
+
         </div>
       </nav>
     </>

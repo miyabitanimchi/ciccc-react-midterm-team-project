@@ -27,7 +27,7 @@ const Item = (props) => {
                   margin: 0,
                 }}
               >
-                <li>More for "{props.item.category}"</li>
+                <li>From "{props.item.category}"</li>
               </Link>
               <li>{props.item.title}</li>
               <li>
