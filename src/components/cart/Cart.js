@@ -9,11 +9,12 @@ const Cart = () => {
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
 
   const getProductsArrInLocalStorage = () => {
-    if (user) {
+    if (user && localStorage.hasOwnProperty(user.uid)) {
       setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
-    } else {
+    } else if (localStorage.hasOwnProperty("unknown")) {
       setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
     }
+    return;
   };
 
   // if user removes some of item in cart
