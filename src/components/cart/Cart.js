@@ -14,7 +14,6 @@ const Cart = () => {
     } else if (localStorage.hasOwnProperty("unknown")) {
       setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
     }
-    return;
   };
 
   // if user removes some of item in cart
