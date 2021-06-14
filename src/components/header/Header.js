@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useContext,useEffect } from 'react';
 import './Header.scss';
 import { FaUserCircle, FaShoppingCart, FaBookOpen } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
 import { useAuthContext } from '../../context/auth-context';
 import { Link } from 'react-router-dom';
+import CartQty, {CartContext} from '../cart/CartQty';
+// import  from '../cart/CartQty';
 
 const Header = () => {
   const { user } = useAuthContext();
   const [searchInput, setSearchInput] = useState("")
   const [categoryMenu, setCategory] = useState(false)
+  const CartContextQty = useContext(CartContext)
+
+  console.log(CartContextQty)
 
   const clearInput = () => {
     let searchInputValue = document.getElementsByClassName("searchInput")[0]
     searchInputValue.value = ""
-    console.log(searchInputValue)
   }
+
+  // const [productsAddedToCart, setProductsAddedToCart] = useState([]);
+
+  // const getProductsArrInLocalStorage = () => {
+  //   if (user && localStorage.hasOwnProperty(user.uid)) {
+  //     setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
+  //   } else if (localStorage.hasOwnProperty("unknown")) {
+  //     setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getProductsArrInLocalStorage();
+  // }, [user]);
+  // console.log(productsAddedToCart)
 
   return (
     <>
@@ -29,7 +48,9 @@ const Header = () => {
           <ul onMouseLeave={() => setCategory(false)}>
             <li onMouseEnter={() => setCategory(true)}>
               <FaBookOpen className="navIcon" /><p>Category</p></li>
-            <li onMouseEnter={() => setCategory(false)}><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p></li>
+            <li onMouseEnter={() => setCategory(false)}><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p>
+            <CartQty><p>{CartContextQty}</p></CartQty>
+            </li>
             <li onMouseEnter={() => setCategory(false)}><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
               <p>{user === null ? "Account" : user.providerData[0].displayName}</p></li>
             {categoryMenu === true &&
