@@ -1,10 +1,10 @@
-import React, { useState, useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Header.scss';
 import { FaUserCircle, FaShoppingCart, FaBookOpen } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
 import { useAuthContext } from '../../context/auth-context';
 import { Link } from 'react-router-dom';
-import CartQty, {CartContext} from '../cart/CartQty';
+import CartQty, { CartContext } from '../cart/CartQty';
 // import  from '../cart/CartQty';
 
 const Header = () => {
@@ -13,27 +13,23 @@ const Header = () => {
   const [categoryMenu, setCategory] = useState(false)
   const CartContextQty = useContext(CartContext)
 
-  console.log(CartContextQty)
-
   const clearInput = () => {
     let searchInputValue = document.getElementsByClassName("searchInput")[0]
     searchInputValue.value = ""
   }
 
-  // const [productsAddedToCart, setProductsAddedToCart] = useState([]);
-
-  // const getProductsArrInLocalStorage = () => {
-  //   if (user && localStorage.hasOwnProperty(user.uid)) {
-  //     setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
-  //   } else if (localStorage.hasOwnProperty("unknown")) {
-  //     setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
-  //   }
-  // };
+  console.log(CartContextQty)
+  // const storageChange = () => {
+  //   console.log("storage change")
+  // }
 
   // useEffect(() => {
-  //   getProductsArrInLocalStorage();
-  // }, [user]);
-  // console.log(productsAddedToCart)
+  //   window.addEventListener('storage', storageChange())
+  // }, [CartContextQty]);
+
+
+
+
 
   return (
     <>
@@ -50,6 +46,7 @@ const Header = () => {
               <FaBookOpen className="navIcon" /><p>Category</p></li>
             <li onMouseEnter={() => setCategory(false)}><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p>
             <CartQty><p>{CartContextQty}</p></CartQty>
+            
             </li>
             <li onMouseEnter={() => setCategory(false)}><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
               <p>{user === null ? "Account" : user.providerData[0].displayName}</p></li>
@@ -61,7 +58,7 @@ const Header = () => {
                   <Link to={"/category/electronics"} style={{ textDecoration: 'none' }} name={"Electronics"}><li>Electronics</li></Link>
                 </ul>
               </div>
-          }
+            }
           </ul>
 
         </div>

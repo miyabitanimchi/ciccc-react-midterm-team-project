@@ -42,7 +42,7 @@ const Cart = () => {
   useEffect(() => {
     setQuantity(productsAddedToCart.length)
   }, [productsAddedToCart]);
- console.log(quantity)
+//  console.log(quantity)
   
   return (
     <>

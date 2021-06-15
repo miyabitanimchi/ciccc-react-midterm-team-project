@@ -30,7 +30,7 @@ const Category = (props) => {
         catagoryFilter()
     }, [categoryKey, categoryKeyWords,products])
 
-    console.log(categoryResult)
+    // console.log(categoryResult)
 
 
     return (
