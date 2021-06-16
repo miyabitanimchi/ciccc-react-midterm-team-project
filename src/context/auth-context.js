@@ -24,17 +24,20 @@ const DEFAULT_ACCOUNT = {
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [account, dispatchAccount] = useReducer(accountReducer, DEFAULT_ACCOUNT);
+  // Use loading state?
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       setUser(user);
-      database.ref(`users/${user.uid}/account`).once('value')
-      .then(snapshot => {
-        dispatchAccount({
-          type: "SET_ACCOUNT",
-          account: snapshot.val() ? snapshot.val() : DEFAULT_ACCOUNT
+      if (user) {
+        database.ref(`users/${user.uid}/account`).once('value')
+        .then(snapshot => {
+          dispatchAccount({
+            type: "SET_ACCOUNT",
+            account: snapshot.val() ? snapshot.val() : DEFAULT_ACCOUNT
+          })
         })
-      })
+      }
     });
   }, []);
 

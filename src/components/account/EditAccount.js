@@ -39,7 +39,7 @@ const EditAccount = () => {
       cvvNumber,
       fullNameOfCard
     };
-    database.ref(`users/${user.uid}/account`).set(updates).then(() => {
+    database.ref(`users/${user.uid}/account`).update(updates).then(() => {
       dispatchAccount({
         type: 'EDIT_ACCOUNT',
         updates
@@ -209,7 +209,7 @@ const EditAccount = () => {
             </div>
           </div>
         </div>
-        <input type="submit" onClick={onSubmit} value="Save" />
+        <input type="button" onClick={onSubmit} value="Save" />
       </form>
     </div>
   )

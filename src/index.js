@@ -5,15 +5,13 @@ import ProductsProvider from "./context/products-context";
 import AuthProvider from "./context/auth-context";
 import AppRouter from "./routers/AppRouter";
 
-// require('dotenv').config();
-
 ReactDOM.render(
   <React.StrictMode>
-    <ProductsProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <ProductsProvider>
         <AppRouter />
-      </AuthProvider>
-    </ProductsProvider>
+      </ProductsProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
