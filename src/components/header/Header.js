@@ -3,12 +3,14 @@ import './Header.scss';
 import { FaUserCircle, FaShoppingCart, FaBookOpen } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
 import { useAuthContext } from '../../context/auth-context';
+import { useProductsContext } from '../../context/products-context';
 import { Link } from 'react-router-dom';
 import CartQty, { CartContext } from '../cart/CartQty';
 // import  from '../cart/CartQty';
 
 const Header = () => {
   const { user } = useAuthContext();
+  const { cartQuantity } = useProductsContext();
   const [searchInput, setSearchInput] = useState("")
   const [categoryMenu, setCategory] = useState(false)
   const CartContextQty = useContext(CartContext)
@@ -45,8 +47,8 @@ const Header = () => {
             <li onMouseEnter={() => setCategory(true)}>
               <FaBookOpen className="navIcon" /><p>Category</p></li>
             <li onMouseEnter={() => setCategory(false)}><Link to={"/cart"}><FaShoppingCart className="navIcon" /></Link><p>Cart</p>
-            <CartQty><p>{CartContextQty}</p></CartQty>
-            
+            {/* <CartQty><p>{CartContextQty}</p></CartQty> */}
+            <p>{cartQuantity}</p>
             </li>
             <li onMouseEnter={() => setCategory(false)}><Link to={"/account/"}><FaUserCircle className="navIcon" /></Link>
               <p>{user === null ? "Account" : user.providerData[0].displayName}</p></li>

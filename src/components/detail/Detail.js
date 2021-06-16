@@ -10,7 +10,7 @@ import PopUp from "./PopUp";
 import "./Detail.scss";
 
 const Detail = (props) => {
-  const { products } = useProductsContext();
+  const { products, refreshQuantity } = useProductsContext();
   const { user } = useAuthContext();
 
   // Popup Function
@@ -63,6 +63,7 @@ const Detail = (props) => {
   }, [products]);
 
   useEffect(() => {
+    refreshQuantity(addedProductsArr);
     // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
     if (user) {
       localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
