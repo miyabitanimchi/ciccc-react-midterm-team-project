@@ -64,6 +64,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="first-name"
+                maxLength={20}
               />
             </div>
             <div className="input-wrap">
@@ -74,6 +75,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="last-name"
+                maxLength={20}
               />
             </div>
             <div className="input-wrap">
@@ -84,6 +86,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="street-address"
+                maxLength={40}
               />
             </div>
             <div className="input-wrap">
@@ -94,6 +97,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="address-details"
+                maxLength={60}
               />
             </div>
             <div className="input-wrap">
@@ -104,6 +108,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="city"
+                maxLength={20}
               />
             </div>
             <div className="input-wrap">
@@ -117,6 +122,7 @@ const EditAccount = () => {
                 type="text"
                 address="province-territory"
                 id="province-territory"
+                maxLength={20}
               />
             </div>
             <div className="input-wrap">
@@ -127,6 +133,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="postal-code"
+                maxLength={16}
               />
             </div>
             <div className="input-wrap">
@@ -137,6 +144,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="phone"
+                maxLength={20}
               />
             </div>
           </div>
@@ -185,6 +193,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="expiration-date"
+                maxLength={16}
               />
             </div>
             <div className="input-wrap">
@@ -195,6 +204,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="cvv-number"
+                maxLength={5}
               />
             </div>
             <div className="input-wrap">
@@ -205,6 +215,7 @@ const EditAccount = () => {
                 className="input"
                 type="text"
                 id="full-name"
+                maxLength={40}
               />
             </div>
           </div>
