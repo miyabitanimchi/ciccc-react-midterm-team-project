@@ -6,6 +6,7 @@ import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import PopUp from "./PopUp";
+import ReviewWrap from "../review/ReviewWrap"
 
 import "./Detail.scss";
 
@@ -204,6 +205,7 @@ const Detail = (props) => {
               )}
             </div>
           </div>
+          <ReviewWrap/>
         </>
       )}
     </main>
