@@ -173,52 +173,54 @@ const EditAccount = () => {
               <label htmlFor="paypal"> PayPal</label>
             </div>
           </div>
-          <div className="credit-fillout-wrap">
-            <h3>Credit card information</h3>
-            <div className="input-wrap">
-              <label htmlFor="card-number">Credit Card Number: </label>
-              <input
-                value={creditCardNumber}
-                onChange={e => setCreditCardNumber(e.target.value)}
-                className="input"
-                type="text"
-                id="card-number"
-              />
+          { paymentOption === "credit-card" && (
+            <div className="credit-fillout-wrap">
+              <h3>Credit card information</h3>
+              <div className="input-wrap">
+                <label htmlFor="card-number">Credit Card Number: </label>
+                <input
+                  value={creditCardNumber}
+                  onChange={e => setCreditCardNumber(e.target.value)}
+                  className="input"
+                  type="text"
+                  id="card-number"
+                />
+              </div>
+              <div className="input-wrap">
+                <label htmlFor="expiration-date">Expiration Date: </label>
+                <input
+                  value={expirationDate}
+                  onChange={e => setExpirationDate(e.target.value)}
+                  className="input"
+                  type="text"
+                  id="expiration-date"
+                  maxLength={16}
+                />
+              </div>
+              <div className="input-wrap">
+                <label htmlFor="cvv-number">CVV Number: </label>
+                <input
+                  value={cvvNumber}
+                  onChange={e => setCvvNumber(e.target.value)}
+                  className="input"
+                  type="text"
+                  id="cvv-number"
+                  maxLength={5}
+                />
+              </div>
+              <div className="input-wrap">
+                <label htmlFor="full-name">Full Name: </label>
+                <input
+                  value={fullNameOfCard}
+                  onChange={e => setFullNameOfCard(e.target.value)}
+                  className="input"
+                  type="text"
+                  id="full-name"
+                  maxLength={40}
+                />
+              </div>
             </div>
-            <div className="input-wrap">
-              <label htmlFor="expiration-date">Expiration Date: </label>
-              <input
-                value={expirationDate}
-                onChange={e => setExpirationDate(e.target.value)}
-                className="input"
-                type="text"
-                id="expiration-date"
-                maxLength={16}
-              />
-            </div>
-            <div className="input-wrap">
-              <label htmlFor="cvv-number">CVV Number: </label>
-              <input
-                value={cvvNumber}
-                onChange={e => setCvvNumber(e.target.value)}
-                className="input"
-                type="text"
-                id="cvv-number"
-                maxLength={5}
-              />
-            </div>
-            <div className="input-wrap">
-              <label htmlFor="full-name">Full Name: </label>
-              <input
-                value={fullNameOfCard}
-                onChange={e => setFullNameOfCard(e.target.value)}
-                className="input"
-                type="text"
-                id="full-name"
-                maxLength={40}
-              />
-            </div>
-          </div>
+          )}
         </div>
         <input type="button" onClick={onSubmit} value="Save" />
       </form>
