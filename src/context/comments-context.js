@@ -1,8 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import { firebase } from '../firebase/firebase';
 
-import React from 'react'
-
 export const CommentsContext = createContext()
 
 export default function CommentsProvider({ children }) {
