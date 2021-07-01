@@ -1,11 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {CommentsContext} from '../../context/comments-context';
+
 
 export default function Review() {
+
+
+    const {writeComment} = useContext(CommentsContext)
+    console.log(writeComment)
+
     return (
-        <div className="rounded-lg h-1/3 w-1/3 p-4 shadow-lg bg-gray-100">
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                Case study
-                </div>
+        <div>
+            <input placeholder="name"></input>
+            <input placeholder="comment"></input>
+            <input placeholder="rating"></input>
         </div>
     )
 }

@@ -18,7 +18,7 @@ const Header = () => {
     searchInputValue.value = ""
   }
 
-  console.log(CartContextQty)
+  // console.log(CartContextQty)
   // const storageChange = () => {
   //   console.log("storage change")
   // }
