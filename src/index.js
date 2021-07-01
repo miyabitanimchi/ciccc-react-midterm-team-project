@@ -5,7 +5,6 @@ import ProductsProvider from "./context/products-context";
 import AuthProvider from "./context/auth-context";
 import AppRouter from "./routers/AppRouter";
 import CartQty from './components/cart/CartQty';
-import './index.css';
 // require('dotenv').config();
 
 ReactDOM.render(

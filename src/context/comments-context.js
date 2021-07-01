@@ -6,17 +6,21 @@ export const CommentsContext = createContext()
 export default function CommentsProvider({ children }) {
 
 
-    function writeComment(comment) {
-        firebase.database().ref('users/' + userId).set({
-          username: name,
-          email: email,
-          profile_picture : imageUrl
-        });
-      }
+  // function writeComment(comment) {
+  //     firebase.database().ref('users/' + userId).set({
+  //       username: name,
+  //       email: email,
+  //       profile_picture : imageUrl
+  //     });
+  //   }
 
-    return (
-        <CommentsContext.Provider value={writeComment}>
-            {children}
-        </CommentsContext.Provider>
-    )
+  function writeComment(info) {
+    console.log({info})
+  }
+
+  return (
+    <CommentsContext.Provider value={writeComment}>
+      {children}
+    </CommentsContext.Provider>
+  )
 }
