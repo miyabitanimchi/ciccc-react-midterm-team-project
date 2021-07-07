@@ -4,14 +4,21 @@ import reportWebVitals from "./reportWebVitals";
 import ProductsProvider from "./context/products-context";
 import AuthProvider from "./context/auth-context";
 import AppRouter from "./routers/AppRouter";
+import CartQty from './components/cart/CartQty';
+import CommentsProvider from '../src/context/comments-context';
+// require('dotenv').config();
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <ProductsProvider>
-        <AppRouter />
-      </ProductsProvider>
-    </AuthProvider>
+    <ProductsProvider>
+      <AuthProvider>
+        <CommentsProvider>
+        <CartQty>
+          <AppRouter />
+        </CartQty>
+        </CommentsProvider>
+      </AuthProvider>
+    </ProductsProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
