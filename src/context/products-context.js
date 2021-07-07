@@ -10,6 +10,8 @@ const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(null);
 
+console.log(user)
+
   useEffect(() => {
     const fetchAPI = async () => {
       try {

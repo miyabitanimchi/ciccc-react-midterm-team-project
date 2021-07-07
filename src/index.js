@@ -10,15 +10,14 @@ import CommentsProvider from '../src/context/comments-context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductsProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <ProductsProvider>
         <CommentsProvider>
-        <CartQty>
-          <AppRouter />
-        </CartQty>
+          <CartQty>
+            <AppRouter />
+          </CartQty>
         </CommentsProvider>
-      </AuthProvider>
-    </ProductsProvider>
+      </ProductsProvider></AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
