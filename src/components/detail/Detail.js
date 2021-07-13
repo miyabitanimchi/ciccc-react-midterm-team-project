@@ -6,6 +6,7 @@ import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import PopUp from "./PopUp";
+import database from "../../firebase/firebase";
 
 import "./Detail.scss";
 
@@ -62,14 +63,14 @@ const Detail = (props) => {
     }
   }, [products]);
 
-  useEffect(() => {
-    // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    if (user) {
-      localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    } else {
-      localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
-    }
-  }, [addedProductsArr]);
+  // useEffect(() => {
+  //   // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
+  //   if (user) {
+  //     localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
+  //   } else {
+  //     localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
+  //   }
+  // }, [addedProductsArr]);
 
   const setChosenSize = (targetedEl) => {
     // targetedEl.classList.add("selected-size");
@@ -103,10 +104,9 @@ const Detail = (props) => {
   const addToCart = (e) => {
     e.preventDefault();
     // for loaclStorage
-    setAddedProductsArr((addedProductsArr) => {
-      return [...addedProductsArr, chosenProductInfo];
-    });
-
+    // setAddedProductsArr((addedProductsArr) => {
+    //   return [...addedProductsArr, chosenProductInfo];
+    // });
     // To go to cart page
     // props.history.push("/cart");
     setPopUp(true);

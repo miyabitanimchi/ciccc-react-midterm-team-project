@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import "./Cart.scss";
 import { useAuthContext } from "../../context/auth-context";
+import database from "../../firebase/firebase";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -65,13 +66,13 @@ const Cart = () => {
           </div>
         </main>
       ) : (
-        <main className="no-item-container">
-          <div className="no-item-notice-wrap">
-            <h1 className="no-item-notice">No Items in Cart.</h1>
-            <Link to={"/"}>Go Back to Main Page</Link>
-          </div>
-        </main>
-      )}
+          <main className="no-item-container">
+            <div className="no-item-notice-wrap">
+              <h1 className="no-item-notice">No Items in Cart.</h1>
+              <Link to={"/"}>Go Back to Main Page</Link>
+            </div>
+          </main>
+        )}
     </>
   );
 };

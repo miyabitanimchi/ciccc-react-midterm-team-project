@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuthContext } from "../../context/auth-context";
+import database from "../../firebase/firebase";
 import "./Checkout.scss";
 
 const Checkout = () => {
@@ -225,7 +226,7 @@ const Checkout = () => {
                         Math.round(
                           (subtotalOfProducts + shippingCost) * 0.1 * 10
                         ) /
-                          10
+                        10
                       ).toFixed(2)}
                     </h3>
                   </div>
@@ -246,10 +247,10 @@ const Checkout = () => {
             </div>
           </>
         ) : (
-          <>
-            <h1>No checkout information to show</h1>
-          </>
-        )}
+            <>
+              <h1>No checkout information to show</h1>
+            </>
+          )}
       </main>
     </>
   );
