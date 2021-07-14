@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
@@ -7,12 +7,15 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import PopUp from "./PopUp";
 import database from "../../firebase/firebase";
+import cartItemsReducer from "../../reducer/cartItems";
 
 import "./Detail.scss";
 
 const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
+
+  const [cartItems, dispatchCartItems] = useReducer(cartItemsReducer, {});
 
   // Popup Function
   const [popUp, setPopUp] = useState(false);
@@ -103,6 +106,15 @@ const Detail = (props) => {
   // When click Add to Cart button
   const addToCart = (e) => {
     e.preventDefault();
+
+    database.ref(`users/${user.uid}/cart`).push(chosenProductInfo).then((ref) => {
+      dispatchCartItems({
+        type: "ADD_ITEM",
+        firebaseId: ref.key,
+        itemInfo: chosenProductInfo
+      })
+    })
+
     // for loaclStorage
     // setAddedProductsArr((addedProductsArr) => {
     //   return [...addedProductsArr, chosenProductInfo];
