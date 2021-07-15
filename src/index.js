@@ -17,7 +17,8 @@ ReactDOM.render(
             <AppRouter />
           </CartQty>
         </CommentsProvider>
-      </ProductsProvider></AuthProvider>
+      </ProductsProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
