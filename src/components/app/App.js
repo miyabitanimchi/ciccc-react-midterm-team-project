@@ -56,7 +56,7 @@ function App() {
             <Greeting user={user} />
             }
             
-            <Carousel item={randomItem} title={"Best Seller"} />
+            {/* <Carousel item={randomItem} title={"Best Seller"} /> */}
             <ItemList item={itemList} title={"Feature Items"} listClass={"itemList"} wrapClass={"itemWrap"} />
           </div>
         )}

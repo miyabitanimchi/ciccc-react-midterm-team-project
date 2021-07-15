@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './Account.scss';
 import { useAuthContext } from "../../context/auth-context";
 import { firebase, googleAuthProvider } from '../../firebase/firebase';
+import { Link } from 'react-router-dom';
 import Cart from '../cart/Cart';
 
 const Account = () => {
@@ -53,10 +54,10 @@ const Account = () => {
                                 <li><h3>Account Detail</h3></li>
                                 <li><span>Name:</span> <span>{user.providerData[0].displayName}</span></li>
                                 <li><span>Email:</span> <span>{user.providerData[0].email}</span></li>
+                                <Link to='/edit_account'>Edit Account</Link><br />
                                 <button><div onClick={startLogout} className="auth-button">Logout</div></button>
                             </ul>
                         </div>
-
                     </div >
                     {/* ================Add cart section below?
                     <Cart /> */}

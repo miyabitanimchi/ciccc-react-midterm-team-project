@@ -9,6 +9,7 @@ import Account from "../components/account/Account";
 import Wrapper from '../components/wrapper/Wrapper';
 import Category from '../components/category/Category';
 import Checkout from "../components/checkout/Checkout";
+import EditAccount from "../components/account/EditAccount";
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -19,6 +20,7 @@ const AppRouter = () => (
         <Route path="/cart" component={Cart} />
         <Route path="/search/:keywords" component={SearchResult}/>
         <Route path="/account" component={Account}/>
+        <Route path="/edit_account" component={EditAccount} />
         <PrivateRoute path="/checkout" component={Checkout} />
         <Route path="/category/:type" component={Category}/>
       </Switch>

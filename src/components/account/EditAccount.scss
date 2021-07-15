@@ -1,0 +1,39 @@
+.address-fillout-wrap {
+  display: flex;
+  flex-direction: column;
+
+  .input-wrap {
+    margin-bottom: 0.3rem;
+  }
+}
+.payment-option-wrap {
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+
+  .payment-option {
+    margin-right: 2rem;
+  }
+}
+
+.credit-fillout-wrap {
+  display: flex;
+  flex-direction: column;
+
+  .input-wrap {
+    margin-bottom: 0.3rem;
+  }
+}
+
+.input-wrap {
+  width: 100%;
+
+  label {
+    float: left;
+  }
+  input {
+    float: right;
+    // margin-right: 3rem;
+  }
+}

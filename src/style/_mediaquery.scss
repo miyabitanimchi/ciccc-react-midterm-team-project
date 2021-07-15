@@ -1,0 +1,12 @@
+$sizes: mobile, tablet;
+
+$breakpoint-max-width: (
+  "mobile" : "screen and (max-width : 480px)",
+  "tablet" : "screen and (max-width : 1024px)",
+);
+
+@mixin mq-max-width($breakpoint) {
+  @media #{map-get($breakpoint-max-width, $breakpoint)} {
+    @content;
+  }
+}
