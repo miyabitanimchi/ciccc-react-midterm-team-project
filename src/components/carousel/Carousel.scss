@@ -1,89 +1,77 @@
-.carouselWrap{
-    background-color: rgb(247, 247, 247);
+@import "../../style/mediaquery";
+
+.carouselWrap {
+    background-color: rgb(238, 238, 238);
 
 
-    
     .carousel {
-    position: relative;
-    padding:20px 0;
-    margin-bottom:30px;
-
-    h2 {
-        margin: 0 0 20px 20px;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        user-select: none;
-    }
-
-    .leftArrow {
-        position: absolute;
-        left: -250px;
-        top: 50%;
-        transform: translate(0, -50%);
-        width: 50px;
-        user-select: none;
-        cursor: pointer;
-        z-index: 5;
-    }
-
-    .rightArrow {
-        position: absolute;
-        right: -250px;
-        top: 50%;
-        transform: translate(0, -50%);
-        width: 50px;
-        user-select: none;
-        cursor: pointer;
-        z-index: 5;
-    }
-
-    .leftArrow:hover {
-        color: rgb(134, 134, 134);
-    }
-
-    .rightArrow:hover {
-        color: rgb(134, 134, 134);
-    }
-
-    .carouselSlide {
-        // background-color: gray;
-        width: 900px;
-        margin: auto;
-        display: flex;
         position: relative;
-        justify-content: center;
-        align-items: center;
+        padding: 20px 0;
+        margin-bottom: 30px;
 
-        .slide {
+        h2 {
+            margin: 0 0 20px 20px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
-            opacity: 0;
-            display: flex;
-            transition-duration: 2s ease;
-
-            a {
-                margin: 0 15px;
-
-                img {
-                    height: 280px;
-                    width: 400px;
-                    object-fit: cover;
-                    border-radius: 20px;
-                }
-            }
-
-            a:hover {
-                img {
-                    transform: scale(1.1);
-                    transition-duration: 100ms;
-                }
-            }
         }
 
-        .slide.current {
-            opacity: 1;
-            transition-duration: 1s;
+        .leftArrow {
+            user-select: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .rightArrow {
+            user-select: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .leftArrow:hover {
+            color: rgb(134, 134, 134);
+        }
+
+        .rightArrow:hover {
+            color: rgb(134, 134, 134);
+        }
+
+        .carouselSlide {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            .slide {
+                user-select: none;
+                opacity: 0;
+                display: flex;
+                transition-duration: 2s ease;
+                justify-content: center;
+                .item {
+                    margin: 1vw;
+                    justify-content: center;
+                    width: 25vw;
+                    a {
+                        img {
+                            height: 280px;
+                            width: 25vw;
+                            object-fit: cover;
+                            border-radius: 20px;
+                        }
+                    }
+
+                    a:hover {
+                        img {
+                            transform: scale(1.1);
+                            transition-duration: 100ms;
+                        }
+                    }
+                }
+            }
+
+            .slide.current {
+                opacity: 1;
+                transition-duration: 1s;
+            }
         }
     }
 }
-
-}
-

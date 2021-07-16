@@ -1,60 +1,124 @@
+@import "../../style/mediaquery";
+
 nav {
     position: relative;
     // background-color: rgb(58, 58, 58);
     background-color: rgb(0, 40, 87);
-    height: 80px;
+    // height: 80px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     z-index: 20;
     margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @include mq-max-width("mobile") {
+        justify-content: center;
+        
+    }
+
     .logo {
-        position: absolute;
+        display: flex;
+        // background-color: aqua;
+        @include mq-max-width("mobile") {
+            margin-left: 0;
+            width: fit-content;
+            margin-top: 10px;
+            
+        }
+
+        width: 200px;
+        height: 50px;
+        margin-left: 50px;
+
         a {
             text-decoration: none;
             position: relative;
+            display: flex;
             img {
-                width: 300px;
-                height: 80px;
+                width: 50px;
+                height: 50px;
             }
-
-            // img:hover{
-            //     transform: scale(1.1);
-            // }
 
             span {
                 font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
                 color: white;
-                position: absolute;
-                top: -215%;
-                left: 40%;
+                margin-left: 10px;
                 font-size: 30pt;
+                display: inline-flex;
+                align-items: center;
             }
         }
     }
 
     .searchBar {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        input {
-            width: 30vw;
+        display: flex;
+        background-color: white;
+        border-radius: 15px;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top:10px;
+
+        @include mq-max-width("mobile") {
+            order: 3;
+            // justify-content: center;
+            width: 100%;
         }
+
+        @include mq-max-width("smTablet") {
+            order: 3;
+            width: 100%;
+        }
+
+        input {
+            margin-left: 10px;
+            width: 30vw;
+            border-radius: 15px;
+            border: none;
+            @include mq-max-width("mobile") {
+                width: 100%;
+            }
+            @include mq-max-width("smTablet") {
+                width: 100%;
+            }
+        }
+
+        .clearBtn {
+            margin-right: 10px;
+            margin-bottom: 2px;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .divider {
+            height: 18px;
+            width: 2px;
+            margin-right: 10px;
+            background-color: gray;
+            //  transform: rotate(90deg);
+            //   border: 2px solid black;
+        }
+
         .searchBtn {
-            margin-left: 5px;
-            vertical-align: middle;
+            margin-right: 10px;
+            margin-top: 1px;
             cursor: pointer;
         }
     }
 
     .iconWrap {
-        position: absolute;
-        transform: translate(0, -50%);
-        top: 50%;
-        right: 30px;
+        margin-right: 50px;
+        // display: block;
+        @include mq-max-width("mobile") {
+            margin-right: 0;
+            
+        }
 
         ul {
             list-style: none;
             display: flex;
+            position: relative;
 
             li {
                 // background-color: aqua;
@@ -62,14 +126,23 @@ nav {
                 // background-color: rgb(58, 58, 58);
                 background-color: rgb(0, 40, 87);
                 z-index: 20;
+                
                 p {
                     text-align: center;
                     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
                     color: white;
                     user-select: none;
+                    @include mq-max-width("mobile") {
+                        font-size: 10pt;
+                    }
                 }
                 .navIcon {
-                    height: 30px;
+                    @include mq-max-width("mobile") {
+                        height: 15px;
+                        width: 20px;
+                        margin-top:10px;
+                    }
+                    height: 20px;
                     width: 30px;
                     color: white;
                     position: relative;
@@ -84,24 +157,85 @@ nav {
 
             .categoryDropdown {
                 position: absolute;
-                top:77px;
+                top: 77px;
                 left: 0;
                 z-index: 18;
                 width: 100px;
+
+                @include mq-max-width("mobile") {
+                    display: none;
+                }
+
+                @include mq-max-width("smTablet") {
+                    display: none;
+                }
+
                 ul {
                     display: block;
                     list-style: none;
+
                     li {
                         margin: 0;
                         color: white;
                         font-size: 12pt;
-                        // background-color: rgb(58, 58, 58);
                         background-color: rgb(0, 40, 87);
                         padding: 6px 10px;
                     }
                     li:hover {
                         background-color: cadetblue;
                     }
+                }
+            }
+        }
+    }
+
+    .mobileCategoryDropdown {
+        display: none;
+
+        @include mq-max-width("mobile") {
+            display: block;
+            top: 77px;
+            left: 0;
+            z-index: 18;
+            margin-top:10px;
+            width: 100vw;
+            ul {
+                display: block;
+                list-style: none;
+                li {
+                    margin: 0;
+                    color: white;
+                    font-size: 12pt;
+                    background-color: rgb(0, 52, 112);
+                    padding: 6px 10px;
+                  
+                }
+                li:hover {
+                    background-color: cadetblue;
+                }
+            }
+        }
+
+        @include mq-max-width("smTablet") {
+            display: block;
+            top: 77px;
+            left: 0;
+            z-index: 18;
+            margin-top:10px;
+            width: 100vw;
+            ul {
+                display: block;
+                list-style: none;
+                li {
+                    margin: 0;
+                    color: white;
+                    font-size: 12pt;
+                    background-color: rgb(0, 52, 112);
+                    padding: 6px 10px;
+                  
+                }
+                li:hover {
+                    background-color: cadetblue;
                 }
             }
         }
