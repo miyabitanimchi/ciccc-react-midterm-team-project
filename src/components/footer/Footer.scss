@@ -1,3 +1,5 @@
+@import "../../style/mediaquery";
+
 html {
     scroll-behavior: smooth;
 }
@@ -12,7 +14,9 @@ footer {
     width: 100%;
     // bottom: 0;
     // margin-top: 30px;
-
+    @include mq-max-width("tablet") {
+        height: 50px;
+    }
     
 
     p {

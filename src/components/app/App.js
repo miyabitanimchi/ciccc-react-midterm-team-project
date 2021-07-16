@@ -8,7 +8,7 @@ import './App.scss';
 
 function App() {
 
-  const { products } = useProductsContext();
+  const { products,itemDescription,setItemDescription } = useProductsContext();
   // console.log(products)
   const [randomItem, setRandomItem] = useState([])
   const [itemList, setItemList] = useState([])
@@ -47,6 +47,11 @@ function App() {
     setItemList(itemListArr)
   }, [products])
 
+  useEffect(()=>{
+    setItemDescription(false)
+    
+  },[itemDescription])
+console.log(itemDescription)
   return (
     <div className="app">
       <div>

@@ -56,6 +56,16 @@
                             width: 25vw;
                             object-fit: cover;
                             border-radius: 20px;
+
+                            @include mq-max-width("smTablet") {
+                                height: 250px;
+                            }
+
+                            
+                            @include mq-max-width("mobile") {
+                                height: 180px;
+                            }
+
                         }
                     }
 

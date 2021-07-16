@@ -1,9 +1,16 @@
+@import "../../style/mediaquery";
+
 .form-wrapper {
 	width: 550px;
 	margin: 0 auto;
+
 }
 
 .accountWrap {
+	@include mq-max-width("mobile") {
+        width: 80vw;
+    }
+
 	background-color: rgb(240, 240, 240);
 	height: 350px;
 	width: 320px;

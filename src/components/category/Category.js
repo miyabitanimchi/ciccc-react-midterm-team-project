@@ -6,8 +6,8 @@ import ItemList from '../itemList/ItemList';
 const Category = (props) => {
 
 
-    const { products } = useProductsContext();
-
+    const { products, itemDescription, setItemDescription } = useProductsContext();
+    console.log(itemDescription)
 
     const [categoryResult, setcategoryResult] = useState([])
     const [categoryKey, setcategoryKey] = useState("")
@@ -23,21 +23,21 @@ const Category = (props) => {
 
         // setcategoryTitle(product.category)
         setcategoryResult(category)
-
+        setItemDescription(true)
     }
 
     useEffect(() => {
         catagoryFilter()
-    }, [categoryKey, categoryKeyWords,products])
+    }, [categoryKey, categoryKeyWords, products])
 
-    console.log(categoryResult)
+    console.log(props)
 
 
     return (
         <>
             {categoryResult === null ? catagoryFilter() :
                 <div className={categoryKey}>
-                    <ItemList item={categoryResult} title={`All result for "${categoryKeyWords}"`} listClass={"itemList"} wrapClass={"itemWrap"} />
+                    <ItemList item={categoryResult} title={`All result for "${categoryKeyWords}"`} listClass={"itemList"} wrapClass={"itemWrap"} description={true} />
                 </div>}
         </>
     )

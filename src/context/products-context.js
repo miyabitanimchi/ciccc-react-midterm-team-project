@@ -6,7 +6,7 @@ const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-
+  const [itemDescription, setItemDescription] = useState(false)
   useEffect(() => {
     const fetchAPI = async () => {
       try {
@@ -25,16 +25,16 @@ const ProductsProvider = ({ children }) => {
         const allProducts = originalProducts.concat(additionalProducts);
         console.log(allProducts);
         setProducts(allProducts);
-      } catch(err) {
+      } catch (err) {
         console.error(`Error happened: ${err}`);
-      } 
+      }
     };
     fetchAPI();
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ products, setProducts }}>
-      { children }
+    <ProductsContext.Provider value={{ products, setProducts, itemDescription, setItemDescription }}>
+      {children}
     </ProductsContext.Provider>
   )
 };
