@@ -73,6 +73,9 @@ h1 {
 
         .payment-option {
           margin-right: 2rem;
+          @include mq-max-width("mobile") {
+            font-size: 0.9rem;
+          }
         }
       }
 
