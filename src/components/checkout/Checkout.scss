@@ -1,6 +1,11 @@
+@import "../../style/mediaquery";
+
 h1 {
   margin-bottom: 1.5rem;
   width: 90vw;
+  @include mq-max-width("mobile") {
+    margin: 0 auto 1.5rem auto;
+  }
 }
 
 .checkout-container {
@@ -8,6 +13,11 @@ h1 {
   justify-content: space-between;
   margin: 0;
   width: 90vw;
+  @include mq-max-width("mobile") {
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+  }
 
   .register-address-title {
     margin-bottom: 1.7rem;
@@ -19,10 +29,16 @@ h1 {
 
   .address-payment-container {
     width: 50%;
+    @include mq-max-width("mobile") {
+      width: 100%;
+    }
 
     .input {
       width: 50%;
       height: 1.8rem;
+      @include mq-max-width("mobile") {
+        width: 100%;
+      }
     }
 
     .address-container {
@@ -35,6 +51,10 @@ h1 {
 
         .input-wrap {
           margin-bottom: 0.3rem;
+          @include mq-max-width("mobile") {
+            display: flex;
+            flex-direction: column;
+          }
         }
       }
     }
@@ -53,6 +73,9 @@ h1 {
 
         .payment-option {
           margin-right: 2rem;
+          @include mq-max-width("mobile") {
+            font-size: 0.9rem;
+          }
         }
       }
 
@@ -70,6 +93,9 @@ h1 {
   .order-summary-container {
     width: 40%;
     align-self: flex-start;
+    @include mq-max-width("mobile") {
+      width: 100%;
+    }
     .order-summary-title {
       margin-bottom: 1.7rem;
     }
@@ -131,6 +157,9 @@ h1 {
     border: 1.5px solid rgb(128, 128, 128);
     border-radius: 3px;
     cursor: pointer;
+    @include mq-max-width("mobile") {
+      margin-bottom: 2rem;
+    }
   }
 }
 .input-wrap {
@@ -141,6 +170,5 @@ h1 {
   }
   input {
     float: right;
-    // margin-right: 3rem;
   }
 }

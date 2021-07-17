@@ -6,8 +6,10 @@ import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import PopUp from "./PopUp";
+import DetailMobile from "./DetailMobile";
 
 import "./Detail.scss";
+import MediaQuery from "react-responsive";
 
 const Detail = (props) => {
   const { products } = useProductsContext();
@@ -113,97 +115,112 @@ const Detail = (props) => {
   };
 
   return (
-    <main>
+    <main className="main-detail-container">
       {chosenProductInfo.product.length !== 0 && (
         <>
           <Link to="/" className="back-to-main-btn">
             Go Back to Main Page
           </Link>
-          <div className="detail-container">
-            <div className="img-wrap">
-              <img
-                src={chosenProductInfo.product[0].image}
-                alt={chosenProductInfo.product[0].title}
-              />
-            </div>
-            <div className="description-wrap">
-              <p className="category">
-                {chosenProductInfo.product[0].category}
-              </p>
-              <h2 className="product-name">
-                {chosenProductInfo.product[0].title}
-              </h2>
-              <span className="rating-star">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStarHalfAlt />
-              </span>
-              <p className="price-title">Price:</p>
-              <p className="price">
-                $
-                {(
-                  Math.round(chosenProductInfo.product[0].price * 10) / 10
-                ).toFixed(2)}
-              </p>
-              <p className="description">
-                {chosenProductInfo.product[0].description}
-              </p>
-              <Specification
-                {...chosenProductInfo}
-                setChosenColor={setChosenColor}
-                setChosenSize={setChosenSize}
-              />
-              <div className="quantity-wrap">
-                <p className="quantity-title">Quantity: </p>
-                <select
-                  name="quantity"
-                  onChange={(e) => changeQuantity(Number(e.target.value))}
-                  value={chosenProductInfo.quantity}
-                  className="quantity"
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
+          <MediaQuery maxDeviceWidth={480}>
+            <DetailMobile
+              chosenProductInfo={chosenProductInfo}
+              setChosenColor={setChosenColor}
+              setChosenSize={setChosenSize}
+              changeQuantity={changeQuantity}
+              addToCart={addToCart}
+              popUp={popUp}
+              popUpClose={popUpClose}
+              setPopUp={setPopUp}
+              addedProductsArr={addedProductsArr}
+            />
+          </MediaQuery>
+          <MediaQuery minDeviceWidth={481}>
+            <div className="detail-container">
+              <div className="img-wrap">
+                <img
+                  src={chosenProductInfo.product[0].image}
+                  alt={chosenProductInfo.product[0].title}
+                />
               </div>
-              <button
-                className="add-to-cart-btn "
-                disabled={
-                  chosenProductInfo.size && chosenProductInfo.color
-                    ? false
-                    : true
-                }
-                onClick={addToCart}
-              >
-                Add to Cart
+              <div className="description-wrap">
+                <p className="category">
+                  {chosenProductInfo.product[0].category}
+                </p>
+                <h2 className="product-name">
+                  {chosenProductInfo.product[0].title}
+                </h2>
+                <span className="rating-star">
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStarHalfAlt />
+                </span>
+                <p className="price-title">Price:</p>
+                <p className="price">
+                  $
+                {(
+                    Math.round(chosenProductInfo.product[0].price * 10) / 10
+                  ).toFixed(2)}
+                </p>
+                <p className="description">
+                  {chosenProductInfo.product[0].description}
+                </p>
+                <Specification
+                  {...chosenProductInfo}
+                  setChosenColor={setChosenColor}
+                  setChosenSize={setChosenSize}
+                />
+                <div className="quantity-wrap">
+                  <p className="quantity-title">Quantity: </p>
+                  <select
+                    name="quantity"
+                    onChange={(e) => changeQuantity(Number(e.target.value))}
+                    value={chosenProductInfo.quantity}
+                    className="quantity"
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+                <button
+                  className="add-to-cart-btn "
+                  disabled={
+                    chosenProductInfo.size && chosenProductInfo.color
+                      ? false
+                      : true
+                  }
+                  onClick={addToCart}
+                >
+                  Add to Cart
               </button>
 
-              {popUp === true && (
-                <div className="popUp" onClick={() => popUpClose()}>
-                  <div
-                    className="popUpWrap"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <PopUp
-                      open={() => setPopUp(true)}
-                      close={() => setPopUp(false)}
-                      qty={addedProductsArr.length}
-                      price={addedProductsArr}
-                    />
+                {popUp === true && (
+                  <div className="popUp" onClick={() => popUpClose()}>
+                    <div
+                      className="popUpWrap"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <PopUp
+                        open={() => setPopUp(true)}
+                        close={() => setPopUp(false)}
+                        qty={addedProductsArr.length}
+                        price={addedProductsArr}
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          </MediaQuery>
         </>
       )}
     </main>

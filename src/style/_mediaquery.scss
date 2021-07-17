@@ -10,4 +10,4 @@ $breakpoint-max-width: (
   @media #{map-get($breakpoint-max-width, $breakpoint)} {
     @content;
   }
-}
+} 
