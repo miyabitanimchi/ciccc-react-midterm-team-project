@@ -7,7 +7,7 @@ const SearchResult = (props) => {
 
     const { products } = useProductsContext();
 
-
+    
     const [result, setResult] = useState([])
     const [searchKey, setSearchKey] = useState("")
 

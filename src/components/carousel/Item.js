@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import "./ItemModal.scss";
 import { Link } from "react-router-dom";
+import { useProductsContext } from '../../context/products-context';
 
 const Item = (props) => {
   const [hover, setHover] = useState(false);
-
+  const {itemDescription} = useProductsContext();
+  
   return (
     <div className="item">
-      <Link to={"/detail/" + props.item.id}>
+      <Link to={"/detail/" + props.item.id} style={{textDecoration:'none'}}>
         <img
           src={props.item.image}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         />
+        {itemDescription === true && 
+         <div className="description"><p>{props.item.title}</p></div>
+        } 
+       
       </Link>
+      
       {hover !== false && (
         <div style={{ pointerEvents: "none" }} className="modal">
           <div className="modalInfo">
