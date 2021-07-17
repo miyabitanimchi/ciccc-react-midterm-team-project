@@ -1,41 +1,48 @@
 @import "../../style/mediaquery";
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 footer {
-    height: 30px;
-    // background-color: rgb(58, 58, 58);
-    background-color: rgb(0, 40, 87);
-    // display:block;
-    // clear: both;
-    position: relative;
-    width: 100%;
-    // bottom: 0;
-    // margin-top: 30px;
-    @include mq-max-width("tablet") {
-        height: 50px;
-    }
-    
+  height: 30px;
+  // background-color: rgb(58, 58, 58);
+  background-color: rgb(0, 40, 87);
+  // display:block;
+  // clear: both;
+  position: relative;
+  width: 100%;
+  // bottom: 0;
+  // margin-top: 30px;
+  @include mq-max-width("tablet") {
+    height: 50px;
+  }
 
-    p {
-        position: absolute;
-        top:50%;
-        left:50%;
-        transform: translate(-50%,-50%);
-        user-select: none;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: white;
-        font-size: 8pt;
-        
-    }
+  p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    font-size: 8pt;
+  }
 }
 
 .bkTop {
-    position: fixed;
-    bottom: 40px;
-    right: 20px;
-    cursor: pointer;
-    transform: translate(-50%);
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  cursor: pointer;
+  transform: translate(-50%);
+
+  @include mq-max-width("tablet") {
+    bottom: 60px;
+    right: 5px;
+  }
+
+  @include mq-max-width("mobile") {
+    display: none;
+  }
 }
