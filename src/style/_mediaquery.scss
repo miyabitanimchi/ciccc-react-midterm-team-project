@@ -1,7 +1,8 @@
-$sizes: mobile, tablet;
+$sizes: mobile, tablet, smTablet;
 
 $breakpoint-max-width: (
   "mobile" : "screen and (max-width : 480px)",
+  "smTablet" : "screen and (max-width : 768px)",
   "tablet" : "screen and (max-width : 1024px)",
 );
 
@@ -9,4 +10,4 @@ $breakpoint-max-width: (
   @media #{map-get($breakpoint-max-width, $breakpoint)} {
     @content;
   }
-}
+} 
