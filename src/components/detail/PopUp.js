@@ -19,12 +19,14 @@ const PopUp = ({ close, qty, price }) => {
             .toFixed(2)}
         </span>
       </div>
-      <Link to={"/cart"}>
-        <button className="viewCartBtn">View Cart</button>
-      </Link>
-      <button className="continueBtn" onClick={close}>
-        Continue Shopping
-      </button>
+      <div className="btns-wrap">
+        <Link to={"/cart"}>
+          <button className="viewCartBtn">View Cart</button>
+        </Link>
+        <button className="continueBtn" onClick={close}>
+          Continue Shopping
+        </button>
+      </div>
     </>
   );
 };
