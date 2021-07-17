@@ -51,7 +51,7 @@ function App() {
     setItemDescription(false)
     
   },[itemDescription])
-console.log(itemDescription)
+
   return (
     <div className="app">
       <div>

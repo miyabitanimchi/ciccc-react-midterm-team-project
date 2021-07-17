@@ -15,7 +15,6 @@ nav {
 
     @include mq-max-width("mobile") {
         justify-content: center;
-        
     }
 
     .logo {
@@ -28,7 +27,12 @@ nav {
             
         }
 
-        width: 200px;
+        @include mq-max-width("smTablet") {
+
+            margin-top: 10px;
+        }
+
+        width: fit-content;
         height: 50px;
         margin-left: 50px;
 
@@ -58,11 +62,10 @@ nav {
         border-radius: 15px;
         align-items: center;
         margin-bottom: 10px;
-        margin-top:10px;
+        margin-top: 10px;
 
         @include mq-max-width("mobile") {
             order: 3;
-            // justify-content: center;
             width: 100%;
         }
 
@@ -73,7 +76,7 @@ nav {
 
         input {
             margin-left: 10px;
-            width: 30vw;
+            width: 25vw;
             border-radius: 15px;
             border: none;
             @include mq-max-width("mobile") {
@@ -96,8 +99,6 @@ nav {
             width: 2px;
             margin-right: 10px;
             background-color: gray;
-            //  transform: rotate(90deg);
-            //   border: 2px solid black;
         }
 
         .searchBtn {
@@ -109,10 +110,15 @@ nav {
 
     .iconWrap {
         margin-right: 50px;
-        // display: block;
+
+        @include mq-max-width("smTablet") {
+
+            margin-top: 10px;
+        }       
+        
         @include mq-max-width("mobile") {
             margin-right: 0;
-            
+            margin-top: 0;
         }
 
         ul {
@@ -121,12 +127,14 @@ nav {
             position: relative;
 
             li {
-                // background-color: aqua;
+                // @include mq-max-width("smTablet") {
+                //     margin: 5px;
+                // }
+
                 margin: 10px;
-                // background-color: rgb(58, 58, 58);
                 background-color: rgb(0, 40, 87);
                 z-index: 20;
-                
+
                 p {
                     text-align: center;
                     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -140,8 +148,9 @@ nav {
                     @include mq-max-width("mobile") {
                         height: 15px;
                         width: 20px;
-                        margin-top:10px;
+                        margin-top: 10px;
                     }
+
                     height: 20px;
                     width: 30px;
                     color: white;
@@ -197,7 +206,7 @@ nav {
             top: 77px;
             left: 0;
             z-index: 18;
-            margin-top:10px;
+            margin-top: 10px;
             width: 100vw;
             ul {
                 display: block;
@@ -208,7 +217,6 @@ nav {
                     font-size: 12pt;
                     background-color: rgb(0, 52, 112);
                     padding: 6px 10px;
-                  
                 }
                 li:hover {
                     background-color: cadetblue;
@@ -221,7 +229,7 @@ nav {
             top: 77px;
             left: 0;
             z-index: 18;
-            margin-top:10px;
+            margin-top: 10px;
             width: 100vw;
             ul {
                 display: block;
@@ -232,7 +240,6 @@ nav {
                     font-size: 12pt;
                     background-color: rgb(0, 52, 112);
                     padding: 6px 10px;
-                  
                 }
                 li:hover {
                     background-color: cadetblue;
