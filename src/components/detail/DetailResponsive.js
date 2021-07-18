@@ -3,7 +3,7 @@ import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Specification from "./Specification";
 import PopUp from "./PopUp";
 
-const DetailMobile = (props) => {
+const DetailResponsive = (props) => {
   const {
     chosenProductInfo,
     setChosenColor,
@@ -111,4 +111,4 @@ const DetailMobile = (props) => {
 }
 
 
-export default DetailMobile;
+export default DetailResponsive;
