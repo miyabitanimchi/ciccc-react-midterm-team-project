@@ -6,7 +6,7 @@ import Specification from "./Specification";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import PopUp from "./PopUp";
-import DetailMobile from "./DetailMobile";
+import DetailResponsive from "./DetailResponsive";
 
 import "./Detail.scss";
 import MediaQuery from "react-responsive";
@@ -121,8 +121,8 @@ const Detail = (props) => {
           <Link to="/" className="back-to-main-btn">
             Go Back to Main Page
           </Link>
-          <MediaQuery maxDeviceWidth={480}>
-            <DetailMobile
+          <MediaQuery maxDeviceWidth={768}>
+            <DetailResponsive
               chosenProductInfo={chosenProductInfo}
               setChosenColor={setChosenColor}
               setChosenSize={setChosenSize}
@@ -134,7 +134,7 @@ const Detail = (props) => {
               addedProductsArr={addedProductsArr}
             />
           </MediaQuery>
-          <MediaQuery minDeviceWidth={481}>
+          <MediaQuery minDeviceWidth={769}>
             <div className="detail-container">
               <div className="img-wrap">
                 <img
