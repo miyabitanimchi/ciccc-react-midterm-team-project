@@ -6,7 +6,7 @@ const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [itemDescription, setItemDescription] = useState(false)
+
   useEffect(() => {
     const fetchAPI = async () => {
       try {
@@ -33,7 +33,7 @@ const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ products, setProducts, itemDescription, setItemDescription }}>
+    <ProductsContext.Provider value={{ products, setProducts}}>
       {children}
     </ProductsContext.Provider>
   )
