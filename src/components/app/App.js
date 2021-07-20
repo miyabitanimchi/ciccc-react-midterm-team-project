@@ -8,8 +8,7 @@ import './App.scss';
 
 function App() {
 
-  const { products,itemDescription,setItemDescription } = useProductsContext();
-  // console.log(products)
+  const { products } = useProductsContext();
   const [randomItem, setRandomItem] = useState([])
   const [itemList, setItemList] = useState([])
 
@@ -47,10 +46,6 @@ function App() {
     setItemList(itemListArr)
   }, [products])
 
-  useEffect(()=>{
-    setItemDescription(false)
-    
-  },[itemDescription])
 
   return (
     <div className="app">
@@ -58,9 +53,9 @@ function App() {
         {products.length !== 0 && (
           <div>
             {user &&
-            <Greeting user={user} />
+              <Greeting user={user} />
             }
-            
+
             <Carousel item={randomItem} title={"Best Seller"} />
             <ItemList item={itemList} title={"Feature Items"} listClass={"itemList"} wrapClass={"itemWrap"} />
           </div>

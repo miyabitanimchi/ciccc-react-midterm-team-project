@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Header.scss';
 import { FaUserCircle, FaShoppingCart, FaBookOpen } from "react-icons/fa";
 import { ImSearch, ImCross } from "react-icons/im";
-import { AiOutlineLine } from "react-icons/ai";
 import { useAuthContext } from '../../context/auth-context';
 import { Link } from 'react-router-dom';
 
