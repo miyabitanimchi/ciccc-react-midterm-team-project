@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './Account.scss';
 import { useAuthContext } from "../../context/auth-context";
 import { firebase, googleAuthProvider } from '../../firebase/firebase';
-import Cart from '../cart/Cart';
+
 
 const Account = () => {
 
