@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './Header.scss';
 import { FaUserCircle, FaShoppingCart, FaBookOpen } from "react-icons/fa";
-import { ImSearch, ImCross } from "react-icons/im";
+import { ImSearch, ImCross  } from "react-icons/im";
 import { useAuthContext } from '../../context/auth-context';
+import { useProductsContext } from '../../context/products-context';
 import { Link } from 'react-router-dom';
-import CartQty, { CartContext } from '../cart/CartQty';
-// import  from '../cart/CartQty';
 
 const Header = () => {
   const { user } = useAuthContext();
+  const { cartQuantity } = useProductsContext();
   const [searchInput, setSearchInput] = useState("")
   const [categoryMenu, setCategory] = useState(false)
   const [mobileCategoryMenu, setMobileCategory] = useState(false)
