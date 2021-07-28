@@ -32,6 +32,7 @@ export default function CommentsProvider({ children }) {
 
     const data = {
       name: user.displayName,
+      img: user.providerData[0].photoURL,
       comment: info.comment,
       rating: info.rating,
       postDate: info.postDate

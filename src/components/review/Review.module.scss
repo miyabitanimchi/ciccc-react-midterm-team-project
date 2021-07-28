@@ -30,6 +30,42 @@
       margin: auto;
     }
   }
+
+  .reviewBox {
+    // border: 1px solid black;
+    margin: 5px;
+    padding: 10px;
+    background-color: rgb(252, 252, 252);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .reviewHeader {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 40px;
+        height: 40px;
+        clip-path: circle(50% at 50% 50%);
+        margin-right: 10px;
+      }
+      span {
+        margin-left: 10px;
+        font-size: 10pt;
+        font-style: italic;
+      }
+    }
+
+    .reviewBody {
+      margin-top: 10px;
+
+      P {
+        margin-left: 5px;
+      }
+
+    }
+  }
 }
 
 .inputWrap {

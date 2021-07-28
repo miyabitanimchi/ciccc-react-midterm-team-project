@@ -34,16 +34,18 @@ export default function Reviews(props) {
                     {productComments.map((data, index) => {
                         return (
                             <div key={index}
-                                style={{
-                                    border: "1px solid black",
-                                    margin: "5px"
-                                }}
-                            >
-                                <span>{data.name} posted at {data.postDate}</span>
-                                <p>{data.comment}</p>
-                                <Box component="fieldset" mb={3} borderColor="transparent">
-                                    <Rating name="read-only" value={data.rating} readOnly />
-                                </Box>
+                                className={classes.reviewBox}>
+                                <div className={classes.reviewHeader}>
+                                    <img src={data.img} alt="user_img" /><p>{data.name}</p> <span>posted at {data.postDate}</span>
+                                </div>
+                                <div className={classes.reviewBody}>
+                                    <p>{data.comment}</p>
+                                    <Box component="fieldset" mb={3} borderColor="transparent"
+                                    style={{margin:0}}>
+                                        <Rating name="read-only" value={data.rating} readOnly />
+                                    </Box>
+                                </div>
+
                             </div>
                         )
                     })
