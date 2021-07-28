@@ -44,14 +44,14 @@ console.log(user)
         qty += productData.quantity;
       })
       setCartQuantity(qty);  
+    } else {
+      setCartQuantity(null);
     }
   }
 
   useEffect(() => {
-    if (user) {
-      const cartContents = JSON.parse(localStorage.getItem(user.uid));
-      refreshQuantity(cartContents);
-    }
+    const uid = user ? user.uid : "unknown";
+    refreshQuantity(JSON.parse(localStorage.getItem(uid)));
   }, [user]);
 
   return (
