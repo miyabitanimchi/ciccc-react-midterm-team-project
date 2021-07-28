@@ -4,7 +4,6 @@ import "./Cart.scss";
 import { useAuthContext } from "../../context/auth-context";
 import { useProductsContext } from "../../context/products-context";
 import { Link } from "react-router-dom";
-import CartQty from "./CartQty";
 
 const Cart = () => {
   const { user } = useAuthContext();
@@ -82,9 +81,6 @@ const Cart = () => {
           </div>
         </main>
       )}
-{productsAddedToCart.length !== 0 &&
-      <CartQty qty={quantity}/>
-}
     </>
   );
 };
