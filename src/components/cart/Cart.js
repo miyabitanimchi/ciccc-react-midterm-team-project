@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import "./Cart.scss";
 import { useAuthContext } from "../../context/auth-context";
+import { useProductsContext } from "../../context/products-context";
 import { Link } from "react-router-dom";
+import CartQty from "./CartQty";
 
 const Cart = () => {
   const { user } = useAuthContext();
+  const { refreshQuantity } = useProductsContext();
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
+  const [quantity,setQuantity] = useState(productsAddedToCart.length)
 
   const getProductsArrInLocalStorage = () => {
     if (user && localStorage.hasOwnProperty(user.uid)) {
@@ -21,6 +25,7 @@ const Cart = () => {
     const newAddedProductsArr = productsAddedToCart.filter(
       (product) => product.productUid !== id
     );
+    refreshQuantity(newAddedProductsArr);
     setProductsAddedToCart(newAddedProductsArr);
     if (user) {
       localStorage.removeItem(user.uid);
@@ -35,6 +40,11 @@ const Cart = () => {
     getProductsArrInLocalStorage();
   }, [user]);
 
+  useEffect(() => {
+    setQuantity(productsAddedToCart.length)
+  }, [productsAddedToCart]);
+//  console.log(quantity)
+  
   return (
     <>
       {productsAddedToCart.length !== 0 ? (
@@ -72,6 +82,9 @@ const Cart = () => {
           </div>
         </main>
       )}
+{productsAddedToCart.length !== 0 &&
+      <CartQty qty={quantity}/>
+}
     </>
   );
 };
