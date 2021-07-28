@@ -5,33 +5,17 @@ import { ImSearch } from "react-icons/im";
 import { useAuthContext } from '../../context/auth-context';
 import { useProductsContext } from '../../context/products-context';
 import { Link } from 'react-router-dom';
-import CartQty, { CartContext } from '../cart/CartQty';
-// import  from '../cart/CartQty';
 
 const Header = () => {
   const { user } = useAuthContext();
   const { cartQuantity } = useProductsContext();
   const [searchInput, setSearchInput] = useState("")
   const [categoryMenu, setCategory] = useState(false)
-  const CartContextQty = useContext(CartContext)
 
   const clearInput = () => {
     let searchInputValue = document.getElementsByClassName("searchInput")[0]
     searchInputValue.value = ""
   }
-
-  // console.log(CartContextQty)
-  // const storageChange = () => {
-  //   console.log("storage change")
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener('storage', storageChange())
-  // }, [CartContextQty]);
-
-
-
-
 
   return (
     <>
