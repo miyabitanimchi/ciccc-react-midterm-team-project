@@ -1,11 +1,16 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, { useState, createContext, useContext, useEffect, useReducer } from 'react';
 import categoryArr, { additionalProducts } from '../products/additionalProducts';
+import { useAuthContext } from "../context/auth-context";
+import database from "../firebase/firebase";
+import cartItemsReducer from "../reducer/cartItems";
 import axios from 'axios';
 
 const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [cartItems, dispatchCartItems] = useReducer(cartItemsReducer, []);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -25,16 +30,36 @@ const ProductsProvider = ({ children }) => {
         const allProducts = originalProducts.concat(additionalProducts);
         console.log(allProducts);
         setProducts(allProducts);
-      } catch(err) {
+      } catch (err) {
         console.error(`Error happened: ${err}`);
-      } 
+      }
     };
     fetchAPI();
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      database.ref(`/users/${user.uid}/cart/`).once("value").then((snapshot) => {
+        const productsAddedToCart = [];
+        snapshot.forEach((childSnapshot) => {
+          productsAddedToCart.push(
+            {
+              id: childSnapshot.key,
+              ...childSnapshot.val()
+            }
+          );
+        })
+        dispatchCartItems({
+          type: "SET_ITEM",
+          items: productsAddedToCart
+        })
+      })
+    }
+  }, [user])
+
   return (
     <ProductsContext.Provider value={{ products, setProducts }}>
-      { children }
+      {children}
     </ProductsContext.Provider>
   )
 };

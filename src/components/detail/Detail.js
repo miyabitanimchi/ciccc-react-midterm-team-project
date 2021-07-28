@@ -15,7 +15,7 @@ const Detail = (props) => {
   const { products } = useProductsContext();
   const { user } = useAuthContext();
 
-  const [cartItems, dispatchCartItems] = useReducer(cartItemsReducer, {});
+  const [cartItems, dispatchCartItems] = useReducer(cartItemsReducer, []);
 
   // Popup Function
   const [popUp, setPopUp] = useState(false);
@@ -110,8 +110,10 @@ const Detail = (props) => {
     database.ref(`users/${user.uid}/cart`).push(chosenProductInfo).then((ref) => {
       dispatchCartItems({
         type: "ADD_ITEM",
-        firebaseId: ref.key,
-        itemInfo: chosenProductInfo
+        item: {
+          firebaseId: ref.key,
+          itemInfo: chosenProductInfo
+        }
       })
     })
 

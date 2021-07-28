@@ -3,10 +3,10 @@ const cartItemsReducer = (state, action) => {
     case "SET_ITEM":
       return action.items;
     case "ADD_ITEM":
-      return {
+      return [
         ...state,
-        [action.firebaseId]: action.itemInfo
-      };
+        action.item
+      ];
     case "REMOVE_ITEM":
       return;
     default:
