@@ -39,12 +39,12 @@ const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      database.ref(`/users/${user.uid}/cart/`).once("value").then((snapshot) => {
+      database.ref(`/users/${user.uid}/cart/`).on("value", (snapshot) => {
         const productsAddedToCart = [];
         snapshot.forEach((childSnapshot) => {
           productsAddedToCart.push(
             {
-              id: childSnapshot.key,
+              firebaseId: childSnapshot.key,
               ...childSnapshot.val()
             }
           );
@@ -58,7 +58,12 @@ const ProductsProvider = ({ children }) => {
   }, [user])
 
   return (
-    <ProductsContext.Provider value={{ products, setProducts }}>
+    <ProductsContext.Provider value={{
+      products,
+      setProducts,
+      cartItems,
+      dispatchCartItems
+    }}>
       {children}
     </ProductsContext.Provider>
   )

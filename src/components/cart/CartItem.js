@@ -5,10 +5,10 @@ import "./CartItem.scss";
 // child
 
 const CartItem = (props) => {
-  const { product, productUid, size, color, quantity, subTotal } = props;
+  const { firebaseId, product, productUid, size, color, quantity, subTotal, getNewAddedProductsArr } = props;
 
-  const removeProduct = (productUid) => {
-    props.handleFunc(productUid);
+  const removeProduct = (id) => {
+    getNewAddedProductsArr(id);
   };
   return (
     <div className="product-container">
@@ -27,7 +27,7 @@ const CartItem = (props) => {
       </div>
       <IoMdClose
         className="close-icon"
-        onClick={() => removeProduct(productUid)}
+        onClick={() => removeProduct(firebaseId)}
       />
     </div>
   );

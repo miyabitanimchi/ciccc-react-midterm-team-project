@@ -8,7 +8,7 @@ const cartItemsReducer = (state, action) => {
         action.item
       ];
     case "REMOVE_ITEM":
-      return;
+      return state.filter((item) => item.firebaseId !== action.firebaseId);
     default:
       return;
   }
