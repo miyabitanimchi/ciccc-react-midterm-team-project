@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useAuthContext } from "../../context/auth-context";
+import { useProductsContext } from "../../context/products-context";
 import database from "../../firebase/firebase";
 import "./Checkout.scss";
+import CartItem from "../cart/CartItem";
 
 const Checkout = () => {
   const { user } = useAuthContext();
+  const { cartItems } = useProductsContext();
+  console.log(cartItems);
 
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
   const [subtotalOfProducts, setSubtotalOfProducts] = useState(0);
@@ -19,21 +23,18 @@ const Checkout = () => {
   };
 
   const calculateSubtotalOfProducts = () => {
-    if (user && productsAddedToCart) {
-      const subtotalOfProducts = productsAddedToCart.reduce(
-        (acc, productObj) => {
-          return Number(acc) + Number(productObj.subTotal);
-        },
-        0
-      );
-      // console.log(typeof subtotalOfProducts);
+    if (user && cartItems) {
+      const subtotalOfProducts = cartItems.reduce((acc, productObj) => {
+        return Number(acc) + Number(productObj.subTotal);
+      }, 0);
+      console.log(typeof subtotalOfProducts, subtotalOfProducts);
       setSubtotalOfProducts(subtotalOfProducts);
     }
   };
 
   useEffect(() => {
-    productsAddedToCart.length !== 0 && calculateSubtotalOfProducts();
-  }, [productsAddedToCart]);
+    cartItems.length !== 0 && calculateSubtotalOfProducts();
+  }, [cartItems]);
 
   useEffect(() => {
     user && getProductsArrInLocalStorage();
@@ -43,7 +44,7 @@ const Checkout = () => {
     <>
       <h1>Checkout</h1>
       <main className="checkout-container">
-        {productsAddedToCart ? (
+        {cartItems ? (
           <>
             <div className="address-payment-container">
               <div className="address-container">
@@ -184,8 +185,7 @@ const Checkout = () => {
               <div className="order-summary-wrap">
                 <div className="price-summary-wrap">
                   <h2 className="order-summary-title">
-                    Order Summary |
-                    <span> {productsAddedToCart.length} Item(s)</span>
+                    Order Summary |<span> {cartItems.length} Item(s)</span>
                   </h2>
                   <div className="price-wrap">
                     <p className="summary-label">Item(s) subtotal: </p>
@@ -226,13 +226,13 @@ const Checkout = () => {
                         Math.round(
                           (subtotalOfProducts + shippingCost) * 0.1 * 10
                         ) /
-                        10
+                          10
                       ).toFixed(2)}
                     </h3>
                   </div>
                 </div>
                 <div className="products-summary-wrap">
-                  {productsAddedToCart.map((product) => (
+                  {cartItems.map((product) => (
                     <div key={product.productUid}>
                       <img
                         src={product.product[0].image}
@@ -247,10 +247,10 @@ const Checkout = () => {
             </div>
           </>
         ) : (
-            <>
-              <h1>No checkout information to show</h1>
-            </>
-          )}
+          <>
+            <h1>No checkout information to show</h1>
+          </>
+        )}
       </main>
     </>
   );
