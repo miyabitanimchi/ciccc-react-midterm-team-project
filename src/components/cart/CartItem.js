@@ -1,11 +1,22 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import { useAuthContext } from "../../context/auth-context";
 import "./CartItem.scss";
 
 // child
 
 const CartItem = (props) => {
-  const { firebaseId, product, productUid, size, color, quantity, subTotal, getNewAddedProductsArr } = props;
+  const {
+    firebaseId,
+    product,
+    productUid,
+    size,
+    color,
+    quantity,
+    subTotal,
+    getNewAddedProductsArr,
+  } = props;
+  const { user } = useAuthContext();
 
   const removeProduct = (id) => {
     getNewAddedProductsArr(id);
@@ -27,7 +38,7 @@ const CartItem = (props) => {
       </div>
       <IoMdClose
         className="close-icon"
-        onClick={() => removeProduct(firebaseId)}
+        onClick={() => removeProduct(user ? firebaseId : productUid)}
       />
     </div>
   );

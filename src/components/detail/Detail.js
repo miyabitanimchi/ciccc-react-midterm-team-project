@@ -7,15 +7,11 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import PopUp from "./PopUp";
 import database from "../../firebase/firebase";
-import cartItemsReducer from "../../reducer/cartItems";
-
 import "./Detail.scss";
 
 const Detail = (props) => {
-  const { products } = useProductsContext();
+  const { products, cartItems, dispatchCartItems } = useProductsContext();
   const { user } = useAuthContext();
-
-  const [cartItems, dispatchCartItems] = useReducer(cartItemsReducer, []);
 
   // Popup Function
   const [popUp, setPopUp] = useState(false);
@@ -66,14 +62,11 @@ const Detail = (props) => {
     }
   }, [products]);
 
-  // useEffect(() => {
-  //   // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-  //   if (user) {
-  //     localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-  //   } else {
-  //     localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
-  //   }
-  // }, [addedProductsArr]);
+  useEffect(() => {
+    if (user === null) {
+      localStorage.setItem("unknown", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
   const setChosenSize = (targetedEl) => {
     // targetedEl.classList.add("selected-size");
@@ -107,22 +100,27 @@ const Detail = (props) => {
   const addToCart = (e) => {
     e.preventDefault();
 
-    database.ref(`users/${user.uid}/cart`).push(chosenProductInfo).then((ref) => {
+    if (user) {
+      database
+        .ref(`users/${user.uid}/cart`)
+        .push(chosenProductInfo)
+        .then((ref) => {
+          dispatchCartItems({
+            type: "ADD_ITEM",
+            item: {
+              firebaseId: ref.key,
+              itemInfo: chosenProductInfo,
+            },
+          });
+        });
+    } else {
       dispatchCartItems({
         type: "ADD_ITEM",
         item: {
-          firebaseId: ref.key,
-          itemInfo: chosenProductInfo
-        }
-      })
-    })
-
-    // for loaclStorage
-    // setAddedProductsArr((addedProductsArr) => {
-    //   return [...addedProductsArr, chosenProductInfo];
-    // });
-    // To go to cart page
-    // props.history.push("/cart");
+          ...chosenProductInfo,
+        },
+      });
+    }
     setPopUp(true);
   };
 

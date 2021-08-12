@@ -11,17 +11,14 @@ const Cart = () => {
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
   const { cartItems, dispatchCartItems } = useProductsContext();
 
-
-  const getProductsArrInLocalStorage = () => {
-    if (user && localStorage.hasOwnProperty(user.uid)) {
-      setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
-    } else if (localStorage.hasOwnProperty("unknown")) {
-      setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
-    }
-  };
+  // const getProductsArrInLocalStorage = () => {
+  //   if (localStorage.hasOwnProperty("unknown")) {
+  //     setProductsAddedToCart(cartItems);
+  //   }
+  // };
 
   // if user removes some of item in cart
-  const getNewAddedProductsArr = (firebaseId) => {
+  const getNewAddedProductsArr = (id) => {
     // const newAddedProductsArr = productsAddedToCart.filter(
     //   (product) => product.productUid !== id
     // );
@@ -33,17 +30,27 @@ const Cart = () => {
     //   localStorage.removeItem("unknown");
     //   localStorage.setItem("unknown", JSON.stringify(newAddedProductsArr));
     // }
-    database.ref(`users/${user.uid}/cart/${firebaseId}`).remove().then(() => {
+    if (user) {
+      database
+        .ref(`users/${user.uid}/cart/${id}`)
+        .remove()
+        .then(() => {
+          dispatchCartItems({
+            type: "REMOVE_FIREBASE_ITEM",
+            firebaseId: id,
+          });
+        });
+    } else {
       dispatchCartItems({
-        type: "REMOVE_ITEM",
-        firebaseId
-      })
-    })
+        type: "REMOVE_LOCALSTORAGE_ITEM",
+        productUid: id,
+      });
+    }
   };
 
-  useEffect(() => {
-    getProductsArrInLocalStorage();
-  }, [user]);
+  // useEffect(() => {
+  //   getProductsArrInLocalStorage();
+  // }, [user]);
 
   return (
     <>
@@ -74,13 +81,13 @@ const Cart = () => {
           </div>
         </main>
       ) : (
-          <main className="no-item-container">
-            <div className="no-item-notice-wrap">
-              <h1 className="no-item-notice">No Items in Cart.</h1>
-              <Link to={"/"}>Go Back to Main Page</Link>
-            </div>
-          </main>
-        )}
+        <main className="no-item-container">
+          <div className="no-item-notice-wrap">
+            <h1 className="no-item-notice">No Items in Cart.</h1>
+            <Link to={"/"}>Go Back to Main Page</Link>
+          </div>
+        </main>
+      )}
     </>
   );
 };
