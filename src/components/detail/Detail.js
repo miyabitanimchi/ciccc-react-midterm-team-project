@@ -109,7 +109,7 @@ const Detail = (props) => {
             type: "ADD_ITEM",
             item: {
               firebaseId: ref.key,
-              itemInfo: chosenProductInfo,
+              ...chosenProductInfo,
             },
           });
         });
@@ -208,8 +208,8 @@ const Detail = (props) => {
                     <PopUp
                       open={() => setPopUp(true)}
                       close={() => setPopUp(false)}
-                      qty={addedProductsArr.length}
-                      price={addedProductsArr}
+                      qty={cartItems.length}
+                      price={cartItems}
                     />
                   </div>
                 </div>

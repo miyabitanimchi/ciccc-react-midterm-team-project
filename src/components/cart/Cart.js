@@ -8,28 +8,10 @@ import { useProductsContext } from "../../context/products-context";
 
 const Cart = () => {
   const { user } = useAuthContext();
-  const [productsAddedToCart, setProductsAddedToCart] = useState([]);
   const { cartItems, dispatchCartItems } = useProductsContext();
-
-  // const getProductsArrInLocalStorage = () => {
-  //   if (localStorage.hasOwnProperty("unknown")) {
-  //     setProductsAddedToCart(cartItems);
-  //   }
-  // };
 
   // if user removes some of item in cart
   const getNewAddedProductsArr = (id) => {
-    // const newAddedProductsArr = productsAddedToCart.filter(
-    //   (product) => product.productUid !== id
-    // );
-    // setProductsAddedToCart(newAddedProductsArr);
-    // if (user) {
-    //   localStorage.removeItem(user.uid);
-    //   localStorage.setItem(user.uid, JSON.stringify(newAddedProductsArr));
-    // } else {
-    //   localStorage.removeItem("unknown");
-    //   localStorage.setItem("unknown", JSON.stringify(newAddedProductsArr));
-    // }
     if (user) {
       database
         .ref(`users/${user.uid}/cart/${id}`)
@@ -47,11 +29,6 @@ const Cart = () => {
       });
     }
   };
-
-  // useEffect(() => {
-  //   getProductsArrInLocalStorage();
-  // }, [user]);
-
   return (
     <>
       {cartItems.length !== 0 ? (
@@ -61,6 +38,7 @@ const Cart = () => {
               key={product.productUid}
               {...product}
               getNewAddedProductsArr={getNewAddedProductsArr}
+              user={user}
             />
           ))}
           <div className="checkout-wrap">

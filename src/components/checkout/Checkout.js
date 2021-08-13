@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useAuthContext } from "../../context/auth-context";
 import { useProductsContext } from "../../context/products-context";
-import database from "../../firebase/firebase";
 import "./Checkout.scss";
-import CartItem from "../cart/CartItem";
 
 const Checkout = () => {
   const { user } = useAuthContext();
   const { cartItems } = useProductsContext();
-  console.log(cartItems);
 
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
   const [subtotalOfProducts, setSubtotalOfProducts] = useState(0);

@@ -51,19 +51,23 @@ const ProductsProvider = ({ children }) => {
   // set items for logged in user
   useEffect(() => {
     if (user) {
-      database.ref(`/users/${user.uid}/cart/`).on("value", (snapshot) => {
-        const productsAddedToCart = [];
-        snapshot.forEach((childSnapshot) => {
-          productsAddedToCart.push({
-            firebaseId: childSnapshot.key,
-            ...childSnapshot.val(),
+      // database.ref(`/users/${user.uid}/cart/`).on("value", (snapshot) => {
+      database
+        .ref(`/users/${user.uid}/cart/`)
+        .once("value")
+        .then((snapshot) => {
+          const productsAddedToCart = [];
+          snapshot.forEach((childSnapshot) => {
+            productsAddedToCart.push({
+              firebaseId: childSnapshot.key,
+              ...childSnapshot.val(),
+            });
+          });
+          dispatchCartItems({
+            type: "SET_ITEM",
+            items: productsAddedToCart,
           });
         });
-        dispatchCartItems({
-          type: "SET_ITEM",
-          items: productsAddedToCart,
-        });
-      });
     }
   }, [user]);
 
