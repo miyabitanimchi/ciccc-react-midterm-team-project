@@ -48,10 +48,9 @@ const ProductsProvider = ({ children }) => {
     fetchAPI();
   }, []);
 
-  // set items for logged in user
   useEffect(() => {
+    // set items for logged in user
     if (user) {
-      // database.ref(`/users/${user.uid}/cart/`).on("value", (snapshot) => {
       database
         .ref(`/users/${user.uid}/cart/`)
         .once("value")
@@ -68,6 +67,13 @@ const ProductsProvider = ({ children }) => {
             items: productsAddedToCart,
           });
         });
+      // set items for unknown user
+    } else if (localStorage.hasOwnProperty("unknown") && user === null) {
+      const unknownUsersCartItems = JSON.parse(localStorage.getItem("unknown"));
+      dispatchCartItems({
+        type: "SET_ITEM",
+        items: unknownUsersCartItems,
+      });
     }
   }, [user]);
 
