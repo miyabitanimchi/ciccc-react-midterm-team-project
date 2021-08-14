@@ -30,12 +30,6 @@ const Cart = () => {
     }
   };
 
-  useEffect(() => {
-    if (user === null) {
-      localStorage.removeItem("unknown");
-      localStorage.setItem("unknown", JSON.stringify(cartItems));
-    }
-  }, [cartItems]);
   return (
     <>
       {cartItems.length !== 0 ? (

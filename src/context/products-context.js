@@ -77,16 +77,12 @@ const ProductsProvider = ({ children }) => {
     }
   }, [user]);
 
-  // set items for unknown user
   useEffect(() => {
-    if (localStorage.hasOwnProperty("unknown")) {
-      const unknownUsersCartItems = JSON.parse(localStorage.getItem("unknown"));
-      dispatchCartItems({
-        type: "SET_ITEM",
-        items: unknownUsersCartItems,
-      });
+    if (user === null) {
+      localStorage.removeItem("unknown");
+      localStorage.setItem("unknown", JSON.stringify(cartItems));
     }
-  }, [user]);
+  }, [cartItems]);
 
   return (
     <ProductsContext.Provider
