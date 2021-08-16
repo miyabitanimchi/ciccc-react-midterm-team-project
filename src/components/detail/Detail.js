@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useProductsContext } from "../../context/products-context";
 import { useAuthContext } from "../../context/auth-context";
 import Specification from "./Specification";
@@ -6,18 +7,23 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import PopUp from "./PopUp";
 import DetailResponsive from "./DetailResponsive";
-
-import Reviews from "../review/Reviews"
-import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
-import { CommentsContext } from '../../context/comments-context';
+import Reviews from "../review/Reviews";
+import Rating from "@material-ui/lab/Rating";
+import Box from "@material-ui/core/Box";
+import { CommentsContext } from "../../context/comments-context";
+import database from "../../firebase/firebase";
 import "./Detail.scss";
 import MediaQuery from "react-responsive";
 
 const Detail = (props) => {
-  const { products, refreshQuantity } = useProductsContext();
+  const {
+    products,
+    cartItems,
+    dispatchCartItems,
+    refreshQuantity,
+  } = useProductsContext();
   const { user } = useAuthContext();
-  const { avgRating,labels,productComments } = useContext(CommentsContext)
+  const { avgRating, labels, productComments } = useContext(CommentsContext);
 
   // Popup Function
   const [popUp, setPopUp] = useState(false);
@@ -69,14 +75,12 @@ const Detail = (props) => {
   }, [products]);
 
   useEffect(() => {
-    refreshQuantity(addedProductsArr);
+    refreshQuantity(cartItems);
     // user && localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    if (user) {
-      localStorage.setItem(user.uid, JSON.stringify(addedProductsArr));
-    } else {
-      localStorage.setItem("unknown", JSON.stringify(addedProductsArr));
+    if (user === null) {
+      localStorage.setItem("unknown", JSON.stringify(cartItems));
     }
-  }, [addedProductsArr]);
+  }, [cartItems]);
 
   const setChosenSize = (targetedEl) => {
     // targetedEl.classList.add("selected-size");
@@ -109,13 +113,28 @@ const Detail = (props) => {
   // When click Add to Cart button
   const addToCart = (e) => {
     e.preventDefault();
-    // for loaclStorage
-    setAddedProductsArr((addedProductsArr) => {
-      return [...addedProductsArr, chosenProductInfo];
-    });
 
-    // To go to cart page
-    // props.history.push("/cart");
+    if (user) {
+      database
+        .ref(`users/${user.uid}/cart`)
+        .push(chosenProductInfo)
+        .then((ref) => {
+          dispatchCartItems({
+            type: "ADD_ITEM",
+            item: {
+              firebaseId: ref.key,
+              ...chosenProductInfo,
+            },
+          });
+        });
+    } else {
+      dispatchCartItems({
+        type: "ADD_ITEM",
+        item: {
+          ...chosenProductInfo,
+        },
+      });
+    }
     setPopUp(true);
   };
 
@@ -155,7 +174,6 @@ const Detail = (props) => {
                   {chosenProductInfo.product[0].title}
                 </h2>
                 <span className="rating-star">
-                
                   <Box component="fieldset" mb={3} borderColor="transparent">
                     <Rating
                       name="simple-controlled"
@@ -163,21 +181,43 @@ const Detail = (props) => {
                       readOnly
                     />
                   </Box>
-                  {avgRating ? 
-                  <>
-                  <span style={{color:"black",fontSize:"20pt",fontStyle:"italic"}}>"{labels[avgRating]}"</span>
-                  <span style={{color:"grey",fontSize:"12pt",fontStyle:"italic"}}>rated by {productComments.length}customer(s)</span>
-                  </>
-                  :
-                  <p style={{color:"grey",fontSize:"12pt",fontStyle:"italic"}}>This product have no rating yet.</p>
-                }
-
-
-              </span>
+                  {avgRating ? (
+                    <>
+                      <span
+                        style={{
+                          color: "black",
+                          fontSize: "20pt",
+                          fontStyle: "italic",
+                        }}
+                      >
+                        "{labels[avgRating]}"
+                      </span>
+                      <span
+                        style={{
+                          color: "grey",
+                          fontSize: "12pt",
+                          fontStyle: "italic",
+                        }}
+                      >
+                        rated by {productComments.length}customer(s)
+                      </span>
+                    </>
+                  ) : (
+                    <p
+                      style={{
+                        color: "grey",
+                        fontSize: "12pt",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      This product have no rating yet.
+                    </p>
+                  )}
+                </span>
                 <p className="price-title">Price:</p>
                 <p className="price">
                   $
-                {(
+                  {(
                     Math.round(chosenProductInfo.product[0].price * 10) / 10
                   ).toFixed(2)}
                 </p>
@@ -219,7 +259,7 @@ const Detail = (props) => {
                   onClick={addToCart}
                 >
                   Add to Cart
-              </button>
+                </button>
 
                 {popUp === true && (
                   <div className="popUp" onClick={() => popUpClose()}>
@@ -230,8 +270,8 @@ const Detail = (props) => {
                       <PopUp
                         open={() => setPopUp(true)}
                         close={() => setPopUp(false)}
-                        qty={addedProductsArr.length}
-                        price={addedProductsArr}
+                        qty={cartItems.length}
+                        price={cartItems}
                       />
                     </div>
                   </div>
@@ -239,7 +279,7 @@ const Detail = (props) => {
               </div>
             </div>
           </MediaQuery>
-         
+
           <Reviews id={props.match.params.id} />
         </>
       )}

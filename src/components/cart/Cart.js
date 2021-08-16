@@ -2,64 +2,58 @@ import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import "./Cart.scss";
 import { useAuthContext } from "../../context/auth-context";
-import { useProductsContext } from "../../context/products-context";
+import database from "../../firebase/firebase";
 import { Link } from "react-router-dom";
+import { useProductsContext } from "../../context/products-context";
 
 const Cart = () => {
   const { user } = useAuthContext();
   const { refreshQuantity } = useProductsContext();
-  const [productsAddedToCart, setProductsAddedToCart] = useState([]);
-  const [quantity,setQuantity] = useState(productsAddedToCart.length)
-
-  const getProductsArrInLocalStorage = () => {
-    if (user && localStorage.hasOwnProperty(user.uid)) {
-      setProductsAddedToCart(JSON.parse(localStorage.getItem(user.uid)));
-    } else if (localStorage.hasOwnProperty("unknown")) {
-      setProductsAddedToCart(JSON.parse(localStorage.getItem("unknown")));
-    }
-  };
+  const { cartItems, dispatchCartItems } = useProductsContext();
+  const [quantity, setQuantity] = useState(cartItems.length);
 
   // if user removes some of item in cart
   const getNewAddedProductsArr = (id) => {
-    const newAddedProductsArr = productsAddedToCart.filter(
-      (product) => product.productUid !== id
-    );
-    refreshQuantity(newAddedProductsArr);
-    setProductsAddedToCart(newAddedProductsArr);
     if (user) {
-      localStorage.removeItem(user.uid);
-      localStorage.setItem(user.uid, JSON.stringify(newAddedProductsArr));
+      database
+        .ref(`users/${user.uid}/cart/${id}`)
+        .remove()
+        .then(() => {
+          dispatchCartItems({
+            type: "REMOVE_FIREBASE_ITEM",
+            firebaseId: id,
+          });
+        });
     } else {
-      localStorage.removeItem("unknown");
-      localStorage.setItem("unknown", JSON.stringify(newAddedProductsArr));
+      dispatchCartItems({
+        type: "REMOVE_LOCALSTORAGE_ITEM",
+        productUid: id,
+      });
     }
+    refreshQuantity(cartItems);
   };
 
   useEffect(() => {
-    getProductsArrInLocalStorage();
-  }, [user]);
+    setQuantity(cartItems.length);
+  }, [cartItems]);
+  //  console.log(quantity)
 
-  useEffect(() => {
-    setQuantity(productsAddedToCart.length)
-  }, [productsAddedToCart]);
-//  console.log(quantity)
-  
   return (
     <>
-      {productsAddedToCart.length !== 0 ? (
+      {cartItems.length !== 0 ? (
         <main className="cart-container">
-          {productsAddedToCart.map((product) => (
+          {cartItems.map((product) => (
             <CartItem
               key={product.productUid}
               {...product}
-              // ******* Need to rename this *******
-              handleFunc={getNewAddedProductsArr}
+              getNewAddedProductsArr={getNewAddedProductsArr}
+              user={user}
             />
           ))}
           <div className="checkout-wrap">
             <p className="total-price">
               Total Price: $
-              {productsAddedToCart
+              {cartItems
                 .reduce((acc, productObj) => {
                   return Number(acc) + Number(productObj.subTotal);
                 }, 0)
