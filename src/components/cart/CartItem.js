@@ -3,7 +3,6 @@ import { IoMdClose } from "react-icons/io";
 import "./CartItem.scss";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { useStyles } from "./style-materialUi";
@@ -73,7 +72,6 @@ const CartItem = (props) => {
               <MenuItem value={9}>9</MenuItem>
               <MenuItem value={10}>10</MenuItem>
             </Select>
-            <FormHelperText>Label + placeholder</FormHelperText>
           </FormControl>
         </div>
         <IoMdClose

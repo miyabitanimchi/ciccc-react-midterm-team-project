@@ -36,7 +36,6 @@ const Cart = () => {
   useEffect(() => {
     setQuantity(cartItems.length);
   }, [cartItems]);
-  //  console.log(quantity)
 
   return (
     <>
