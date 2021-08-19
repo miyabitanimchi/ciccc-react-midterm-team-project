@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import "./CartItem.scss";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -12,6 +12,7 @@ import { useStyles } from "./style-materialUi";
 const CartItem = (props) => {
   const {
     firebaseId,
+    index,
     product,
     productUid,
     size,
@@ -19,17 +20,19 @@ const CartItem = (props) => {
     quantity,
     subTotal,
     getNewAddedProductsArr,
+    handleUpdateQuantity,
     user,
   } = props;
-  const [testQty, setTestQty] = useState(quantity);
   const classes = useStyles();
-
-  const handleChange = (event) => {
-    setTestQty(event.target.value);
-  };
+  const [selectedQuantity, setSelectedQuantity] = useState(quantity);
 
   const removeProduct = (id) => {
     getNewAddedProductsArr(id);
+  };
+
+  const updateQuantity = (newQuantity, firebaseId, index) => {
+    setSelectedQuantity(newQuantity);
+    handleUpdateQuantity(newQuantity, firebaseId, index);
   };
   return (
     <>
@@ -41,7 +44,6 @@ const CartItem = (props) => {
           <h3 className="title">{product[0].title}</h3>
           <p className="size">Size: {size}</p>
           <p className="color">Colour: {color}</p>
-          {/* <p className="quantity">Quantity: {quantity}</p> */}
           <p className="unitPrice">
             CAD $ {(Math.round(product[0].price * 10) / 10).toFixed(2)}
           </p>
@@ -55,12 +57,19 @@ const CartItem = (props) => {
             <Select
               labelId="demo-simple-select-placeholder-label-label"
               id="demo-simple-select-placeholder-label"
-              value={testQty}
-              onChange={handleChange}
+              value={selectedQuantity}
+              onChange={
+                // user
+                //   ?
+                // (e) => handleUpdateQuantity(e.target.value, firebaseId, index)
+                (e) => updateQuantity(e.target.value, firebaseId, index)
+                // : (e) =>
+                //     handleUpdateQuantity(e.target.value, productUid, index)
+              }
               displayEmpty
               className={classes.selectEmpty}
             >
-              <MenuItem value={quantity}>{quantity}</MenuItem>
+              <MenuItem value={selectedQuantity}>{selectedQuantity}</MenuItem>
               <MenuItem value={1}>1</MenuItem>
               <MenuItem value={2}>2</MenuItem>
               <MenuItem value={3}>3</MenuItem>

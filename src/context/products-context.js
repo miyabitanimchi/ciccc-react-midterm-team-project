@@ -61,6 +61,11 @@ const ProductsProvider = ({ children }) => {
     }
   };
 
+  const saveLocalStorage = (items) => {
+    localStorage.removeItem("unknown");
+    localStorage.setItem("unknown", JSON.stringify(items));
+  };
+
   useEffect(() => {
     // set items for logged in user
     if (user) {
@@ -93,8 +98,7 @@ const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     if (user === null) {
-      localStorage.removeItem("unknown");
-      localStorage.setItem("unknown", JSON.stringify(cartItems));
+      saveLocalStorage(cartItems);
     }
   }, [cartItems]);
 
@@ -107,6 +111,7 @@ const ProductsProvider = ({ children }) => {
         dispatchCartItems,
         cartQuantity,
         refreshQuantity,
+        saveLocalStorage,
       }}
     >
       {children}

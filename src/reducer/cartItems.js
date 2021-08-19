@@ -8,6 +8,9 @@ const cartItemsReducer = (state, action) => {
       return state.filter((item) => item.firebaseId !== action.firebaseId);
     case "REMOVE_LOCALSTORAGE_ITEM":
       return state.filter((item) => item.productUid !== action.productUid);
+    case "UPDATE_ITEM_QUANTITY":
+      state.splice(action.index, 1, action.updatedItem);
+      return state;
     default:
       return;
   }
