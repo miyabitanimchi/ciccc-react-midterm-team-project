@@ -9,7 +9,6 @@ const Cart = () => {
   const { user } = useAuthContext();
   const { refreshQuantity } = useProductsContext();
   const [productsAddedToCart, setProductsAddedToCart] = useState([]);
-  const [quantity,setQuantity] = useState(productsAddedToCart.length)
 
   const getProductsArrInLocalStorage = () => {
     if (user && localStorage.hasOwnProperty(user.uid)) {
@@ -39,10 +38,8 @@ const Cart = () => {
     getProductsArrInLocalStorage();
   }, [user]);
 
-  useEffect(() => {
-    setQuantity(productsAddedToCart.length)
-  }, [productsAddedToCart]);
-//  console.log(quantity)
+
+
   
   return (
     <>

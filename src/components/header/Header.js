@@ -18,19 +18,6 @@ const Header = () => {
     searchInputValue.value = ""
   }
 
-  // console.log(CartContextQty)
-  // const storageChange = () => {
-  //   console.log("storage change")
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener('storage', storageChange())
-  // }, [CartContextQty]);
-
-
-
-
-
   return (
     <>
       <nav>
