@@ -73,6 +73,7 @@ const Cart = () => {
             index,
           });
           calculateTotal(cartItems);
+          refreshQuantity(cartItems);
         });
     } else {
       dispatchCartItems({
@@ -81,15 +82,10 @@ const Cart = () => {
         index,
       });
       saveLocalStorage(cartItems);
+      calculateTotal(cartItems);
+      refreshQuantity(cartItems);
     }
-    // calculateTotal(cartItems);
-    refreshQuantity(cartItems);
   };
-
-  // useEffect(() => {
-  //   console.log(cartItems);
-  //   // calculateTotal(cartItems);
-  // }, [totalPrice]);
 
   useEffect(() => {
     console.log(cartItems);

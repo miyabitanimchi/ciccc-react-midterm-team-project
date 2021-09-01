@@ -58,18 +58,12 @@ const CartItem = (props) => {
               labelId="demo-simple-select-placeholder-label-label"
               id="demo-simple-select-placeholder-label"
               value={selectedQuantity}
-              onChange={
-                // user
-                //   ?
-                // (e) => handleUpdateQuantity(e.target.value, firebaseId, index)
-                (e) => updateQuantity(e.target.value, firebaseId, index)
-                // : (e) =>
-                //     handleUpdateQuantity(e.target.value, productUid, index)
+              onChange={(e) =>
+                updateQuantity(e.target.value, firebaseId, index)
               }
               displayEmpty
               className={classes.selectEmpty}
             >
-              <MenuItem value={selectedQuantity}>{selectedQuantity}</MenuItem>
               <MenuItem value={1}>1</MenuItem>
               <MenuItem value={2}>2</MenuItem>
               <MenuItem value={3}>3</MenuItem>
