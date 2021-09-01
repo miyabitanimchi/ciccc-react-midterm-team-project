@@ -15,7 +15,11 @@ const Cart = () => {
     saveLocalStorage,
   } = useProductsContext();
   const [totalPrice, setTotalPrice] = useState(0);
-  // const [quantity, setQuantity] = useState(cartItems.length);
+
+  const calculateTotalAndRefreshQty = (cartItems) => {
+    calculateTotal(cartItems);
+    refreshQuantity(cartItems);
+  };
 
   // calculate total price
   const calculateTotal = (cartItems) => {
@@ -61,7 +65,6 @@ const Cart = () => {
       subTotal: newSubTotal,
     };
     if (user) {
-      console.log({ ...cartItems[index], quantity: newQuantity });
       database
         .ref(`users/${user.uid}/cart`)
         .child(id)
@@ -72,8 +75,7 @@ const Cart = () => {
             updatedItem,
             index,
           });
-          calculateTotal(cartItems);
-          refreshQuantity(cartItems);
+          calculateTotalAndRefreshQty(cartItems);
         });
     } else {
       dispatchCartItems({
@@ -82,14 +84,12 @@ const Cart = () => {
         index,
       });
       saveLocalStorage(cartItems);
-      calculateTotal(cartItems);
-      refreshQuantity(cartItems);
+      calculateTotalAndRefreshQty(cartItems);
     }
   };
 
   useEffect(() => {
-    console.log(cartItems);
-    calculateTotal(cartItems);
+    calculateTotalAndRefreshQty(cartItems);
   }, [cartItems]);
 
   return (
