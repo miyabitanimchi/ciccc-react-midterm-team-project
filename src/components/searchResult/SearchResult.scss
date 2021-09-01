@@ -1,3 +1,5 @@
+@import "../../style/mediaquery";
+
 .itemResultList {
     position: relative;
 
@@ -9,26 +11,38 @@
     }
 
     .itemResultWrap {
-        margin: 0 auto;
+        margin: auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
 
         .item {
             display: flex;
             position: relative;
             user-select: none;
-            margin: 12px;
+            margin: 8px;
 
+            @include mq-max-width("mobile") {
+                margin: 5px;
+            }
+            
             a {
-                margin: 15px;
+                margin: 8px;
+                @include mq-max-width("mobile") {
+                    margin: 5px;
+                }
             }
 
             img {
-                height: 200px;
-                width:200px;
+                height: 180px;
+                width: 180px;
                 object-fit: cover;
+
+                @include mq-max-width("mobile") {
+                    height: 150px;
+                    width: 150px;
+                }
             }
 
             a:hover {

@@ -78,7 +78,6 @@ const Cart = () => {
           </div>
         </main>
       )}
-
     </>
   );
 };

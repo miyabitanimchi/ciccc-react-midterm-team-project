@@ -30,9 +30,9 @@ console.log(user)
         const allProducts = originalProducts.concat(additionalProducts);
         // console.log(allProducts);
         setProducts(allProducts);
-      } catch(err) {
+      } catch (err) {
         console.error(`Error happened: ${err}`);
-      } 
+      }
     };
     fetchAPI();
   }, []);

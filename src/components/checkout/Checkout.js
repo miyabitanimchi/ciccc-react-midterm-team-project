@@ -60,7 +60,7 @@ const Checkout = () => {
                     />
                   </div>
                   <div className="input-wrap">
-                    <label htmlFor="last-name">First Name: </label>
+                    <label htmlFor="last-name">Last Name: </label>
                     <input
                       className="input"
                       type="text"
@@ -225,7 +225,7 @@ const Checkout = () => {
                         Math.round(
                           (subtotalOfProducts + shippingCost) * 0.1 * 10
                         ) /
-                          10
+                        10
                       ).toFixed(2)}
                     </h3>
                   </div>
@@ -246,10 +246,10 @@ const Checkout = () => {
             </div>
           </>
         ) : (
-          <>
-            <h1>No checkout information to show</h1>
-          </>
-        )}
+            <>
+              <h1>No checkout information to show</h1>
+            </>
+          )}
       </main>
     </>
   );

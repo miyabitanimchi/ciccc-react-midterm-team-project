@@ -1,10 +1,12 @@
+@import "../../style/mediaquery";
+
 .itemList {
     position: relative;
     // background-color: rgb(247, 247, 247);
     // padding:20px 0 0;
 
     h2 {
-        margin-left:20px;
+        margin-left: 20px;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         user-select: none;
     }
@@ -14,24 +16,35 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         // margin-bottom: 80px;
 
         .item {
             display: flex;
             position: relative;
             user-select: none;
-            margin: 12px;
+            margin: 8px;
 
+            @include mq-max-width("mobile") {
+                margin: 5px;
+            }
+            
             a {
-                margin: 15px;
+                margin: 8px;
+                @include mq-max-width("mobile") {
+                    margin: 5px;
+                }
             }
 
             img {
-                height: 200px;
-                width: 200px;
+                height: 180px;
+                width: 180px;
                 object-fit: cover;
-                // border-radius: 20px;
+
+                @include mq-max-width("mobile") {
+                    height: 150px;
+                    width: 150px;
+                }
             }
 
             a:hover {

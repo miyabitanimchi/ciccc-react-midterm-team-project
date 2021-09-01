@@ -3,16 +3,20 @@ import ItemList from '../itemList/ItemList';
 import './SearchResult.scss';
 import { useProductsContext } from '../../context/products-context';
 
+
 const SearchResult = (props) => {
 
     const { products } = useProductsContext();
 
-
+    
     const [result, setResult] = useState([])
     const [searchKey, setSearchKey] = useState("")
 
     const searchKeyWords = props.match.params.keywords
 
+
+
+    useEffect(() => {
     const search = () => {
 
         setSearchKey(searchKeyWords.toLowerCase())
@@ -21,16 +25,12 @@ const SearchResult = (props) => {
             product.title.toLowerCase().indexOf(searchKey) > -1)
         console.log(searchResult)
 
-
-
         setResult(searchResult)
 
     }
 
-    useEffect(() => {
         search()
     }, [searchKey, searchKeyWords, products])
-    console.log(result)
 
     return (
         <>

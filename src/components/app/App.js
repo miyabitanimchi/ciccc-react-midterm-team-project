@@ -9,7 +9,6 @@ import './App.scss';
 function App() {
 
   const { products } = useProductsContext();
-  console.log(products)
   const [randomItem, setRandomItem] = useState([])
   const [itemList, setItemList] = useState([])
 
@@ -47,15 +46,16 @@ function App() {
     setItemList(itemListArr)
   }, [products])
 
+
   return (
     <div className="app">
       <div>
         {products.length !== 0 && (
           <div>
             {user &&
-            <Greeting user={user} />
+              <Greeting user={user} />
             }
-            
+
             <Carousel item={randomItem} title={"Best Seller"} />
             <ItemList item={itemList} title={"Feature Items"} listClass={"itemList"} wrapClass={"itemWrap"} />
           </div>

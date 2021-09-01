@@ -1,5 +1,24 @@
+@import "../../style/mediaquery";
+
 .item {
     position: relative;
+    width: 180px;
+    @include mq-max-width("mobile") {
+        // height: 150px;
+        width: 150px;
+    }
+
+    .description {
+        position: relative;
+
+        p {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+    }
+
     .modal {
         background-color: black;
         position: absolute;

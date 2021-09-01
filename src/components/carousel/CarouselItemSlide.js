@@ -45,9 +45,7 @@ const CarouselItemSlide = (props) => {
                         <IoIosArrowDropleftCircle
                             opacity={current === 0 ? 0 : 1}
                             className="leftArrow" size={30} onClick={prevSlide} />
-                        <IoIosArrowDroprightCircle
-                            opacity={current === 2 ? 0 : 1}
-                            className="rightArrow" size={30} onClick={nextSlide} />
+                       
 
                         {slide.map((slide, index) => {
                             return (
@@ -58,6 +56,10 @@ const CarouselItemSlide = (props) => {
                                 </div>
                             )
                         })}
+ <IoIosArrowDroprightCircle
+                            opacity={current === 2 ? 0 : 1}
+                            className="rightArrow" size={30} onClick={nextSlide} />
+
                     </div>
                 </>
             )}

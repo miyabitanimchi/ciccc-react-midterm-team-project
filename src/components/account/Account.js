@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './Account.scss';
 import { useAuthContext } from "../../context/auth-context";
 import { firebase, googleAuthProvider } from '../../firebase/firebase';
-
+import { Link } from 'react-router-dom';
 
 const Account = () => {
 
@@ -39,7 +39,7 @@ const Account = () => {
                     <div className="accountWrap">
                         <div className="loginWrap">
                             <h3>You havn't login yet,<br/>Please login by</h3>
-                            <div className="googleIcon"><img src={googleLogo} /></div>
+                            <div className="googleIcon"><img src={googleLogo} alt="Google_logo"/></div>
                             <button><div onClick={startLogin} className="auth-button">Log in</div></button>
                         </div>
                     </div>
@@ -47,16 +47,16 @@ const Account = () => {
                 :
                 <>
                     <div className="accountWrap">
-                        <div className="accountImg"><img src={user.providerData[0].photoURL} /></div>
+                        <div className="accountImg"><img src={user.providerData[0].photoURL } alt="Google_user_image"/></div>
                         <div className="detailWrap">
                             <ul>
                                 <li><h3>Account Detail</h3></li>
                                 <li><span>Name:</span> <span>{user.providerData[0].displayName}</span></li>
                                 <li><span>Email:</span> <span>{user.providerData[0].email}</span></li>
+                                <Link to='/edit_account'>Edit Account</Link><br />
                                 <button><div onClick={startLogout} className="auth-button">Logout</div></button>
                             </ul>
                         </div>
-
                     </div >
                     {/* ================Add cart section below?
                     <Cart /> */}
