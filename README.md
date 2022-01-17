@@ -39,6 +39,7 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • routers/AppRouter.js <br/>
 • routers/PrivateRoute.js <br/>
 • components/detail/Detail.js
+• reducer/account.js <br/>
 <br/>
 ### Kit So coded & was in charge of following files:
 • components/account/Account.js <br/>
@@ -55,7 +56,11 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • components/searchResult/SearchResult.js <br/>
 • components/detail/PopUp.js <br/>
 • components/detail/Detail.js <br/>
-• Designed logo and Favicon  
+• components/cart/CartQty.js <br/>
+• components/review/ReviewInput.js <br/>
+• components/review/Review.js <br/>
+• Designed logo and Favicon
+• Responsive design on the top and search result page <br/>
 <br/>
 ### <b>Miyabi Tanimichi</b> coded & was in charge of following files:
 • components/detail/Detail.js <br/>
@@ -64,6 +69,8 @@ This is an e-commerce website built with React.js, and it has its main page, car
 • components/cart/CartItem.js <br/>
 • components/checkoutCheckout.js <br/>
 • components/wrapper/Wrapper.js <br/>
+• reducer/cartItem.js <br/>
+• Responsive design on the product detail, cart and checkout page <br/>
 • README.md
 
 
