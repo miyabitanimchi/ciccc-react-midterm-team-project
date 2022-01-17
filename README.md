@@ -18,12 +18,14 @@ This is an e-commerce website built with React.js, and it has its main page, car
 # Built with
 • React.js <br/>
 • Sass
+• Firebase
 
 # Features / Technologies we used
 • Hooks <br/>
 • React-Router-Dom <br/>
 • Context API <br/>
 • Firebase Authentification <br/>
+• Firebase Realtime Database <br/>
 • localStorage <br/>
 • React uuid <br/>
 • Axios <br/>
